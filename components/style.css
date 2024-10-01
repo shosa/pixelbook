@@ -1,15 +1,3 @@
-/*!
- * Start Bootstrap - SB Admin 2 v4.1.3 (https://startbootstrap.com/theme/sb-admin-2)
- * Copyright 2013-2021 Start Bootstrap
- * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-sb-admin-2/blob/master/LICENSE)
- */
-
-/*!
- * Bootstrap v4.6.0 (https://getbootstrap.com/)
- * Copyright 2011-2021 The Bootstrap Authors
- * Copyright 2011-2021 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
 :root {
   --blue: #4e73df;
   --indigo: #6610f2;
@@ -75,7 +63,7 @@ body {
   margin: 0;
   font-family: "Nunito", -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important ;
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -12803,85 +12791,52 @@ body.sidebar-toggled footer.sticky-footer {
   cursor: default !important;
 }
 
-
-/* styles.css */
-
-/* Stile di base */
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  background-color: #f4f4f7;
-  color: #333;
-}
-
-.container {
-  padding: 30px;
-}
-
-h1 {
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 30px;
-  color: #3A3A3C;
-}
-
-/* Stile per i banner delle categorie */
-.category-link {
-  text-decoration: none;
-  display: block;
-  transition: transform 0.3s ease;
-}
-
-.category-link:hover {
-  transform: scale(1.05);
-}
-
-.category-banner {
-  position: relative;
-  background-size: cover;
-  background-position: center;
-  border-radius: 5px;
-  overflow: hidden;
-  height: 220px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-  transition: box-shadow 0.3s ease;
-}
-
-.category-link:hover .category-banner {
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-}
-
-.category-title {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgb(0 0 0 / 21%);
-  color: white;
+header.masthead {
+  padding-top: 10.5rem;
+  padding-bottom: 6rem;
   text-align: center;
-  padding: 15px;
+  color: #fff;
+  background-image: url("../src/img/bg.jpg");
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center center;
+  background-size: cover;
+}
+
+header.masthead .masthead-subheading {
   font-size: 1.5rem;
-  font-weight: 500;
-  text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
-
+  font-style: italic;
+  line-height: 1.5rem;
+  margin-bottom: 25px;
+  font-family: "Roboto Slab", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
-/* Media queries per migliorare il layout su dispositivi mobili */
-@media (max-width: 768px) {
-  .category-banner {
-    height: 180px;
-  }
-
-  h1 {
-    font-size: 2rem;
-  }
+header.masthead .masthead-heading {
+  font-size: 3.25rem;
+  font-weight: 700;
+  line-height: 3.25rem;
+  margin-bottom: 2rem;
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
-@media (max-width: 576px) {
-  .category-banner {
-    height: 150px;
+@media (min-width: 768px) {
+  header.masthead {
+    padding-top: 17rem;
+    padding-bottom: 12.5rem;
   }
 
-  h1 {
-    font-size: 1.75rem;
+  header.masthead .masthead-subheading {
+    font-size: 2.25rem;
+    font-style: italic;
+    line-height: 2.25rem;
+    margin-bottom: 2rem;
+  }
+
+  header.masthead .masthead-heading {
+    font-size: 4.5rem;
+    font-weight: 700;
+    line-height: 4.5rem;
+    margin-bottom: 4rem;
+    ;
   }
 }

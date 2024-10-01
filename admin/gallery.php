@@ -1,22 +1,36 @@
 <?php
 require '../config/db.php';
-require '../components/headerAdmin.php';
+require 'components/header.php';
 
 $pdo = Database::getInstance();
 
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['add_photo'])) {
-        // Aggiungi foto alla galleria
+        // Aggiungi più foto alla galleria
         $categoria_id = $_POST['categoria_id'];
-        $descrizione = $_POST['descrizione'];
-        $file = $_FILES['file']['name'];
 
-        move_uploaded_file($_FILES['file']['tmp_name'], '../images/gallery/' . $file);
+        // Verifica che ci siano file caricati
+        if (!empty($_FILES['files']['name'][0])) {
+            $files = $_FILES['files'];
 
-        $stmt = $pdo->prepare("INSERT INTO galleria (categoria_id, file, descrizione) VALUES (?, ?, ?)");
-        $stmt->execute([$categoria_id, $file, $descrizione]);
+            // Cicla attraverso i file caricati
+            for ($i = 0; $i < count($files['name']); $i++) {
+                $file_name = $files['name'][$i];
+                $tmp_name = $files['tmp_name'][$i];
 
-        echo "<p class='alert alert-success'>Foto aggiunta con successo!</p>";
+                // Sposta il file caricato nella cartella di destinazione
+                if (move_uploaded_file($tmp_name, '../images/gallery/' . $file_name)) {
+                    // Inserisci l'immagine nel database
+                    $stmt = $pdo->prepare("INSERT INTO galleria (categoria_id, file) VALUES (?, ?)");
+                    $stmt->execute([$categoria_id, $file_name]);
+                }
+            }
+
+            echo "<p class='alert alert-success'>Foto aggiunte con successo!</p>";
+        } else {
+            echo "<p class='alert alert-danger'>Nessun file selezionato.</p>";
+        }
     } elseif (isset($_POST['delete_photo'])) {
         // Elimina foto dalla galleria
         $id = $_POST['id'];
@@ -26,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "<p class='alert alert-success'>Foto eliminata con successo!</p>";
     }
 }
+
 
 // Recupera le categorie
 $stmt = $pdo->query("SELECT * FROM categorie");
@@ -54,12 +69,8 @@ if ($categoria_id) {
             </select>
         </div>
         <div class="form-group p-2">
-            <label for="file">Immagine</label>
-            <input type="file" name="file" id="file" class="form-control-file" required>
-        </div>
-        <div class="form-group p-2">
-            <label for="descrizione">Descrizione</label>
-            <textarea name="descrizione" id="descrizione" class="form-control" rows="3" required></textarea>
+            <label for="file">Immagini</label>
+            <input type="file" name="files[]" id="file" class="form-control-file" multiple required>
         </div>
         <button type="submit" name="add_photo" class="btn btn-primary btn-block p-2">Aggiungi Foto</button>
     </form>
@@ -71,7 +82,7 @@ if ($categoria_id) {
                 <tr>
                     <th>ID</th>
                     <th>Immagine</th>
-                    <th>Descrizione</th>
+
                     <th>Azioni</th>
                 </tr>
             </thead>
@@ -81,7 +92,6 @@ if ($categoria_id) {
                         <td><?php echo $foto['id']; ?></td>
                         <td><img src="../images/gallery/<?php echo $foto['file']; ?>" alt="<?php echo $foto['descrizione']; ?>"
                                 style="width: 100px;"></td>
-                        <td><?php echo $foto['descrizione']; ?></td>
                         <td>
                             <form action="gallery.php" method="post" style="display:inline;">
                                 <input type="hidden" name="id" value="<?php echo $foto['id']; ?>">

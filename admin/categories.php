@@ -1,6 +1,6 @@
 <?php
 require '../config/db.php';
-require '../components/headerAdmin.php';
+require 'components/header.php';
 
 $pdo = Database::getInstance();
 
