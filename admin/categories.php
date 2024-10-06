@@ -3,6 +3,7 @@ require '../config/db.php';
 require 'components/header.php';
 
 $pdo = Database::getInstance();
+$categoriaToEdit = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['add_category'])) {
@@ -47,52 +48,68 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Recupera tutte le categorie
 $stmt = $pdo->query("SELECT * FROM categorie");
 $categorie = $stmt->fetchAll();
+
+// Se è stata richiesta una modifica
+if (isset($_GET['edit'])) {
+    $id = $_GET['edit'];
+    $stmt = $pdo->prepare("SELECT * FROM categorie WHERE id = ?");
+    $stmt->execute([$id]);
+    $categoriaToEdit = $stmt->fetch();
+}
 ?>
 <div class="container admin-container">
     <h1 class="admin-title">Gestisci Categorie</h1>
 
-    <form action="categories.php" method="post" enctype="multipart/form-data" class="admin-form">
-        <h2>Aggiungi Categoria</h2>
-        <div class="form-group">
-            <label for="nome">Nome</label>
-            <input type="text" name="nome" id="nome" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="descrizione">Descrizione</label>
-            <textarea name="descrizione" id="descrizione" class="form-control" rows="3" required></textarea>
-        </div>
-        <div class="form-group">
-            <label for="banner">Banner (Immagine)</label>
-            <input type="file" name="banner" id="banner" class="form-control-file" required>
-        </div>
-        <button type="submit" name="add_category" class="btn btn-primary">Aggiungi Categoria</button>
-    </form>
+    <button class="btn btn-primary mb-3" id="toggleForm">Aggiungi Categoria</button>
+    <div id="addCategoryForm" style="display:none;">
+        <form action="categories.php" method="post" enctype="multipart/form-data" class="admin-form">
+            <h2><?php echo $categoriaToEdit ? "Modifica Categoria" : "Aggiungi Categoria"; ?></h2>
+            <div class="form-group">
+                <label for="nome">Nome</label>
+                <input type="text" name="nome" id="nome" class="form-control" required
+                    value="<?php echo $categoriaToEdit['nome'] ?? ''; ?>">
+            </div>
+            <div class="form-group">
+                <label for="descrizione">Descrizione</label>
+                <textarea name="descrizione" id="descrizione" class="form-control" rows="3"
+                    required><?php echo $categoriaToEdit['descrizione'] ?? ''; ?></textarea>
+            </div>
+            <div class="form-group">
+                <label for="banner">Banner (Immagine)</label>
+                <input type="file" name="banner" id="banner" class="form-control-file">
+            </div>
+            <?php if ($categoriaToEdit): ?>
+                <input type="hidden" name="id" value="<?php echo $categoriaToEdit['id']; ?>">
+                <button type="submit" name="update_category" class="btn btn-warning">Aggiorna Categoria</button>
+            <?php else: ?>
+                <button type="submit" name="add_category" class="btn btn-primary">Aggiungi Categoria</button>
+            <?php endif; ?>
+        </form>
+    </div>
 
     <h2 class="mt-5">Categorie Esistenti</h2>
-    <table class="table table-striped">
+    <table class="table table-striped ">
         <thead>
             <tr>
-                <th>ID</th>
+
                 <th>Nome</th>
-                <th>Descrizione</th>
-                <th>Banner</th>
+
                 <th>Azioni</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($categorie as $categoria): ?>
                 <tr>
-                    <td><?php echo $categoria['id']; ?></td>
+
                     <td><?php echo $categoria['nome']; ?></td>
-                    <td><?php echo $categoria['descrizione']; ?></td>
-                    <td><img src="../images/categories/<?php echo $categoria['banner']; ?>"
-                            alt="<?php echo $categoria['nome']; ?>" class="img-thumbnail" style="width: 100px;"></td>
+
                     <td>
-                        <a href="categories.php?edit=<?php echo $categoria['id']; ?>"
-                            class="btn btn-warning btn-sm">Modifica</a>
+                        <a href="categories.php?edit=<?php echo $categoria['id']; ?>" class="btn text-warning"><i
+                                class="fa fa-pen"></i></a>
                         <form action="categories.php" method="post" style="display:inline;">
                             <input type="hidden" name="id" value="<?php echo $categoria['id']; ?>">
-                            <button type="submit" name="delete_category" class="btn btn-danger btn-sm">Elimina</button>
+                            <button type="submit" name="delete_category" class="btn text-danger"><i
+                                    class="fa fa-trash"></i></button>
                         </form>
                     </td>
                 </tr>
@@ -100,5 +117,12 @@ $categorie = $stmt->fetchAll();
         </tbody>
     </table>
 </div>
+
+<script>
+    document.getElementById('toggleForm').addEventListener('click', function () {
+        var form = document.getElementById('addCategoryForm');
+        form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    });
+</script>
 
 <?php require '../components/footer.php'; ?>

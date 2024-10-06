@@ -99,7 +99,7 @@ $fotografie = $stmt->fetchAll();
     <?php if ($fotografie): ?>
         <div class="row">
             <?php foreach ($fotografie as $foto): ?>
-                <div class="col-6 col-md-4 mb-4">
+                <div class="col-6 col-md-4 mb-3">
                     <!-- Modifica per il layout mobile -->
                     <div class="card shadow-sm">
                         <img src="images/gallery/<?php echo htmlspecialchars($foto['file']); ?>"

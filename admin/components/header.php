@@ -19,7 +19,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light m-2">
             <a class="navbar-brand" href="#">
 
-                <span class="text-success font-weight-bold">Pixel</span>Book
+                <span class="text-success font-weight-bold">Pixel</span>Book    [<span class="text-orange font-weight-bold">Back</span>End]
             </a>
             <a class="navbar-toggler btn btn-light border border-orange btn-circle" href="../admin/"><i
                     class="fa fa-chevron-left"></i></a>

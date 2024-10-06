@@ -77,12 +77,12 @@ $categorie = $stmt->fetchAll();
 <div class="container">
     <h6 class="h2 text-center font-weight-bold text-dark">Book the <span class="h1 text-success font-weight-bold">
             Best</span></h6>
-    <h6 class=" h3 text-center font-weight-bold text-dark">in <span class="h1 text-success font-weight-bold">3</span>
+    <h6 class=" h3 text-center font-weight-bold text-dark mb-2">in <span class="h1 text-success font-weight-bold">3</span>
         simple
         steps.</h6>
-    <div class="row">
+    <div class="row mt-2">
         <?php foreach ($categorie as $categoria): ?>
-            <div class="col-6 col-md-3 mb-4">
+            <div class="col-6 col-md-3 mb-2 mt-1">
                 <a href="category.php?id=<?php echo $categoria['id']; ?>" class="category-link">
                     <div class="category-banner"
                         style="background-image: url('images/categories/<?php echo $categoria['banner']; ?>');">
