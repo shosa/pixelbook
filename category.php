@@ -87,14 +87,14 @@ $fotografie = $stmt->fetchAll();
 </style>
 
 <div class="container text-center">
-    <h1 class="my-5 text-success font-weight-bold text-uppercase">
+    <h1 class="text-gradient-custom font-weight-bold text-uppercase" style=" font-size: 3rem;">
         <?php echo htmlspecialchars($categoria['nome']); ?>
     </h1>
     <h5 class="my-4">
         <?php echo htmlspecialchars($categoria['descrizione']); ?>
     </h5>
-    <a class="btn btn-success my-4 shadow-sm" style="border-radius:20px;"
-        href="form?service=<?php echo $categoria['nome']; ?>">BOOK NOW</a>
+    <a class="btn btn-gradient-custom mb-4 shadow-lg floating-button" style="font-size: 1rem;"
+        href="form?category=<?php echo $categoria['nome']; ?>">BOOK NOW</a>
 
     <?php if ($fotografie): ?>
         <div class="row">

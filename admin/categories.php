@@ -11,11 +11,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $nome = $_POST['nome'];
         $descrizione = $_POST['descrizione'];
         $banner = $_FILES['banner']['name'];
+        $price = $_POST['price'];
 
         move_uploaded_file($_FILES['banner']['tmp_name'], '../images/categories/' . $banner);
 
-        $stmt = $pdo->prepare("INSERT INTO categorie (nome, descrizione, banner) VALUES (?, ?, ?)");
-        $stmt->execute([$nome, $descrizione, $banner]);
+        $stmt = $pdo->prepare("INSERT INTO categorie (nome, descrizione, banner, base_price) VALUES (?, ?, ? , ?)");
+        $stmt->execute([$nome, $descrizione, $banner, $price]);
 
         echo "<p class='alert alert-success'>Categoria aggiunta con successo!</p>";
     } elseif (isset($_POST['update_category'])) {
@@ -23,15 +24,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $id = $_POST['id'];
         $nome = $_POST['nome'];
         $descrizione = $_POST['descrizione'];
+        $price = $_POST['price'];
         $banner = $_FILES['banner']['name'];
+
 
         if ($banner) {
             move_uploaded_file($_FILES['banner']['tmp_name'], '../images/categories/' . $banner);
-            $stmt = $pdo->prepare("UPDATE categorie SET nome = ?, descrizione = ?, banner = ? WHERE id = ?");
-            $stmt->execute([$nome, $descrizione, $banner, $id]);
+            $stmt = $pdo->prepare("UPDATE categorie SET nome = ?, descrizione = ?, banner = ? , base_price = ? WHERE id = ?");
+            $stmt->execute([$nome, $descrizione, $banner, $price, $id]);
         } else {
-            $stmt = $pdo->prepare("UPDATE categorie SET nome = ?, descrizione = ? WHERE id = ?");
-            $stmt->execute([$nome, $descrizione, $id]);
+            $stmt = $pdo->prepare("UPDATE categorie SET nome = ?, descrizione = ? , base_price = ? WHERE id = ?");
+            $stmt->execute([$nome, $descrizione, $price, $id]);
         }
 
         echo "<p class='alert alert-success'>Categoria aggiornata con successo!</p>";
@@ -70,6 +73,12 @@ if (isset($_GET['edit'])) {
                     value="<?php echo $categoriaToEdit['nome'] ?? ''; ?>">
             </div>
             <div class="form-group">
+                <label for="price">AED Base</label>
+                <input type="text" name="price" id="price" class="form-control" required
+                    value="<?php echo $categoriaToEdit['base_price'] ?? ''; ?>">
+            </div>
+
+            <div class="form-group">
                 <label for="descrizione">Descrizione</label>
                 <textarea name="descrizione" id="descrizione" class="form-control" rows="3"
                     required><?php echo $categoriaToEdit['descrizione'] ?? ''; ?></textarea>
@@ -93,7 +102,7 @@ if (isset($_GET['edit'])) {
             <tr>
 
                 <th>Nome</th>
-
+                <th>AED</th>
                 <th>Azioni</th>
             </tr>
         </thead>
@@ -102,7 +111,7 @@ if (isset($_GET['edit'])) {
                 <tr>
 
                     <td><?php echo $categoria['nome']; ?></td>
-
+                    <td><?php echo $categoria['base_price']; ?></td>
                     <td>
                         <a href="categories.php?edit=<?php echo $categoria['id']; ?>" class="btn text-warning"><i
                                 class="fa fa-pen"></i></a>

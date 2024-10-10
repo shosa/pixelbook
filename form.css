@@ -1,0 +1,173 @@
+
+
+/* Avanzamento del form */
+.progress-bar-container {
+    margin-bottom: 30px;
+}
+
+.progress-bar-step {
+    width: 20%;
+    text-align: center;
+    position: relative;
+}
+
+.progress-bar-step.active .step-number {
+    background-color: #547c7d;
+
+    color: #fff;
+    transform: scale(1.1);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar-step .step-number {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    background-color: #ddd;
+    border-radius: 50%;
+    margin: 0 auto;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.progress-bar-step .step-label {
+    margin-top: 5px;
+}
+
+
+.custom-duration {
+    display: none;
+}
+
+.flexible-date-label {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.btn-group {
+    width: 100%;
+}
+
+.btn-group .btn {
+    width: 100%;
+    margin-bottom: 10px;
+    /* Spazio tra i pulsanti */
+}
+
+/* Nasconde i radio button */
+input[type="radio"] {
+    display: none;
+}
+
+.step {
+    transition: opacity 0.5s ease-in-out;
+    opacity: 1;
+}
+
+.d-none {
+
+    opacity: 0;
+}
+
+.summary-container {
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
+
+.summary-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #0073f4;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.summary-item {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.summary-item strong {
+    color: var(--primary);
+}
+
+.summary-divider {
+    border-top: 2px solid var(--light);
+    margin: 15px 0;
+}
+
+.btn-submit {
+    background-color: var(--success);
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border-radius: 30px;
+    transition: background-color 0.3s;
+}
+
+.btn-submit:hover {
+    background-color: var(--primary);
+    color: white;
+}
+
+/* Stili per il toggle switch */
+.form-check-input {
+    -webkit-appearance: none;
+    width: 50px;
+    height: 25px;
+    background-color: #ddd;
+    border-radius: 15px;
+    cursor: pointer;
+    position: relative;
+    outline: none;
+    transition: background-color 0.3s;
+}
+
+/* Colore quando è attivo */
+.form-check-input:checked {
+    background-color: #0073f4;
+}
+
+/* Pallino del toggle switch */
+.form-check-input::before {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    transition: transform 0.3s;
+    top: 50%;
+    /* Posizione verticale centrata */
+    left: 3px;
+    /* Allineamento orizzontale a sinistra */
+    transform: translateY(-50%);
+    /* Centra verticalmente */
+}
+
+/* Quando il toggle è attivo */
+.form-check-input:checked::before {
+    transform: translate(25px, -50%);
+    /* Sposta il pallino a destra */
+}
+
+/* Altri stili per la label */
+.flexible-date-label {
+    margin-left: 10px;
+}
+
+.form-check.form-switch {
+    display: flex;
+    /* Usa flexbox per allineare gli elementi */
+    align-items: center;
+    /* Allinea verticalmente al centro */
+}
+
+.flexible-date-label {
+    margin-left: 10px;
+    /* Mantieni un margine a sinistra per distanziare il testo */
+}
+

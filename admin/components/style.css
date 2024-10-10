@@ -11229,8 +11229,13 @@ a:focus {
 
 .bg-gradient-primary {
   background-color: #4e73df;
-  background-image: linear-gradient(180deg, #3c63d6 10%, #3cc4d6 100%);
+  background-image: linear-gradient(180deg, #3c63d6 100%, #00dcb9 100%);
   background-size: cover;
+}
+.bg-gradient-custom  {
+  background-color: #4e73df !important;
+  background-image: linear-gradient(90deg , #007ef3 10%, #3cc4d6 100%) !important;
+  background-size: cover !important;
 }
 
 .bg-gradient-pink {
