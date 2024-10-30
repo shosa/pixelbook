@@ -1,5 +1,3 @@
-
-
 /* Avanzamento del form */
 .progress-bar-container {
     margin-bottom: 30px;
@@ -171,3 +169,71 @@ input[type="radio"] {
     /* Mantieni un margine a sinistra per distanziare il testo */
 }
 
+.picker__holder {
+    background-color: #f0f8ff;
+    /* Colore di sfondo del calendario */
+    padding: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.picker__day--today {
+    background-color: var(--primary) !important;
+    /* Colore del giorno selezionato */
+    color: #fff !important;
+    border-radius: 20%;
+    margin: 2px;
+
+}
+
+.picker__day--selected {
+    background-color: #547c7d !important;
+    /* Colore del giorno selezionato */
+    color: #fff !important;
+    border-radius: 20%;
+    margin: 2px;
+
+}
+
+.picker__nav--prev,
+.picker__nav--next {
+
+    content: "CIAO";
+    font-size: 2rem !important;
+}
+
+.picker__day {
+    color: #333;
+    font-weight: bold;
+}
+
+.picker__header {
+
+    /* Colore della barra in alto */
+    color: black;
+    padding: 3%;
+
+}
+
+.picker__year {
+    background: -webkit-linear-gradient(0deg, #e3a741, #e6cc7e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.picker__weekday {
+    font-weight: bold;
+    color: #547c7d;
+}
+
+.picker--focused .picker__day--disabled,
+.picker__day--disabled,
+.picker__day--disabled:hover {
+    border-radius: 20%;
+    margin: 2px;
+}
+
+.picker--focused .picker__day--highlighted {
+    border-radius: 20%;
+    margin: 2px;
+}

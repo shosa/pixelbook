@@ -7,8 +7,8 @@ $pdo = Database::getInstance();
 $stmt = $pdo->query("SELECT * FROM categorie");
 $categorie = $stmt->fetchAll();
 ?>
+
 <style>
-    /* Stile per i banner delle categorie */
     .category-link {
         text-decoration: none;
         display: block;
@@ -44,22 +44,18 @@ $categorie = $stmt->fetchAll();
         right: 0;
         bottom: 0;
         margin: 0;
-        /* Rimuovi padding e margini */
         display: flex;
         align-items: center;
         justify-content: center;
         background: rgba(0, 0, 0, 0.2);
-        /* Sfondo scuro più evidente */
         color: white;
         font-size: 1.5rem;
         font-weight: 500;
         text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
         text-align: center;
         z-index: 1;
-        /* Assicurarsi che il testo sia sopra lo sfondo */
     }
 
-    /* Media queries per migliorare il layout su dispositivi mobili */
     @media (max-width: 768px) {
         .category-banner {
             height: 180px;
@@ -74,20 +70,67 @@ $categorie = $stmt->fetchAll();
         .category-banner {
             height: 150px;
         }
+    }
 
+    .filter-toggle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 0;
+    }
+
+    .filter-button-group {
+        display: flex;
+        background-color: #f1f1f1;
+        border-radius: 50px;
+        padding: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .filter-button {
+        padding: 10px 20px;
+        border: none;
+        background-color: transparent;
+        font-size: 1rem;
+        cursor: pointer;
+        outline: none;
+        border-radius: 50px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        color: #333;
+    }
+
+    .filter-button.active {
+        background-color: #000;
+        color: #fff;
+    }
+
+    .filter-button-group .filter-button:not(.active):hover {
+        background-color: #eaeaea;
+    }
+
+    .category-item {
+        opacity: 1; /* Lasciamo che Isotope gestisca la transizione */
+        transform: scale(1);
     }
 </style>
+
 <div class="container">
     <h6 class="h2 text-center font-weight-bold text-dark" style="font-size:2.5rem">Book the <span
-            class="text-gradient-custom font-weight-bold">
-            Best</span></h6>
-    <h6 class=" h3 text-center font-weight-bold text-dark mb-2"  style="font-size:2.5rem">in <span
-            class="text-gradient-custom font-weight-bold">3</span>
-        simple
-        steps.</h6>
-    <div class="row mt-2">
+            class="text-gradient-custom font-weight-bold">Best</span></h6>
+    <h6 class=" h3 text-center font-weight-bold text-dark mb-2" style="font-size:2.5rem">in <span
+            class="text-gradient-custom font-weight-bold">3</span> simple steps.</h6>
+
+    <div class="filter-toggle">
+        <div class="filter-button-group">
+            <button class="filter-button active" onclick="filterCategories('ALL')">All</button>
+            <button class="filter-button" onclick="filterCategories('PERSONAL')">Personal</button>
+            <button class="filter-button" onclick="filterCategories('BUSINESS')">Business</button>
+        </div>
+    </div>
+
+    <div class="row mt-2" id="category-list">
         <?php foreach ($categorie as $categoria): ?>
-            <div class="col-6 col-md-3 mb-2 mt-1">
+            <div class="col-6 col-md-3 mb-2 mt-1 category-item" data-type="<?php echo $categoria['type']; ?>">
                 <a href="category.php?id=<?php echo $categoria['id']; ?>" class="category-link">
                     <div class="category-banner"
                         style="background-image: url('images/categories/<?php echo $categoria['banner']; ?>');">
@@ -97,7 +140,31 @@ $categorie = $stmt->fetchAll();
             </div>
         <?php endforeach; ?>
     </div>
-
 </div>
+
+<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+
+<script>
+    // Inizializza Isotope per il layout e il filtraggio
+    var iso = new Isotope('#category-list', {
+        itemSelector: '.category-item',
+        layoutMode: 'fitRows',
+        transitionDuration: '0.5s' // Durata dell'animazione di transizione
+    });
+
+    // Funzione di filtraggio
+    window.filterCategories = function(type) {
+        var filterValue = type === 'ALL' ? '*' : '[data-type="' + type + '"]';
+        
+        // Filtra gli elementi usando Isotope
+        iso.arrange({ filter: filterValue });
+
+        // Aggiorna i pulsanti attivi
+        document.querySelectorAll('.filter-button').forEach(function(button) {
+            button.classList.remove('active');
+        });
+        document.querySelector('.filter-button[onclick="filterCategories(\'' + type + '\')"]').classList.add('active');
+    };
+</script>
 
 <?php require 'components/footer.php'; ?>

@@ -7191,6 +7191,10 @@ button.bg-light:focus {
   background-color: #5a5c69 !important;
 }
 
+.bg-black {
+  background-color: black !important;
+}
+
 a.bg-dark:hover,
 a.bg-dark:focus,
 button.bg-dark:hover,
@@ -11295,9 +11299,16 @@ a:focus {
 
 }
 
+.text-custom {
+  /* background: -webkit-linear-gradient(0deg, #007ef3, #3cc4d6);*/
+  color: #263e38 !important;
+
+
+}
+
 .floating-button {
   position: fixed;
-  bottom: 5%;
+  bottom: 7%;
   right: 20%;
   left: 20%;
   z-index: 1000;

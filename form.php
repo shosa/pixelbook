@@ -1,11 +1,35 @@
 <?php require 'config/db.php';
 require 'components/header.php';
-$categoria = isset($_GET['category']) ?
-    htmlspecialchars($_GET['category']) : ''; ?>
+$pdo = Database::getInstance();
+
+// Recupera l'ID della categoria dalla query string
+$categoria_id = isset($_GET['category']) ? intval($_GET['category']) : 0;
+
+// Recupera i dettagli della categoria
+$stmt = $pdo->prepare("SELECT * FROM categorie WHERE id = ?");
+$stmt->execute([$categoria_id]);
+$categoria = $stmt->fetch();
+
+if (!$categoria) {
+    echo "<div class='container'><p>Categoria non trovata.</p></div>";
+    require 'components/footer.php';
+    exit();
+}
+$categoria = $categoria['nome']; ?>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.6.4/compressed/themes/default.css">
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.6.4/compressed/themes/default.date.css">
 <link rel="stylesheet" href="form.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.6.4/compressed/picker.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.6.4/compressed/picker.date.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+<div class="container"></div>
 <div class="container ">
     <h1 class="text-center text-gradient-custom font-weight-bold mb-4" style="font-size: 5rem;">
-        <span id="category" > <?php echo $categoria ?> </span>
+        <span id="category"> <?php echo $categoria ?> </span>
     </h1>
     <!-- Barra di avanzamento -->
     <div class="progress-bar-container d-flex justify-content-between mb-4">
@@ -30,7 +54,7 @@ $categoria = isset($_GET['category']) ?
         <!-- Form a step -->
         <form id="multiStepForm">
             <input type="text" name="category" value="<?php echo $categoria ?>" hidden>
-
+            <input type="text" name="category_id" id="category_id" value="<?php echo $categoria_id ?>" hidden>
             <!-- Step 1: Scelta del servizio -->
             <div class="step" id="step-1">
                 <h4 class="text-dark">What are you looking for?</h4>
@@ -66,7 +90,7 @@ $categoria = isset($_GET['category']) ?
 
                 <h4 class="text-dark">What time?</h4>
 
-                <input type="radio" class="btn-check" name="time_of_day" id="morning" value="Mattina" required>
+                <input type="radio" class="btn-check" name="time_of_day" id="morning" value="Morning" required>
                 <label
                     class="btn btn-gradient-custom shadow-sm btn-block d-flex align-items-center justify-content-between"
                     onclick="nextStep(3)" for="morning">
@@ -74,7 +98,7 @@ $categoria = isset($_GET['category']) ?
                     <span class="mx-auto">MORNING</span>
                 </label>
 
-                <input type="radio" class="btn-check" name="time_of_day" id="afternoon" value="Pomeriggio" required>
+                <input type="radio" class="btn-check" name="time_of_day" id="afternoon" value="Afternoon" required>
                 <label
                     class="btn btn-gradient-custom shadow-sm btn-block mt-4 d-flex align-items-center justify-content-between"
                     onclick="nextStep(3)" for="afternoon">
@@ -82,7 +106,7 @@ $categoria = isset($_GET['category']) ?
                     <span class="mx-auto">AFTERNOON</span>
                 </label>
 
-                <input type="radio" class="btn-check" name="time_of_day" id="evening" value="Sera" required>
+                <input type="radio" class="btn-check" name="time_of_day" id="evening" value="Evening" required>
                 <label
                     class="btn btn-gradient-custom shadow-sm btn-block mt-4 d-flex align-items-center justify-content-between"
                     onclick="nextStep(3)" for="evening">
@@ -96,25 +120,25 @@ $categoria = isset($_GET['category']) ?
 
             <!-- Step 3: Scelta della durata -->
             <div class="step d-none" id="step-3">
-
                 <h4 class="text-dark">How long?</h4>
 
-                <input type="radio" class="btn-check" name="duration" id="one_hour" value="1 Ora" required>
+                <input type="radio" class="btn-check" name="duration" id="one_hour" value="1" required>
                 <label class="btn btn-gradient-custom shadow-sm btn-block" onclick="nextStep(4)" for="one_hour">1
                     HOUR</label>
 
-                <input type="radio" class="btn-check" name="duration" id="two_hours" value="2 Ore" required>
+                <input type="radio" class="btn-check" name="duration" id="two_hours" value="2" required>
                 <label class="btn btn-gradient-custom shadow-sm btn-block mt-4" onclick="nextStep(4)" for="two_hours">2
                     HOURS</label>
 
-                <input type="radio" class="btn-check" name="duration" id="three_hours" value="3 Ore" required>
+                <input type="radio" class="btn-check" name="duration" id="three_hours" value="3" required>
                 <label class="btn btn-gradient-custom shadow-sm btn-block mt-4" onclick="nextStep(4)"
-                    for="three_hours">3
-                    HOURS</label>
+                    for="three_hours">3 HOURS</label>
+
                 <input type="radio" class="btn-check" name="duration" id="custom_duration_radio" value="Custom"
                     required>
                 <label class="btn text-gradient-custom font-weight-bold btn-block mt-4" for="custom_duration_radio"
                     onclick="showCustomDuration()">CUSTOM DURATION</label>
+
                 <div class="form-group custom-duration">
                     <label for="custom_duration">ENTER HOURS:</label>
                     <div class="input-group">
@@ -122,7 +146,7 @@ $categoria = isset($_GET['category']) ?
                             placeholder="Es. 5" aria-label="Durata personalizzata">
                         <button class="btn btn-gradient-custom shadow-sm"
                             style="border-radius: 0 0.35rem 0.35rem  0 !important;" type="button"
-                            onclick="nextStep(4)">OK</button>
+                            onclick="setCustomDuration()">OK</button>
                     </div>
                 </div>
 
@@ -133,85 +157,48 @@ $categoria = isset($_GET['category']) ?
             <!-- Step 4: Scelta della data -->
             <div class="step d-none" id="step-4">
                 <h4 class="text-dark">When?</h4>
-                <input type="date" class="form-control" name="date" id="dateInput" required>
+                <input type="text" class="form-control" name="date" id="dateInput" required>
 
                 <div class="form-check form-switch my-3">
                     <input class="form-check-input" type="checkbox" id="flexibleDateSwitch" name="flexible_date">
                     <label class="form-check-label flexible-date-label" for="flexibleDateSwitch">Is the date
                         flexible?</label>
                 </div>
-                <button type="button" class="btn btn-gradient-custom btn-block" id="nextStepBtn"
-                    style="font-size:2rem!important" onclick="nextStep(5)" disabled>Get your Quote</button>
+
+                <button type="button" class="btn btn-gradient-custom btn-block" id="nextStepBtn" onclick="nextStep(5)"
+                    disabled>Almost done!</button>
                 <button type="button" class="btn bg-transparent text-dark mt-5" onclick="prevStep(3)">
                     <i class="fal fa-chevron-left"></i> Previous
                 </button>
             </div>
-
-            <!-- Step 5: Riepilogo -->
+            <!-- Step 5: Dati del cliente -->
             <div class="step d-none" id="step-5">
-                <h2 class="text-gradient-custom mb-4 text-center">Is this correct?</h2>
-                <div class="container summary-container bg-gradient-custom shadow-lg">
-                    <h2 class="summary-title text-white mb-4">Booking Details</h2>
-
-                    <table class="table table-borderless">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <strong class="text-white">Category:</strong>
-                                </td>
-                                <td>
-                                    <span id="summary-category" class="text-white"></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <strong class="text-white">Type of service:</strong>
-                                </td>
-                                <td>
-                                    <span class="text-white" id="summary-service"></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <strong class="text-white">Time:</strong>
-                                </td>
-                                <td>
-                                    <span class="text-white" id="summary-time"></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <strong class="text-white">Duration:</strong>
-                                </td>
-                                <td>
-                                    <span class="text-white" id="summary-duration"></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <strong class="text-white">Date:</strong>
-                                </td>
-                                <td>
-                                    <span class="text-white" id="summary-date"></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <strong class="text-white">Flexible:</strong>
-                                </td>
-                                <td>
-                                    <span class="text-white" id="summary-flexible"></span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <div class="summary-divider"></div>
-
-                    <button type="button" class="btn btn-light btn-block" onclick="submitStep()">
-                        <span class="text-gradient-custom font-weight-bold">GET YOUR QUOTE</span>
-                    </button>
+                <h4 class="text-dark">Last Steps</h4>
+                <div class="form-group">
+                    <label for="first_name">First Name</label>
+                    <input type="text" class="form-control" id="first_name" name="first_name" required>
                 </div>
+                <div class="form-group">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" class="form-control" id="last_name" name="last_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="note">Note</label>
+                    <textarea class="form-control" id="note" name="note" rows="3"></textarea>
+                </div>
+
+                <button type="button" class="btn btn-light btn-block" onclick="submitStep()">
+                    <span class="btn btn-transparent btn-gradient-custom btn-block font-weight-bold"
+                        style="font-size:2rem!important">Get your Price!</span>
+                </button>
                 <button type="button" class="btn bg-transparent text-dark mt-3" onclick="prevStep(4)">
                     <i class="fal fa-chevron-left"></i> Previous
                 </button>
@@ -221,8 +208,27 @@ $categoria = isset($_GET['category']) ?
         </form>
     </div>
 </div>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.6.4/compressed/picker.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.6.4/compressed/picker.date.js"></script>
 <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Inizializza Pickadate
+        $('#dateInput').pickadate({
+            format: 'yyyy-mm-dd',
+            min: new Date(),
+            onSet: function (context) {
+                const nextStepBtn = document.getElementById('nextStepBtn');
+                if (context.select) {
+                    nextStepBtn.disabled = false;
+                    nextStepBtn.classList.add("pulse");
+                } else {
+                    nextStepBtn.disabled = true;
+                    nextStepBtn.classList.remove("pulse");
+                }
+            }
+        });
+    });
+
     let currentStep = 1;
     document.getElementById('dateInput').addEventListener('change', function () {
         const dateInput = document.getElementById('dateInput').value;
@@ -237,8 +243,35 @@ $categoria = isset($_GET['category']) ?
         }
     });
 
+    document.addEventListener("DOMContentLoaded", function () {
+        const phoneInput = document.querySelector("#phone");
+        const iti = window.intlTelInput(phoneInput, {
+            initialCountry: "auto",
+            geoIpLookup: callback => {
+                fetch("https://ipapi.co/json")
+                    .then(res => res.json())
+                    .then(data => callback(data.country_code))
+                    .catch(() => callback("us"));
+            },
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
+        });
+    });
+
     function showCustomDuration() {
         document.querySelector('.custom-duration').style.display = 'block';
+    }
+
+    // Imposta il valore personalizzato come 'duration' e passa al prossimo step
+    function setCustomDuration() {
+        const customDurationValue = document.getElementById('custom_duration').value;
+        if (customDurationValue && !isNaN(customDurationValue) && customDurationValue > 0) {
+            // Imposta il valore del radio con il valore personalizzato
+            document.getElementById('custom_duration_radio').value = customDurationValue;
+            document.getElementById('custom_duration_radio').checked = true; // Seleziona l'opzione
+            nextStep(4); // Vai al passo successivo
+        } else {
+            alert("Please enter a valid custom duration.");
+        }
     }
     // Funzione per passare al prossimo step
     function nextStep(step) {
@@ -252,6 +285,8 @@ $categoria = isset($_GET['category']) ?
         setTimeout(() => {
             currentStepElement.classList.add('d-none');
             nextStepElement.classList.remove('d-none');
+            const selectedDuration = document.querySelector('input[name="duration"]:checked')?.value;
+            const customDuration = document.getElementById('custom_duration').value;
             nextStepElement.style.opacity = 1; // Dissolvenza entrata step successivo
 
             // Aggiorna la barra di progresso
@@ -259,18 +294,7 @@ $categoria = isset($_GET['category']) ?
             currentStep = step;
 
             // Popola il riepilogo alla fine
-            if (step === 5) {
-                document.getElementById('summary-category').textContent = document.getElementById('category').textContent;
-                document.getElementById('summary-service').textContent = document.querySelector('input[name="service"]:checked').nextElementSibling.textContent;
-                document.getElementById('summary-time').textContent = document.querySelector('input[name="time_of_day"]:checked').nextElementSibling.textContent;
-                document.getElementById('summary-duration').textContent = document.querySelector('input[name="duration"]:checked').nextElementSibling.textContent || document.getElementById('custom_duration').value + " Ore";
-                document.getElementById('summary-duration').textContent =
-                    document.querySelector('input[name="duration"]:checked')?.value === 'Custom'
-                        ? document.getElementById('custom_duration').value + "  HOURS"
-                        : document.querySelector('input[name="duration"]:checked').nextElementSibling.textContent;
-                document.getElementById('summary-date').textContent = document.getElementById('dateInput').value;
-                document.getElementById('summary-flexible').textContent = document.getElementById('flexibleDateSwitch').checked ? "Yes" : "No";
-            }
+
         }, 500); // Tempo della transizione (corrispondente a quella definita in CSS)
     }
 
@@ -302,32 +326,32 @@ $categoria = isset($_GET['category']) ?
     }
 
     function submitStep() {
-    const form = document.getElementById('multiStepForm');
-    const formData = new FormData(form);
+        const form = document.getElementById('multiStepForm');
+        const formData = new FormData(form);
 
-    // Invia i dati usando fetch
-    fetch('offer.php', {
-        method: 'POST',
-        body: formData,
-    })
-    .then(response => {
-        if (response.ok) {
-            return response.text(); // o response.json() se aspettati un JSON
-        }
-        throw new Error('Errore nella risposta dalla rete');
-    })
-    .then(data => {
-        // Puoi gestire la risposta qui, ad esempio reindirizzando alla pagina di conferma
-        // Se offer.php reindirizza a un'altra pagina, potresti doverlo gestire
-        // come un reindirizzamento client-side
-        document.open();
-        document.write(data); // Visualizza la risposta ricevuta (ad esempio, il contenuto di offer.php)
-        document.close();
-    })
-    .catch(error => {
-        console.error('Errore:', error);
-    });
-}
+        // Invia i dati usando fetch
+        fetch('offer.php', {
+            method: 'POST',
+            body: formData,
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.text(); // o response.json() se aspettati un JSON
+                }
+                throw new Error('Errore nella risposta dalla rete');
+            })
+            .then(data => {
+                // Puoi gestire la risposta qui, ad esempio reindirizzando alla pagina di conferma
+                // Se offer.php reindirizza a un'altra pagina, potresti doverlo gestire
+                // come un reindirizzamento client-side
+                document.open();
+                document.write(data); // Visualizza la risposta ricevuta (ad esempio, il contenuto di offer.php)
+                document.close();
+            })
+            .catch(error => {
+                console.error('Errore:', error);
+            });
+    }
 </script>
 
 <?php require 'components/footer.php'; ?>

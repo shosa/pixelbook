@@ -94,7 +94,7 @@ $fotografie = $stmt->fetchAll();
         <?php echo htmlspecialchars($categoria['descrizione']); ?>
     </h5>
     <a class="btn btn-gradient-custom mb-4 shadow-lg floating-button" style="font-size: 1rem;"
-        href="form?category=<?php echo $categoria['nome']; ?>">BOOK NOW</a>
+        href="form?category=<?php echo $categoria_id; ?>">BOOK NOW</a>
 
     <?php if ($fotografie): ?>
         <div class="row">
@@ -113,34 +113,90 @@ $fotografie = $stmt->fetchAll();
         <p>Non ci sono foto per questa categoria.</p>
     <?php endif; ?>
 </div>
+<style>
+    .swiper-container {
+        width: 90%;
+        height: 80%;
+    }
 
-<!-- Modale personalizzato per visualizzare l'immagine a schermo intero -->
-<div id="imageModal" class="modal-fullscreen" onclick="closeModal()">
+    .swiper-slide {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding:5%;
+    }
+
+    .swiper-slide img {
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 10px;
+    }
+</style>
+<div id="imageModal" class="modal-fullscreen">
     <span class="close-btn" onclick="closeModal()">×</span>
-    <img id="modalImage" src="" alt="Immagine a schermo intero">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <?php foreach ($fotografie as $foto): ?>
+                <div class="swiper-slide">
+                    <img src="images/gallery/<?php echo htmlspecialchars($foto['file']); ?>"
+                        alt="<?php echo htmlspecialchars($foto['descrizione']); ?>" />
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <!-- Pulsanti di navigazione -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+    <!-- Pulsante Book Now nel modale -->
+    <a class="btn btn-gradient-custom mb-4 shadow-lg floating-button"
+        style="font-size: 1rem; position: absolute; bottom: 30px;"
+        href="form?category=<?php echo $categoria_id; ?>">BOOK NOW</a>
 </div>
 
+
 <script>
-    // Funzione per aprire il modale con l'immagine selezionata
-    // Funzione per aprire il modale con l'immagine selezionata
-    function openModal(src) {
+    let swiper;
+    let currentIndex = 0;
+
+    function openModal(index) {
+        currentIndex = index;
         const modal = document.getElementById('imageModal');
-        document.getElementById('modalImage').src = src;
-        modal.style.display = 'flex'; // Mostra il modale
+
+        // Imposta swiper su currentIndex
+        if (swiper) {
+            swiper.slideTo(currentIndex, 0);
+        }
+
+        modal.style.display = 'flex';
         setTimeout(() => {
-            modal.classList.add('show'); // Aggiunge l'animazione di apertura
-        }, 10); // Delay per permettere al display:flex di essere applicato prima dell'animazione
+            modal.classList.add('show');
+        }, 10);
     }
 
-    // Funzione per chiudere il modale
     function closeModal() {
         const modal = document.getElementById('imageModal');
-        modal.classList.remove('show'); // Rimuove l'animazione di apertura
+        modal.classList.remove('show');
         setTimeout(() => {
-            modal.style.display = 'none'; // Nasconde il modale dopo l'animazione
-        }, 300); // Tempo di attesa per completare l'animazione
+            modal.style.display = 'none';
+        }, 300);
     }
-</script>
 
+    document.addEventListener("DOMContentLoaded", function () {
+        // Inizializza Swiper
+        swiper = new Swiper('.swiper-container', {
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            loop: true, // Loop per consentire lo scorrimento continuo
+        });
+
+        // Associa l'evento click alle immagini della galleria
+        const images = document.querySelectorAll('.gallery-img');
+        images.forEach((img, index) => {
+            img.addEventListener('click', () => openModal(index));
+        });
+    });
+</script>
 
 <?php require 'components/footer.php'; ?>
