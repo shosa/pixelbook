@@ -57,14 +57,15 @@ $prenotazioni = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <td><?= htmlspecialchars(date('d/m/Y', strtotime($prenotazione['date_of_submit']))); ?>
                                     </td>
                                     <td><?= htmlspecialchars(date('d/m/Y', strtotime($prenotazione['date']))); ?> -
-                                        <?= htmlspecialchars($prenotazione['time_of_day']); ?></td>
+                                        <?= htmlspecialchars($prenotazione['time_of_day']); ?>
+                                    </td>
                                     <td>&euro;<?= number_format($prenotazione['price'], 2); ?></td>
                                     <td>
                                         <?= $prenotazione['confirmed'] ? '<span class="status status-green">Confermata</span>' : '<span class="status status-orange">
   <span class="status-dot status-dot-animated"></span>Non Conclusa</span>'; ?>
                                     </td>
                                     <td>
-                                        <a href="details.php?id=<?= $prenotazione['id']; ?>"
+                                        <a href="details?token=<?= $prenotazione['id']; ?>"
                                             class="btn btn-icon btn-outline-primary btn-sm">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye"
                                                 viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"

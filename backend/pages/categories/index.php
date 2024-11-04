@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Modifica categoria
-    
+
     if (isset($_POST['update_category'])) {
         $id = $_POST['id'];
         $nome = $_POST['nome'];
@@ -99,7 +99,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 <div class="col-auto ms-auto">
                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
-                        <i class="icon icon-tabler icon-tabler-plus"></i> Aggiungi Categoria
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 12h6" />
+                            <path d="M12 9v6" />
+                            <path d="M6 19a2 2 0 0 1 -2 -2v-4l-1 -1l1 -1v-4a2 2 0 0 1 2 -2" />
+                            <path d="M18 19a2 2 0 0 0 2 -2v-4l1 -1l-1 -1v-4a2 2 0 0 0 -2 -2" />
+                        </svg> Aggiungi Categoria
                     </button>
                 </div>
                 <?php include(BASE_PATH . "/components/alerts.php"); ?>
@@ -119,7 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <thead>
                             <tr>
                                 <th>Nome</th>
-                                <th>AED Base</th>
+                                <th>Base Prezzo (AED)</th>
                                 <th>Tipo</th>
                                 <th>Azioni</th>
                             </tr>
@@ -134,8 +141,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <td><?php echo htmlspecialchars($categoria['base_price']); ?></td>
                                     <td class="text-uppercase"><?php echo htmlspecialchars($categoria['type']); ?></td>
                                     <td>
-                                        <a href="#" class="btn btn-icon btn-outline-primary btn-sm p-1" data-bs-toggle="offcanvas"
-                                            data-bs-target="#editCategoryOffcanvas"
+                                        <a href="#" class="btn btn-icon btn-outline-primary btn-sm p-1"
+                                            data-bs-toggle="offcanvas" data-bs-target="#editCategoryOffcanvas"
                                             onclick="loadCategoryData(<?php echo $categoria['id']; ?>)">
                                             Modifica
                                         </a>

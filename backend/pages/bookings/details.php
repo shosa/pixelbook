@@ -4,12 +4,12 @@ include(BASE_PATH . "/components/header.php");
 
 $pdo = Database::getInstance();
 
-if (!isset($_GET['id'])) {
-    header("Location: index.php");
+if (!isset($_GET['token'])) {
+    header("Location: index");
     exit();
 }
 
-$id = $_GET['id'];
+$id = $_GET['token'];
 
 // Recupera i dettagli della prenotazione
 $stmt = $pdo->prepare("SELECT p.*, c.nome AS categoria_nome FROM prenotazioni p LEFT JOIN categorie c ON p.category_id = c.id WHERE p.id = ?");
@@ -49,10 +49,8 @@ if (!$prenotazione) {
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-whatsapp"
                                 viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                 stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M3 21v-3a9 9 0 1 1 6.36 2.64l-3.36 1z" />
-                                <path
-                                    d="M10 9c.5 -1 1.5 -1.5 2 -1.5s2 0 3 2c1 2 .5 2.5 0 3c-1 1 -2 1 -2.5 1s-2.5 -1 -3 -2.5s-1 -2 -1 -2.5s1 -1 1.5 -2z" />
+                                <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
+  <path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" />
                             </svg>
                             WhatsApp
                         </a>
@@ -135,7 +133,7 @@ if (!$prenotazione) {
             </div>
         </div>
 
-    
+
         <!-- Note amministratore -->
         <div class="row mt-4">
             <div class="col-lg-12">

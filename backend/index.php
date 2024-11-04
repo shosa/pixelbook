@@ -452,7 +452,7 @@ include("components/header.php") ?>
   </div>
   <?php include("components/footer.php"); ?>
 </div>
-</div>
+
 
 <!-- Libs JS -->
 <script src="<?php echo BASE_URL ?>/dist/libs/apexcharts/dist/apexcharts.min.js?1692870487" defer></script>
