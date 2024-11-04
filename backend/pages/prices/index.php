@@ -1,6 +1,5 @@
 <?php
 ob_start(); // Inizia il buffer di output
-session_start(); // Inizia la sessione per gestire i messaggi di errore/successo
 require("../../config/config.php");
 include(BASE_PATH . "/components/header.php");
 

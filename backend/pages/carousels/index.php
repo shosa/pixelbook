@@ -1,6 +1,5 @@
 <?php
 ob_start(); // Inizia il buffer di output
-session_start(); // Inizia la sessione per gestire i messaggi di errore/successo
 require("../../config/config.php");
 include(BASE_PATH . "/components/header.php");
 
@@ -184,10 +183,13 @@ $galleriaItems = $queryGalleria->fetchAll(PDO::FETCH_ASSOC);
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <div class="row">
+                <div class="row g-2 g-md-3">
                     <?php foreach ($galleriaItems as $galleria): ?>
-                        <div class="col-3 mb-3">
-                            <img src="../../../images/gallery/<?php echo $galleria['file']; ?>" class="img-thumbnail w-100" onclick="selectImage('<?php echo $galleria['file']; ?>')">
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <a data-fslightbox="gallery" onclick="selectImage('<?php echo $galleria['file']; ?>')">
+                                <!-- Foto della Galleria -->
+                                <div class="img-responsive img-responsive-1x1 rounded-3 border" style="background-image: url('../../../images/gallery/<?php echo $galleria['file']; ?>');"></div>
+                            </a>
                         </div>
                     <?php endforeach; ?>
                 </div>

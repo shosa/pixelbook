@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="it">
 
 <head>
     <meta charset="utf-8" />
@@ -203,12 +203,12 @@
                                     <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
                                 </svg></span>
                             <div class="d-none d-xl-block ps-2">
-                                <div>%NOMEUTENTE%</div>
+                                <div><?php echo $_SESSION['username']; ?></div>
                                 <div class="mt-1 small text-secondary">Backend</div>
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                            <a href="./sign-in.html" class="dropdown-item">Logout</a>
+                            <a href="<?php echo BASE_URL; ?>/logout" class="dropdown-item">Logout</a>
                         </div>
                     </div>
                 </div>

@@ -66,11 +66,21 @@ if (!$prenotazione) {
             <div class="col-sm-6 col-lg-4">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="card-title">Cliente</h3>
-                        <p><strong>Nome:</strong>
-                            <?= htmlspecialchars($prenotazione['first_name'] . ' ' . $prenotazione['last_name']); ?></p>
-                        <p><strong>Email:</strong> <?= htmlspecialchars($prenotazione['mail']); ?></p>
-                        <p><strong>Telefono:</strong> <?= htmlspecialchars($prenotazione['phone']); ?></p>
+                        <h3 class="card-title">
+                            <svg class="icon icon-tabler icon-tabler-user" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <circle cx="12" cy="7" r="4" />
+                                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                            </svg> Cliente
+                        </h3>
+                        <a class="h2"><strong>
+                                <?= htmlspecialchars($prenotazione['first_name'] . ' ' . $prenotazione['last_name']); ?>
+                        </a></strong><br>
+                        <a class="text-muted"
+                            href="mailto:<?= htmlspecialchars($prenotazione['mail']); ?>"><?= htmlspecialchars($prenotazione['mail']); ?></a><br>
+                        <a></strong> <?= htmlspecialchars($prenotazione['phone']); ?></a>
                     </div>
                 </div>
             </div>
@@ -78,12 +88,25 @@ if (!$prenotazione) {
             <div class="col-sm-6 col-lg-4">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="card-title">Dettagli Evento</h3>
+                        <h3 class="card-title">
+                            <svg class="icon icon-tabler icon-tabler-calendar" xmlns="http://www.w3.org/2000/svg"
+                                width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <rect x="4" y="5" width="16" height="16" rx="2" />
+                                <line x1="16" y1="3" x2="16" y2="7" />
+                                <line x1="8" y1="3" x2="8" y2="7" />
+                                <line x1="4" y1="11" x2="20" y2="11" />
+                                <line x1="11" y1="15" x2="12" y2="15" />
+                                <line x1="12" y1="15" x2="12" y2="18" />
+                            </svg> Dettagli Evento
+                        </h3>
                         <p><strong>Servizio:</strong> <?= htmlspecialchars($prenotazione['service']); ?></p>
                         <p><strong>Data Evento:</strong>
                             <?= htmlspecialchars(date('d/m/Y', strtotime($prenotazione['date']))); ?></p>
                         <p><strong>Orario:</strong> <?= htmlspecialchars($prenotazione['time_of_day']); ?></p>
                         <p><strong>Durata:</strong> <?= htmlspecialchars($prenotazione['duration']) . ' ore'; ?></p>
+                        <p><strong>Prezzo:</strong> €<?= number_format($prenotazione['price'], 2); ?></p>
                     </div>
                 </div>
             </div>
@@ -91,19 +114,28 @@ if (!$prenotazione) {
             <div class="col-sm-6 col-lg-4">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="card-title">Stato Prenotazione</h3>
-                        <p><strong>Data Prenotazione:</strong>
+                        <h3 class="card-title">
+                            <svg class="icon icon-tabler icon-tabler-currency-euro" xmlns="http://www.w3.org/2000/svg"
+                                width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M17.2 7a6 7 0 1 0 0 10" />
+                                <path d="M7 10h8m-8 4h8" />
+                            </svg> Stato Prenotazione
+                        </h3>
+                        <p><strong>Creata in data:</strong>
                             <?= htmlspecialchars(date('d/m/Y', strtotime($prenotazione['date_of_submit']))); ?></p>
-                        <p><strong>Prezzo:</strong> €<?= number_format($prenotazione['price'], 2); ?></p>
                         <p><strong>Stato:</strong>
                             <?= $prenotazione['confirmed'] ? '<span class="status status-green">Confermata</span>' : '<span class="status status-orange">
   <span class="status-dot status-dot-animated"></span>Non Conclusa</span>'; ?>
                         </p>
+
                     </div>
                 </div>
             </div>
         </div>
 
+    
         <!-- Note amministratore -->
         <div class="row mt-4">
             <div class="col-lg-12">
