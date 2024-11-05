@@ -67,10 +67,27 @@
                                     d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" />
                             </svg>
                         </a>
+                        <!-- INIZIO SEZIONE GESTIONE NOTIFICHE -->
+                        <?php
+                        $pdo = Database::getInstance();
+                        $user_id = $_SESSION['user_id'] ?? 1;
+                        $stmt = $pdo->prepare("SELECT * FROM notifiche WHERE user_id = :user_id AND nascosta = 0 ORDER BY data_creazione DESC");
+                        $stmt->execute(['user_id' => $user_id]);
+                        $notifiche = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                        $haNotifiche = count($notifiche) > 0;
+                        ?>
+                        <style>
+                            .list-group-item a {
+                                text-decoration: none !important;
+                            }
+
+                            .list-group-item a:hover {
+                                text-decoration: none !important;
+                            }
+                        </style>
                         <div class="nav-item dropdown d-none d-md-flex me-3">
                             <a href="#" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1"
                                 aria-label="Show notifications">
-                                <!-- Download SVG icon from http://tabler-icons.io/i/bell -->
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                     stroke-linecap="round" stroke-linejoin="round">
@@ -79,118 +96,93 @@
                                         d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
                                     <path d="M9 17v1a3 3 0 0 0 6 0v-1" />
                                 </svg>
-                                <span class="badge bg-red"></span>
+                                <span class="badge bg-red <?= $haNotifiche ? '' : 'd-none' ?>"></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-end dropdown-menu-card">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h3 class="card-title">Last updates</h3>
+                                        <h3 class="card-title">Notifiche</h3>
                                     </div>
                                     <div class="list-group list-group-flush list-group-hoverable">
-                                        <div class="list-group-item">
-                                            <div class="row align-items-center">
-                                                <div class="col-auto"><span
-                                                        class="status-dot status-dot-animated bg-red d-block"></span>
-                                                </div>
-                                                <div class="col text-truncate">
-                                                    <a href="#" class="text-body d-block">Example 1</a>
-                                                    <div class="d-block text-secondary text-truncate mt-n1">
-                                                        Change deprecated html tags to text decoration classes (#29604)
+                                        <?php foreach ($notifiche as $notifica): ?>
+                                            <div class="list-group-item" id="notifica-<?= $notifica['id'] ?>">
+                                                <div class="row align-items-center">
+                                                    <div class="col-auto">
+                                                        <?php
+                                                        // Colore del pallino in base alla priorità
+                                                        $statusColor = 'bg-secondary';
+                                                        if ($notifica['priorita'] === 'alta') {
+                                                            $statusColor = 'bg-red';
+                                                        } elseif ($notifica['priorita'] === 'media') {
+                                                            $statusColor = 'bg-yellow';
+                                                        } elseif ($notifica['priorita'] === 'bassa') {
+                                                            $statusColor = 'bg-green';
+                                                        }
+                                                        ?>
+                                                        <span
+                                                            class="status-dot status-dot-animated <?= $statusColor ?> d-block"></span>
+                                                    </div>
+                                                    <div class="col text-truncate">
+                                                        <a href="<?= BASE_URL . htmlspecialchars($notifica['link']) ?>"
+                                                            class="text-body d-block">
+                                                            <span><?= htmlspecialchars($notifica['titolo']) ?></span>
+                                                            <div class="d-block text-secondary text-truncate mt-n1">
+                                                                <?= htmlspecialchars($notifica['descrizione']) ?>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <a href="#" onclick="segnalaLetta(<?= $notifica['id'] ?>, event)"
+                                                            class="list-group-item-actions">
+                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                class="icon text-primary" width="24" height="24"
+                                                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                                <path d="M10.585 10.587a2 2 0 0 0 2.829 2.828" />
+                                                                <path
+                                                                    d="M16.681 16.673a8.717 8.717 0 0 1 -4.681 1.327c-3.6 0 -6.6 -2 -9 -6c1.272 -2.12 2.712 -3.678 4.32 -4.674m2.86 -1.146a9.055 9.055 0 0 1 1.82 -.18c3.6 0 6.6 2 9 6c-.666 1.11 -1.379 2.067 -2.138 2.87" />
+                                                                <path d="M3 3l18 18" />
+                                                            </svg>
+                                                        </a>
                                                     </div>
                                                 </div>
-                                                <div class="col-auto">
-                                                    <a href="#" class="list-group-item-actions">
-                                                        <!-- Download SVG icon from http://tabler-icons.io/i/star -->
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon text-muted"
-                                                            width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                                            stroke="currentColor" fill="none" stroke-linecap="round"
-                                                            stroke-linejoin="round">
-                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                            <path
-                                                                d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" />
-                                                        </svg>
-                                                    </a>
-                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="list-group-item">
-                                            <div class="row align-items-center">
-                                                <div class="col-auto"><span class="status-dot d-block"></span></div>
-                                                <div class="col text-truncate">
-                                                    <a href="#" class="text-body d-block">Example 2</a>
-                                                    <div class="d-block text-secondary text-truncate mt-n1">
-                                                        justify-content:between ⇒ justify-content:space-between (#29734)
-                                                    </div>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <a href="#" class="list-group-item-actions show">
-                                                        <!-- Download SVG icon from http://tabler-icons.io/i/star -->
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon text-yellow"
-                                                            width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                                            stroke="currentColor" fill="none" stroke-linecap="round"
-                                                            stroke-linejoin="round">
-                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                            <path
-                                                                d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" />
-                                                        </svg>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="list-group-item">
-                                            <div class="row align-items-center">
-                                                <div class="col-auto"><span class="status-dot d-block"></span></div>
-                                                <div class="col text-truncate">
-                                                    <a href="#" class="text-body d-block">Example 3</a>
-                                                    <div class="d-block text-secondary text-truncate mt-n1">
-                                                        Update change-version.js (#29736)
-                                                    </div>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <a href="#" class="list-group-item-actions">
-                                                        <!-- Download SVG icon from http://tabler-icons.io/i/star -->
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon text-muted"
-                                                            width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                                            stroke="currentColor" fill="none" stroke-linecap="round"
-                                                            stroke-linejoin="round">
-                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                            <path
-                                                                d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" />
-                                                        </svg>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="list-group-item">
-                                            <div class="row align-items-center">
-                                                <div class="col-auto"><span
-                                                        class="status-dot status-dot-animated bg-green d-block"></span>
-                                                </div>
-                                                <div class="col text-truncate">
-                                                    <a href="#" class="text-body d-block">Example 4</a>
-                                                    <div class="d-block text-secondary text-truncate mt-n1">
-                                                        Regenerate package-lock.json (#29730)
-                                                    </div>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <a href="#" class="list-group-item-actions">
-                                                        <!-- Download SVG icon from http://tabler-icons.io/i/star -->
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon text-muted"
-                                                            width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                                            stroke="currentColor" fill="none" stroke-linecap="round"
-                                                            stroke-linejoin="round">
-                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                            <path
-                                                                d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" />
-                                                        </svg>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <?php endforeach; ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <script>
+                            function segnalaLetta(notificaId, event) {
+                                // Previene la propagazione del clic sul link principale
+                                event.preventDefault();
+                                event.stopPropagation();
+
+                                fetch('<?php echo BASE_URL . "/utils/markRead"; ?>', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/x-www-form-urlencoded',
+                                    },
+                                    body: 'notifica_id=' + notificaId
+                                })
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        if (data.success) {
+                                            console.log('Notifica segnata come letta');
+                                            // Rimuove l'elemento della notifica dalla pagina
+                                            const notificaElement = document.getElementById('notifica-' + notificaId);
+                                            if (notificaElement) {
+                                                notificaElement.remove();
+                                            }
+                                        } else {
+                                            console.error('Errore durante la segnalazione della notifica');
+                                        }
+                                    })
+                                    .catch(error => console.error('Errore nella richiesta:', error));
+                            }
+                        </script>
+                        <!-- FINE SEZIONE GESTIONE NOTIFICHE -->
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
@@ -208,7 +200,7 @@
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                            <a href="<?php echo BASE_URL; ?>/logout" class="dropdown-item">Logout</a>
+                            <a href="<?php echo BASE_PATH; ?>/logout" class="dropdown-item">Logout</a>
                         </div>
                     </div>
                 </div>

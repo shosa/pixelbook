@@ -212,6 +212,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             document.getElementById('passwordLoginForm').style.display = 'none';
             document.getElementById('pinLoginForm').style.display = 'block';
             document.getElementById('loginWithPasswordBtn').classList.remove('btn-primary');
+            document.getElementById('loginWithPinBtn').classList.remove('btn-outline-primary');
             document.getElementById('loginWithPinBtn').classList.add('btn-primary');
         }
 
