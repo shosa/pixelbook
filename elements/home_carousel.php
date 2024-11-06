@@ -129,7 +129,7 @@ function renderCarousel($items)
                 <!-- Immagine principale -->
                 <div class="image-main">
                     <img src="<?php echo $item['foto_blur']; ?>" class="img-fluid">
-                    <div class="overlay-gradient">
+                    <div class="overlay-gradient text-left">
                         <h2 class="text-white"><?php echo $item['nome']; ?></h2>
                         <p><?php echo nl2br($item['paragrafo']); ?></p>
 

@@ -1,5 +1,3 @@
-
-
 <style>
     .logo-carousel {
         background-color: #f5f5f5;
@@ -10,12 +8,12 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        
     }
 
     .logo-slide img {
-        max-width: 350px;
+        max-width: 100%; /* Assicura che l'immagine non esca dal contenitore */
         height: auto;
+        max-height: 150px; /* Altezza massima per rendere tutte le immagini uniformi */
         opacity: 0.8;
         transition: opacity 0.3s ease;
     }
@@ -23,8 +21,6 @@
     .logo-slide img:hover {
         opacity: 1;
     }
-
-  
 </style>
 
 <section class="container pt-1">
@@ -66,12 +62,19 @@
         breakpoints: {
             640: {
                 slidesPerView: 1, // Mobile view
+                spaceBetween: 15
             },
             768: {
-                slidesPerView: 2, // Tablet view
+                slidesPerView: 1, // Tablet view
+                spaceBetween: 20
             },
             1024: {
-                slidesPerView: 3, // Desktop view
+                slidesPerView: 1, // Desktop view
+                spaceBetween: 30
+            },
+            1280: {
+                slidesPerView: 1, // Large desktop view
+                spaceBetween: 40
             }
         }
     });
