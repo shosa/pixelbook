@@ -41,9 +41,22 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
         }
     }
 
-    /* Reverse animation for offset row */
     .offset-row {
         animation: scrollImages 40s linear infinite reverse;
+    }
+
+    /* Container width adjustment */
+    .custom-container {
+        width: 100%;
+        padding: 0;
+    }
+
+    /* Adjust to 60% width on larger screens */
+    @media (min-width: 1025px) {
+        .custom-container {
+            width: 60%;
+            margin: 0 auto;
+        }
     }
 
     /* Responsive adjustments */
@@ -85,7 +98,7 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
 </style>
 
 <header class="bg-white py-4">
-    <div class="container-fluid p-0 text-center">
+    <div class="container-fluid text-center">
         <h1 class="font-weight-bold"><span class="text-gradient-custom">Book The Best</span>
             Photographers & Videographers in <span class="text-gradient-custom">Dubai</span>
         </h1>
@@ -109,7 +122,7 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
     </div>
 </header>
 
-<div class="container-fluid">
+<div class="custom-container">
     <div class="row text-center">
         <!-- First column -->
         <div class="col-md-4">
@@ -129,34 +142,27 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
                 <img class="img-fluid w-100" src="3.png" alt="Image 3">
             </div>
         </div>
-
     </div>
+    <hr>
     <div class="row text-center">
-
         <div class="col-md-6">
             <?php include("elements/trusted_by.php"); ?>
         </div>
-
-
         <div class="col-md-6">
             <?php include("elements/reviews.php"); ?>
-
         </div>
     </div>
+    <hr>
+
+</div>
+<div class="container-fluid">
     <div class="row text-center">
-        <div class="col-md-4">
-            
-        </div>
+        <div class="col-md-4"> </div>
         <div class="col-md-4">
             <?php include("elements/home_carousel.php"); ?>
         </div>
-        <div class="col-md-4">
-           
-        </div>
+        <div class="col-md-4"> </div>
     </div>
 </div>
-
-
-
 <section class="container-fluid mt-4"></section>
 <?php require 'components/footer.php'; ?>

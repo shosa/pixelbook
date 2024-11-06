@@ -1,26 +1,25 @@
 <style>
     .carousel {
         padding-right: 15%;
-        /* Rimuovi padding predefinito */
         margin: 0 auto;
-        /* Centra la slide */
-
     }
 
     @media (max-width: 768px) {
-        .carousel {
-            padding-right: 25%;
-            /* Aggiungi padding per dispositivi mobili */
-        }
+       
     }
 
     .image-section {
         position: relative;
         height: 300px;
-        /* Regola l'altezza come preferisci */
         width: 100%;
         overflow: visible;
-        /* Permetti all'immagine di uscire dal contenitore */
+        border-radius: 1rem;
+    }
+
+    .image-main {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
         border-radius: 1rem;
     }
 
@@ -28,56 +27,57 @@
         object-fit: cover;
         width: 100%;
         height: 100%;
-        height: 300px;
-        max-height: 300px;
-        /* Imposta un'altezza massima */
         border-radius: 1rem;
-        /* Arrotondamento per un look più pulito */
-        overflow: hidden;
-        /* Previene lo sforamento */
     }
 
     .image-small {
         position: absolute;
         top: -20px;
-        /* Sporgere sopra */
         right: -90px;
-        /* Spostata a destra */
         width: 180px;
-        /* Larghezza desiderata */
         height: 340px;
-        /* Altezza maggiore per la sporgenza */
-        border-radius: 1rem;
         overflow: hidden;
-        box-shadow: 2px 8px 9px rgba(0, 0, 0, 0.5);
-        border: 3px solid white;
         z-index: 10;
-        /* Assicurati che sia sopra l'immagine principale */
     }
 
-    @media (max-width: 768px) {
-    .image-small {
+    /* Immagine cornice dell'iPhone */
+    .iphone-frame {
         position: absolute;
-        top: 50%;
-        right: -60px;
-        width: 120px;
-        height: 230px;
-        border-radius: 1rem;
-        overflow: hidden;
-        box-shadow: 2px 8px 9px rgba(0, 0, 0, 0.5);
-        border: 3px solid white;
-        z-index: 10;
-        transform: translateY(-50%);
-        /* Centra verticalmente l'immagine piccola */
-    }
-}
-
-    .image-small img {
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
+        z-index: 1;
+    }
+
+    /* Immagine contenuta all'interno della cornice dell'iPhone */
+    .content-image {
+        position: absolute;
+        width: 94%;
+        height: 95%;
+        top: 2%;
+        left: 3%;
         object-fit: cover;
-        /* Assicura che l'immagine si adatti senza distorsioni */
         border-radius: 1rem;
+        z-index: 0;
+    }
+
+    /* Media query per dispositivi mobili */
+    @media (max-width: 768px) {
+        .image-section {
+            height: 50vw; /* Scala la sezione principale in base alla larghezza dello schermo */
+        }
+
+        .image-main {
+            height: 100%;
+        }
+
+        .image-small {
+            width: 25vw; /* Scala in base alla larghezza dello schermo */
+            height: 50vw; /* Scala in modo proporzionale per mantenere le proporzioni dell'iPhone */
+            top: -5vw;
+            right: -8vw;
+        }
     }
 
     .overlay-gradient {
@@ -99,11 +99,9 @@
         justify-content: center;
         align-items: center;
         width: calc(100% - 80px);
-        /* Larghezza rimanente dopo l'immagine piccola */
         margin-left: auto;
         margin-right: auto;
         transform: translateX(40px);
-        /* Sposta leggermente a destra */
     }
 </style>
 
@@ -132,12 +130,14 @@ function renderCarousel($items)
                     <div class="overlay-gradient text-left">
                         <h2 class="text-white"><?php echo $item['nome']; ?></h2>
                         <p><?php echo nl2br($item['paragrafo']); ?></p>
-
                     </div>
                 </div>
-                <!-- Immagine secondaria sovrapposta in basso a destra -->
+                <!-- Immagine secondaria sovrapposta in basso a destra con cornice iPhone -->
                 <div class="image-small">
-                    <img src="<?php echo $item['foto']; ?>" class="img-fluid">
+                    <!-- Cornice PNG dell'iPhone -->
+                    <img src="src/img/cornice.png" class="iphone-frame">
+                    <!-- Immagine principale all'interno della cornice -->
+                    <img src="<?php echo $item['foto']; ?>" class="img-fluid content-image">
                 </div>
             </div>
             <div class="button-group">
