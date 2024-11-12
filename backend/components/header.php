@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>PixelShoot</title>
+    <title>Pixiod</title>
     <!-- CSS files -->
     <link href="<?php echo BASE_URL ?>/dist/css/tabler.min.css?1692870487" rel="stylesheet" />
 
@@ -38,7 +38,7 @@
                 </button>
                 <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
                     <a href="#">
-                        Pixel<span class="text-info">Shoot</span> [<span class="text-success">Admin</span> Console]
+                        Pix<span class="text-info">iod</span> [<span class="text-success">Admin</span> Console]
                     </a>
                 </h1>
                 <div class="navbar-nav flex-row order-md-last">

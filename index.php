@@ -97,8 +97,60 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
     }
 </style>
 
-<header class="bg-white py-4">
-    <div class="container-fluid text-center">
+<style>
+    /* Sovrapposizione e stile parallasse */
+    .parallax-container {
+        position: relative;
+        overflow: hidden;
+        height: 500px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .parallax-image {
+        position: absolute;
+        width: 50%;
+        max-width: 300px;
+        transition: transform 0.2s ease-out;
+    }
+
+    /* Immagine sotto (1.png) leggermente spostata a destra e verso il basso */
+    .image-1 {
+        z-index: 1;
+        top: 20px;
+        left: 20px;
+    }
+
+    /* Immagine sopra (3.png) con maggiore z-index */
+    .image-3 {
+        z-index: 2;
+        top: 0;
+        right: -20px;
+    }
+
+    /* Effetto parallasse per immagini */
+    .parallax-image img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    /* Adjust for smaller screens */
+    @media (max-width: 768px) {
+        .parallax-container {
+            height: 300px;
+        }
+
+        .parallax-image {
+            width: 80%;
+            max-width: 200px;
+        }
+    }
+</style>
+
+<header class="bg-white py-4 mt-5">
+    <div class="container-fluid text-center pr-0 pl-0 mt-2">
         <h1 class="font-weight-bold"><span class="text-gradient-custom">Book The Best</span>
             Photographers & Videographers in <span class="text-gradient-custom">Dubai</span>
         </h1>
@@ -118,7 +170,6 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
                 <?php endforeach; ?>
             </div>
         </div>
-        <a class="btn btn-gradient-custom btn-xl text-uppercase mt-3 floating-button" href="book">Book Now</a>
     </div>
 </header>
 

@@ -36,7 +36,7 @@
 <section class="container pt-1">
     <h2 class="text-center mb-4 font-weight-bold">Our Customers</h2>
     <div class="swiper">
-        <div class="swiper-wrapper">
+        <div class="swiper-wrapper mb-4">
             <div class="swiper-slide">
                 <div class="card shadow-sm p-4">
                     <div class="d-flex justify-content-between align-items-center mb-1">

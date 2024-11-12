@@ -27,7 +27,7 @@
     <h2 class="text-center mb-4 font-weight-bold">Trusted By</h2>
 
     <div class="swiper logo-swiper">
-        <div class="swiper-wrapper">
+        <div class="swiper-wrapper mb-4">
             <div class="swiper-slide logo-slide">
                 <img src="src/img/logos1.png" alt="Logo 1">
             </div>
@@ -53,7 +53,7 @@
 <script>
     const logoSwiper = new Swiper('.logo-swiper', {
         slidesPerView: 1,
-        spaceBetween: 20,
+        spaceBetween:80,
         loop: true,
         pagination: {
             el: '.swiper-pagination',

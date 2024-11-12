@@ -4,10 +4,7 @@
         margin: 0 auto;
     }
 
-    @media (max-width: 768px) {
-       
-    }
-
+  
     .image-section {
         position: relative;
         height: 300px;
@@ -62,24 +59,6 @@
         z-index: 0;
     }
 
-    /* Media query per dispositivi mobili */
-    @media (max-width: 768px) {
-        .image-section {
-            height: 50vw; /* Scala la sezione principale in base alla larghezza dello schermo */
-        }
-
-        .image-main {
-            height: 100%;
-        }
-
-        .image-small {
-            width: 25vw; /* Scala in base alla larghezza dello schermo */
-            height: 50vw; /* Scala in modo proporzionale per mantenere le proporzioni dell'iPhone */
-            top: -5vw;
-            right: -8vw;
-        }
-    }
-
     .overlay-gradient {
         position: absolute;
         bottom: 0;
@@ -102,6 +81,86 @@
         margin-left: auto;
         margin-right: auto;
         transform: translateX(40px);
+    }
+
+    /* Media query per vari dispositivi */
+    @media (min-width: 320px) and (max-width: 480px)
+    /* smartphone */
+   {
+        /* tablet in landscape e laptop con bassa risoluzione */
+
+        /* Rimozione dei margini dal contenitore principale */
+        .container {
+            padding: 0 !important;
+            margin: 0 !important;
+            overflow: hidden;
+        }
+
+        /* Stile per Swiper */
+        .swiper-wrapper {
+            width: 80% !important;
+        }
+
+        .carousel {
+            padding: 0 !important;
+            margin: 0 auto;
+        }
+
+        .image-section {
+            height: auto;
+            aspect-ratio: 16 / 9;
+            position: relative;
+            overflow: visible;
+            margin: 0;
+            border-radius: 1rem;
+        }
+
+        .image-main {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .image-main img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+
+        .image-small {
+            width: 32%;
+            height: auto;
+            aspect-ratio: 9 / 18;
+            position: absolute;
+            top: 5%;
+            right: -5%;
+            transform: translate(0, -10%);
+        }
+
+        .overlay-gradient h2 {
+            font-size: 1.5rem;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 35px;
+            justify-content: center;
+            align-items: center;
+            width: calc(100% - 80px);
+            margin-left: auto;
+            margin-right: auto;
+            transform: translateX(3px) !important;
+        }
+    }
+
+    /* Stile per laptop e schermi di grandi dimensioni */
+    @media (min-width: 1025px) {
+        .button-group {
+            width: calc(100% - 80px);
+            transform: translateX(40px);
+            /* Mantiene il layout specifico per desktop */
+        }
     }
 </style>
 
@@ -128,8 +187,7 @@ function renderCarousel($items)
                 <div class="image-main">
                     <img src="<?php echo $item['foto_blur']; ?>" class="img-fluid">
                     <div class="overlay-gradient text-left">
-                        <h2 class="text-white"><?php echo $item['nome']; ?></h2>
-                        <p><?php echo nl2br($item['paragrafo']); ?></p>
+                        <h2 class=" font-weight-bold text-white"><?php echo $item['nome']; ?></h2>
                     </div>
                 </div>
                 <!-- Immagine secondaria sovrapposta in basso a destra con cornice iPhone -->
@@ -154,10 +212,9 @@ function renderCarousel($items)
 <section class="container py-2 mb-1">
     <h1 class="text-center">BUSINESS</h1>
     <div class="swiper business-swiper">
-        <div class="swiper-wrapper">
+        <div class="swiper-wrapper mb-4">
             <?php renderCarousel($businessItems); ?>
         </div>
-
         <div class="swiper-pagination"></div>
     </div>
 </section>
@@ -165,11 +222,10 @@ function renderCarousel($items)
 <!-- Sezione per PERSONAL -->
 <section class="container py-2 mb-1">
     <h1 class="text-center">PERSONAL</h1>
-    <div class="swiper personal-swiper">
-        <div class="swiper-wrapper">
+    <div class="swiper personal-swiper ">
+        <div class="swiper-wrapper mb-4">
             <?php renderCarousel($personalItems); ?>
         </div>
-
         <div class="swiper-pagination"></div>
     </div>
 </section>
@@ -178,7 +234,7 @@ function renderCarousel($items)
     // Inizializza Swiper per BUSINESS
     const businessSwiper = new Swiper('.business-swiper', {
         slidesPerView: 1,
-        spaceBetween: 20,
+        spaceBetween: 40,
         loop: true,
         navigation: {
             nextEl: '.swiper-button-next',
@@ -193,7 +249,7 @@ function renderCarousel($items)
     // Inizializza Swiper per PERSONAL
     const personalSwiper = new Swiper('.personal-swiper', {
         slidesPerView: 1,
-        spaceBetween: 20,
+        spaceBetween: 40,
         loop: true,
         navigation: {
             nextEl: '.swiper-button-next',

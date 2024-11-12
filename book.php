@@ -114,7 +114,7 @@ $categorie = $stmt->fetchAll();
     }
 </style>
 
-<div class="container">
+<div class="container mt-5">
     <h6 class="h2 text-center font-weight-bold text-dark" style="font-size:2.5rem">Book the <span
             class="text-gradient-custom font-weight-bold">Best</span></h6>
     <h6 class=" h3 text-center font-weight-bold text-dark mb-2" style="font-size:2.5rem">in <span
@@ -131,7 +131,7 @@ $categorie = $stmt->fetchAll();
     <div class="row mt-2" id="category-list">
         <?php foreach ($categorie as $categoria): ?>
             <div class="col-6 col-md-3 mb-2 mt-1 category-item" data-type="<?php echo $categoria['type']; ?>">
-                <a href="category.php?id=<?php echo $categoria['id']; ?>" class="category-link">
+                <a href="category?id=<?php echo $categoria['id']; ?>" class="category-link">
                     <div class="category-banner"
                         style="background-image: url('images/categories/<?php echo $categoria['banner']; ?>');">
                         <h2 class="category-title"><?php echo $categoria['nome']; ?></h2>

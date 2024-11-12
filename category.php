@@ -86,14 +86,14 @@ $fotografie = $stmt->fetchAll();
     }
 </style>
 
-<div class="container text-center">
+<div class="container text-center mt-5">
     <h1 class="text-gradient-custom font-weight-bold text-uppercase" style=" font-size: 3rem;">
         <?php echo htmlspecialchars($categoria['nome']); ?>
     </h1>
     <h5 class="my-4">
         <?php echo htmlspecialchars($categoria['descrizione']); ?>
     </h5>
-    <a class="btn btn-gradient-custom mb-4 shadow-lg floating-button" style="font-size: 1rem;"
+    <a class="btn btn-gradient-custom mb-4 shadow-lg floating-button rounded-pill" style="font-size: 1rem;"
         href="form?category=<?php echo $categoria_id; ?>">BOOK NOW</a>
 
     <?php if ($fotografie): ?>
@@ -148,8 +148,8 @@ $fotografie = $stmt->fetchAll();
         <div class="swiper-button-prev"></div>
     </div>
     <!-- Pulsante Book Now nel modale -->
-    <a class="btn btn-gradient-custom mb-4 shadow-lg floating-button"
-        style="font-size: 1rem; position: absolute; bottom: 30px;"
+    <a class="btn btn-gradient-custom mb-4 shadow-lg floating-button  rounded-pill"
+        style="font-size: 1rem; position: absolute; bottom: 5%;"
         href="form?category=<?php echo $categoria_id; ?>">BOOK NOW</a>
 </div>
 

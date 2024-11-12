@@ -11308,7 +11308,7 @@ a:focus {
 
 .floating-button {
   position: fixed;
-  bottom: 7%;
+  bottom: 5%;
   right: 20%;
   left: 20%;
   z-index: 1000;
