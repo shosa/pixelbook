@@ -13,7 +13,7 @@ $stmt->execute([$categoria_id]);
 $categoria = $stmt->fetch();
 
 if (!$categoria) {
-    echo "<div class='container'><p>Categoria non trovata.</p></div>";
+    echo "<div class='container'><p>Nothing found here.</p></div>";
     require 'templates/footer.php';
     exit();
 }
@@ -24,56 +24,55 @@ $stmt->execute([$categoria_id]);
 $fotografie = $stmt->fetchAll();
 ?>
 <style>
+    /* Griglia Masonry per la galleria */
+    .gallery {
+        column-count: 3;
+        column-gap: 10px;
+    }
+
+    .gallery-item {
+        margin-bottom: 10px;
+        break-inside: avoid;
+        border-radius: 8px;
+        overflow: hidden;
+        display: inline-block;
+        width: 100%;
+    }
+
     .gallery-img {
         width: 100%;
-        height: 150px;
+        height: auto;
         object-fit: cover;
-        border-radius: 5px;
+        transition: transform 0.3s ease;
         cursor: pointer;
-        /* Aggiunge il cursore a mano quando si passa sopra l'immagine */
     }
 
-    .card {
-        overflow: hidden;
+    .gallery-item:hover .gallery-img {
+        transform: scale(1.05);
     }
 
-    /* Stile per il modale a schermo intero */
     /* Stile per il modale a schermo intero */
     .modal-fullscreen {
         display: none;
-        /* Inizialmente nascosto */
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
         background: rgba(0, 0, 0, 0.8);
-        /* Sfondo semitrasparente scuro */
         z-index: 9999;
         justify-content: center;
         align-items: center;
         backdrop-filter: blur(10px);
-        /* Sfoca lo sfondo */
         opacity: 0;
         transform: scale(0.9);
-        /* Riduzione iniziale per l'effetto zoom */
         transition: opacity 0.3s ease, transform 0.3s ease;
-        /* Animazione su opacity e trasformazione */
     }
 
     .modal-fullscreen.show {
         display: flex;
         opacity: 1;
         transform: scale(1);
-        /* Effetto zoom alla dimensione normale */
-    }
-
-    .modal-fullscreen img {
-        max-width: 90%;
-        max-height: 80%;
-        border-radius: 10px;
-        transition: opacity 0.3s ease;
-        /* Animazione sul contenuto dell'immagine */
     }
 
     .close-btn {
@@ -83,6 +82,20 @@ $fotografie = $stmt->fetchAll();
         font-size: 30px;
         color: white;
         cursor: pointer;
+        z-index: 10000; /* Assicurati che il pulsante sia sopra gli altri elementi */
+    }
+
+    /* Regole responsive per la griglia */
+    @media (max-width: 768px) {
+        .gallery {
+            column-count: 3;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .gallery {
+            column-count: 2;
+        }
     }
 </style>
 
@@ -90,29 +103,26 @@ $fotografie = $stmt->fetchAll();
     <h1 class="text-gradient-custom font-weight-bold text-uppercase" style=" font-size: 3rem;">
         <?php echo htmlspecialchars($categoria['nome']); ?>
     </h1>
-    <h5 class="my-4">
-        <?php echo htmlspecialchars($categoria['descrizione']); ?>
-    </h5>
+    <i class="h5 my-4 ">
+        "<?php echo htmlspecialchars($categoria['descrizione']); ?>"
+    </i>
     <a class="btn btn-gradient-custom mb-4 shadow-lg floating-button rounded-pill" style="font-size: 1rem;"
         href="form?category=<?php echo $categoria_id; ?>">BOOK NOW</a>
 
     <?php if ($fotografie): ?>
-        <div class="row">
-            <?php foreach ($fotografie as $foto): ?>
-                <div class="col-6 col-md-4 mb-3">
-                    <!-- Modifica per il layout mobile -->
-                    <div class="card shadow-sm">
-                        <img src="images/gallery/<?php echo htmlspecialchars($foto['file']); ?>"
-                            class="card-img-top gallery-img" alt="<?php echo htmlspecialchars($foto['descrizione']); ?>"
-                            onclick="openModal('images/gallery/<?php echo htmlspecialchars($foto['file']); ?>')">
-                    </div>
+        <div class="gallery mt-4">
+            <?php foreach ($fotografie as $index => $foto): ?>
+                <div class="gallery-item shadow-sm">
+                    <img src="images/gallery/<?php echo htmlspecialchars($foto['file']); ?>" class="gallery-img"
+                        alt="<?php echo htmlspecialchars($foto['descrizione']); ?>" onclick="openModal(<?php echo $index; ?>)">
                 </div>
             <?php endforeach; ?>
         </div>
     <?php else: ?>
-        <p>Non ci sono foto per questa categoria.</p>
+        <p>Nothing found here.</p>
     <?php endif; ?>
 </div>
+
 <style>
     .swiper-container {
         width: 90%;
@@ -123,7 +133,7 @@ $fotografie = $stmt->fetchAll();
         display: flex;
         justify-content: center;
         align-items: center;
-        padding:5%;
+        padding: 5%;
     }
 
     .swiper-slide img {
@@ -132,6 +142,7 @@ $fotografie = $stmt->fetchAll();
         border-radius: 10px;
     }
 </style>
+
 <div id="imageModal" class="modal-fullscreen">
     <span class="close-btn" onclick="closeModal()">×</span>
     <div class="swiper-container">
@@ -147,12 +158,10 @@ $fotografie = $stmt->fetchAll();
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
     </div>
-    <!-- Pulsante Book Now nel modale -->
-    <a class="btn btn-gradient-custom mb-4 shadow-lg floating-button  rounded-pill"
+    <a class="btn btn-gradient-custom mb-4 shadow-lg floating-button rounded-pill"
         style="font-size: 1rem; position: absolute; bottom: 5%;"
         href="form?category=<?php echo $categoria_id; ?>">BOOK NOW</a>
 </div>
-
 
 <script>
     let swiper;
@@ -162,9 +171,8 @@ $fotografie = $stmt->fetchAll();
         currentIndex = index;
         const modal = document.getElementById('imageModal');
 
-        // Imposta swiper su currentIndex
         if (swiper) {
-            swiper.slideTo(currentIndex, 0);
+            swiper.slideToLoop(currentIndex, 0);
         }
 
         modal.style.display = 'flex';
@@ -182,16 +190,14 @@ $fotografie = $stmt->fetchAll();
     }
 
     document.addEventListener("DOMContentLoaded", function () {
-        // Inizializza Swiper
         swiper = new Swiper('.swiper-container', {
             navigation: {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
             },
-            loop: true, // Loop per consentire lo scorrimento continuo
+            loop: true,
         });
 
-        // Associa l'evento click alle immagini della galleria
         const images = document.querySelectorAll('.gallery-img');
         images.forEach((img, index) => {
             img.addEventListener('click', () => openModal(index));
