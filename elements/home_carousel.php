@@ -4,7 +4,7 @@
         margin: 0 auto;
     }
 
-  
+
     .image-section {
         position: relative;
         height: 300px;
@@ -86,12 +86,12 @@
     /* Media query per vari dispositivi */
     @media (min-width: 320px) and (max-width: 480px)
     /* smartphone */
-   {
+        {
         /* tablet in landscape e laptop con bassa risoluzione */
 
         /* Rimozione dei margini dal contenitore principale */
         .container {
-            padding: 0 ;
+            padding: 0;
             margin: 0 !important;
             overflow: hidden;
         }
@@ -162,6 +162,22 @@
             /* Mantiene il layout specifico per desktop */
         }
     }
+
+    /* Stile per schermi desktop */
+    @media (min-width: 1025px) {
+        .swiper-custom {
+            width: 70% !important;
+            margin: 0 auto;
+        }
+    }
+
+    /* Stile per schermi desktop grandi (esclude laptop e schermi Mac più piccoli) */
+    @media (min-width: 1600px) {
+        .swiper-custom {
+            width: 50% !important;
+            margin: 0 auto;
+        }
+    }
 </style>
 
 <?php
@@ -211,7 +227,7 @@ function renderCarousel($items)
 <!-- Sezione per BUSINESS -->
 <section class="container py-2 mb-1">
     <h1 class="text-center">BUSINESS</h1>
-    <div class="swiper business-swiper">
+    <div class="swiper business-swiper swiper-custom">
         <div class="swiper-wrapper mb-4">
             <?php renderCarousel($businessItems); ?>
         </div>
@@ -222,7 +238,7 @@ function renderCarousel($items)
 <!-- Sezione per PERSONAL -->
 <section class="container py-2 mb-1">
     <h1 class="text-center">PERSONAL</h1>
-    <div class="swiper personal-swiper ">
+    <div class="swiper personal-swiper swiper-custom ">
         <div class="swiper-wrapper mb-4">
             <?php renderCarousel($personalItems); ?>
         </div>

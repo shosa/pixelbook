@@ -11,5 +11,5 @@
   gtag('config', 'G-QS84SYS38E');
 </script>
 </body>
-
+<footer class="p-4 w-100 bg-dark mb-0"><h5 class="text-light text-center">Pixiod @ 2024</h5></footer>
 </html>

@@ -121,19 +121,19 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
         position: relative;
         /* Posizionato in modo relativo per influire sull'altezza del container */
         z-index: 1;
-        width: 50%;
+        width: 90%;
         max-width: 100%;
     }
 
     .elements-inside {
         z-index: 2;
-        width: 50%;
+        width: 90%;
         max-width: 100%;
     }
 
     .elements-inside2 {
         z-index: 3;
-        width: 50%;
+        width: 90%;
         max-width: 100%;
     }
 
@@ -142,9 +142,11 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
         .phone-image,
         .elements-inside,
         .elements-inside2 {
-            width: 90%;
+            width: 120%;
         }
     }
+
+    
 </style>
 
 <header class="bg-white py-4 mt-5">
@@ -213,11 +215,11 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
 
 <div class="container-fluid">
     <div class="row text-center">
-        <div class="col-md-4"> </div>
-        <div class="col-md-4">
+        <div class="col-md-2"> </div>
+        <div class="col-md-8">
             <?php include("elements/home_carousel.php"); ?>
         </div>
-        <div class="col-md-4"> </div>
+        <div class="col-md-2"> </div>
     </div>
 </div>
 <section class="container-fluid mt-4"></section>
