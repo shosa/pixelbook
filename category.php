@@ -33,7 +33,7 @@ $fotografie = $stmt->fetchAll();
     .gallery-item {
         margin-bottom: 10px;
         break-inside: avoid;
-        border-radius: 8px;
+       
         overflow: hidden;
         display: inline-block;
         width: 100%;

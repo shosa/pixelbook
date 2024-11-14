@@ -91,7 +91,7 @@
 
         /* Rimozione dei margini dal contenitore principale */
         .container {
-            padding: 0 !important;
+            padding: 0 ;
             margin: 0 !important;
             overflow: hidden;
         }

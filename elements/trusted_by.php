@@ -4,16 +4,25 @@
         padding: 20px 0;
     }
 
+    .logo-swiper {
+        width: 100%;
+        overflow: hidden;
+    }
+
     .logo-slide {
         display: flex;
         justify-content: center;
         align-items: center;
+        height: 150px;
+        /* Altezza uniforme per le slide */
     }
 
     .logo-slide img {
-        max-width: 100%; /* Assicura che l'immagine non esca dal contenitore */
+        max-width: 100%;
+        /* Assicura che l'immagine non esca dal contenitore */
         height: auto;
-        max-height: 150px; /* Altezza massima per rendere tutte le immagini uniformi */
+        max-height: 100%;
+        /* Altezza massima per rendere tutte le immagini uniformi */
         opacity: 0.8;
         transition: opacity 0.3s ease;
     }
@@ -52,8 +61,9 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
     const logoSwiper = new Swiper('.logo-swiper', {
-        slidesPerView: 1,
-        spaceBetween:80,
+        slidesPerView: 1, // Mostra solo una slide per volta
+        spaceBetween: 20, // Riduci lo spazio tra le slide
+        centerSlides: true,
         loop: true,
         pagination: {
             el: '.swiper-pagination',
@@ -61,19 +71,19 @@
         },
         breakpoints: {
             640: {
-                slidesPerView: 1, // Mobile view
+                slidesPerView: 2, // Aumenta le slide su schermi più grandi
                 spaceBetween: 15
             },
             768: {
-                slidesPerView: 1, // Tablet view
+                slidesPerView: 3,
                 spaceBetween: 20
             },
             1024: {
-                slidesPerView: 1, // Desktop view
+                slidesPerView: 4,
                 spaceBetween: 30
             },
             1280: {
-                slidesPerView: 1, // Large desktop view
+                slidesPerView: 5,
                 spaceBetween: 40
             }
         }

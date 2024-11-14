@@ -95,56 +95,54 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
             flex: 0 0 10%;
         }
     }
-</style>
 
-<style>
-    /* Sovrapposizione e stile parallasse */
     .parallax-container {
         position: relative;
         overflow: hidden;
-        height: 500px;
         display: flex;
         justify-content: center;
         align-items: center;
-    }
-
-    .parallax-image {
-        position: absolute;
-        width: 50%;
-        max-width: 300px;
-        transition: transform 0.2s ease-out;
-    }
-
-    /* Immagine sotto (1.png) leggermente spostata a destra e verso il basso */
-    .image-1 {
-        z-index: 1;
-        top: 20px;
-        left: 20px;
-    }
-
-    /* Immagine sopra (3.png) con maggiore z-index */
-    .image-3 {
-        z-index: 2;
-        top: 0;
-        right: -20px;
-    }
-
-    /* Effetto parallasse per immagini */
-    .parallax-image img {
+        padding: 20px 0;
+        /* Definisce una minima altezza verticale */
         width: 100%;
-        height: auto;
-        object-fit: cover;
+        min-height: 300px;
+        /* Altezza minima per garantire visibilità su schermi più piccoli */
     }
 
-    /* Adjust for smaller screens */
-    @media (max-width: 768px) {
-        .parallax-container {
-            height: 300px;
-        }
+    .parallax-item {
+        position: absolute;
+        will-change: transform;
+        transition: transform 0.1s;
+        max-width: 100%;
+        height: auto;
+    }
 
-        .parallax-image {
-            width: 80%;
-            max-width: 200px;
+    .phone-image {
+        position: relative;
+        /* Posizionato in modo relativo per influire sull'altezza del container */
+        z-index: 1;
+        width: 50%;
+        max-width: 100%;
+    }
+
+    .elements-inside {
+        z-index: 2;
+        width: 50%;
+        max-width: 100%;
+    }
+
+    .elements-inside2 {
+        z-index: 3;
+        width: 50%;
+        max-width: 100%;
+    }
+
+    @media (max-width: 767px) {
+
+        .phone-image,
+        .elements-inside,
+        .elements-inside2 {
+            width: 90%;
         }
     }
 </style>
@@ -173,27 +171,34 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
     </div>
 </header>
 
-<div class="custom-container">
-    <div class="row text-center">
-        <!-- First column -->
-        <div class="col-md-4">
-            <div class="p-2">
-                <img class="img-fluid w-100" src="2.png" alt="Image 2">
+<div class="custom-container w-100">
+    <div class="row text-center bg-gradient-custom">
+        <div class="col-md-6 text-left d-flex align-items-center">
+            <div class="container p-4 ml-5">
+                <span class="h1 text-white font-weight-bold ">Book Photography and Video Services in Just One
+                    Click</span>
+                <br><br><i class="font-weight-normal">PIXIOD is the platform that makes booking photography and video
+                    services easy. Everything you
+                    need,
+                    in
+                    one link.
+                    Choose, book, and pay online. Your photography and video services, at your fingertips.</i>
+                <br><br>
+                <a class="btn btn-light  rounded-pill font-weight-bold" style="background-color:white !important "
+                    href="book">Find Out
+                    More <i class="fas fa-chevron-right"></i></a>
             </div>
         </div>
-
-        <div class="col-md-4">
-            <div class="p-2">
-                <img class="img-fluid w-50" src="1.png" alt="Image 1">
-            </div>
-        </div>
-        <!-- Second column -->
-        <div class="col-md-4">
-            <div class="p-2">
-                <img class="img-fluid w-100" src="3.png" alt="Image 3">
+        <div class="col-md-6">
+            <div class="row parallax-container">
+                <img src="2.png" class="parallax-item phone-image" alt="Phone Screen">
+                <img src="3.png" class="parallax-item elements-inside" alt="Elements Inside">
+                <img src="4.png" class="parallax-item elements-inside2" alt="Elements Inside">
             </div>
         </div>
     </div>
+</div>
+<div class="custom-container">
     <hr>
     <div class="row text-center">
         <div class="col-md-6">
@@ -204,8 +209,8 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
         </div>
     </div>
     <hr>
-
 </div>
+
 <div class="container-fluid">
     <div class="row text-center">
         <div class="col-md-4"> </div>
@@ -217,3 +222,31 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
 </div>
 <section class="container-fluid mt-4"></section>
 <?php require 'components/footer.php'; ?>
+
+<script>
+    // Parallax effect on scroll
+    document.addEventListener("scroll", () => {
+        const parallaxContainer = document.querySelector(".parallax-container");
+        const phoneImage = document.querySelector(".phone-image");
+        const elementsInside = document.querySelector(".elements-inside");
+        const elementsInside2 = document.querySelector(".elements-inside2");
+
+        // Calcola la distanza dell'elemento dal top della pagina e l'altezza del contenitore
+        const containerRect = parallaxContainer.getBoundingClientRect();
+        const containerTop = containerRect.top;
+        const containerHeight = containerRect.height;
+        const windowHeight = window.innerHeight;
+
+        // Verifica che il contenitore sia visibile nel viewport
+        if (containerTop < windowHeight && containerTop > -containerHeight) {
+            // Calcola la percentuale di scroll rispetto alla posizione del contenitore
+            const scrollRatio = (windowHeight - containerTop) / (windowHeight + containerHeight);
+
+            // Applica la trasformazione in base alla percentuale di scroll
+            phoneImage.style.transform = `translateX(${scrollRatio * 20}px)`; // Modifica la velocità dell'effetto
+            elementsInside.style.transform = `translateX(-${scrollRatio * 40}px)`; // Modifica la velocità dell'effetto
+            elementsInside2.style.transform = `translateX(-${scrollRatio * 40}px)`;
+
+        }
+    });
+</script>
