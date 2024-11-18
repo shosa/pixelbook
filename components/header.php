@@ -9,7 +9,9 @@
 
     <!-- Font Awesome & Google Fonts -->
     <link href="vendor/fortawesome/font-awesome/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Montserrat:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
@@ -56,8 +58,9 @@
 <body class="mt-2">
     <!-- Header with dropdown and Book Now button -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm bg-gradient-custom">
-        <a class="navbar-brand font-weight-bold text-white <?php echo (basename($_SERVER['PHP_SELF']) == 'index.php') ? 'navbar-center-logo' : ''; ?>" href="#">
-            <img src="<?php echo BASE_URL;?>/src/img/logo.png" alt="Pixiod Logo" style="height: 40px;">
+        <a class="navbar-brand font-weight-bold text-white <?php echo (basename($_SERVER['PHP_SELF']) == 'index.php') ? 'navbar-center-logo' : ''; ?>"
+            href="#">
+            <img src="<?php echo BASE_URL; ?>/src/img/logo.png" alt="Pixiod Logo" style="height: 40px;">
         </a>
 
         <!-- Book Now Button in Navbar (solo su desktop) -->
@@ -82,4 +85,5 @@
         </div>
     <?php endif; ?>
 </body>
+
 </html>

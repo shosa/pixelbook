@@ -242,6 +242,7 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
     </div>
 </div>
 <section class="container-fluid mt-4"></section>
+<?php include("elements/faq.php"); ?>
 <?php require 'components/footer.php'; ?>
 
 <script>
