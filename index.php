@@ -145,8 +145,6 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
             width: 120%;
         }
     }
-
-    
 </style>
 
 <header class="bg-white py-4 mt-5">
@@ -212,14 +210,35 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
     </div>
     <hr>
 </div>
-
-<div class="container-fluid">
-    <div class="row text-center">
-        <div class="col-md-2"> </div>
-        <div class="col-md-8">
-            <?php include("elements/home_carousel.php"); ?>
+<div class="container-fluid my-4">
+    <div class="row align-items-center text-center">
+        <div class="col-md-4 bg-light p-4 text-right">
+            <h4 class="font-weight-bold">Exclusive Service, Tailored Creativity!</h4>
+            <p class="mt-3">
+                We work only with the best professionals in the industry to ensure impeccable results.
+                Every shot and every recording are designed to exceed your expectations and turn every idea into a
+                visual masterpiece.
+            </p>
         </div>
-        <div class="col-md-2"> </div>
+        <div class="col-md-8">
+            <?php include("elements/home_carousel_personal.php"); ?>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid my-4">
+    <div class="row align-items-center text-center">
+
+        <div class="col-md-8">
+            <?php include("elements/home_carousel_business.php"); ?>
+        </div>
+        <div class="col-md-4 bg-light p-4 text-left">
+            <h4 class="font-weight-bold">Simplified Booking for Every Occasion</h4>
+            <p class="mt-3">
+                Whether you need a photographer or a videographer, select the category that best represents your style
+                or needs. Book in just a few clicks and bring your ideas to life!
+            </p>
+        </div>
     </div>
 </div>
 <section class="container-fluid mt-4"></section>

@@ -29,7 +29,6 @@ $desiredStructure = [
             'nome' => 'varchar(255) NOT NULL',
             'foto_blur' => 'varchar(255) NOT NULL',
             'foto' => 'varchar(255) NOT NULL',
-            'paragrafo' => 'text NOT NULL',
             'tipo' => "enum('BUSINESS','PERSONAL') NOT NULL"
         ],
         'primary_key' => 'id'

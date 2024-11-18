@@ -1,7 +1,13 @@
-
 # # av:php5-engine
 AddHandler av-php82 .php
+
 RewriteEngine On
+
+# Se la richiesta è per la root, mostra index.php
+RewriteCond %{REQUEST_URI} ^/$
+RewriteRule ^$ index.php [L]
+
+# Regole per gestire file e directory
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^([^\.]+)$ $1.php [NC,L]

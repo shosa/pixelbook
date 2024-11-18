@@ -3,10 +3,10 @@
 
 // Tipi di alert: success, error, warning, info
 $alertTypes = [
-    'success' => 'alert-success',
-    'error' => 'alert-danger',
-    'warning' => 'alert-warning',
-    'info' => 'alert-info'
+    'success' => 'alert-success bg-white border-success',
+    'error' => 'alert-danger bg-white border-danger',
+    'warning' => 'alert-warning bg-white border-warning',
+    'info' => 'alert-info bg-white border-info'
 ];
 
 // Mostra gli alert se le variabili di sessione sono impostate

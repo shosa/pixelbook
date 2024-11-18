@@ -116,8 +116,8 @@
         }
 
         .image-main {
-            width: 100%;
-            height: 100%;
+            width: 80%;
+            height: 80%;
             overflow: hidden;
         }
 
@@ -178,6 +178,7 @@
             margin: 0 auto;
         }
     }
+    
 </style>
 
 <?php
@@ -194,7 +195,7 @@ $personalItems = array_filter($carouselItems, function ($item) {
     return $item['tipo'] === 'PERSONAL';
 });
 
-function renderCarousel($items)
+function renderPersonal($items)
 {
     foreach ($items as $item): ?>
         <div class="swiper-slide carousel">
@@ -224,56 +225,15 @@ function renderCarousel($items)
 
 ?>
 
-<!-- Sezione per BUSINESS -->
-<section class="container py-2 mb-1">
-    <h1 class="text-center">BUSINESS</h1>
-    <div class="swiper business-swiper swiper-custom">
-        <div class="swiper-wrapper mb-4">
-            <?php renderCarousel($businessItems); ?>
-        </div>
-        <div class="swiper-pagination"></div>
-    </div>
-</section>
+
 
 <!-- Sezione per PERSONAL -->
 <section class="container py-2 mb-1">
     <h1 class="text-center">PERSONAL</h1>
     <div class="swiper personal-swiper swiper-custom ">
         <div class="swiper-wrapper mb-4">
-            <?php renderCarousel($personalItems); ?>
+            <?php renderPersonal($personalItems); ?>
         </div>
         <div class="swiper-pagination"></div>
     </div>
 </section>
-
-<script>
-    // Inizializza Swiper per BUSINESS
-    const businessSwiper = new Swiper('.business-swiper', {
-        slidesPerView: 1,
-        spaceBetween: 40,
-        loop: true,
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        }
-    });
-
-    // Inizializza Swiper per PERSONAL
-    const personalSwiper = new Swiper('.personal-swiper', {
-        slidesPerView: 1,
-        spaceBetween: 40,
-        loop: true,
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        }
-    });
-</script>

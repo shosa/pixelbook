@@ -24,20 +24,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome = $_POST['nome'];
     $foto_blur = $_POST['foto_blur'];
     $foto = $_POST['foto'];
-    $paragrafo = $_POST['paragrafo'];
     $tipo = $_POST['tipo'];
 
     try {
         if (isset($_POST['id']) && $_POST['id'] !== '') {
             $id = $_POST['id'];
-            $sqlUpdate = "UPDATE home_carousel SET nome = ?, foto_blur = ?, foto = ?, paragrafo = ?, tipo = ? WHERE id = ?";
+            $sqlUpdate = "UPDATE home_carousel SET nome = ?, foto_blur = ?, foto = ?, tipo = ? WHERE id = ?";
             $stmt = $pdo->prepare($sqlUpdate);
-            $stmt->execute([$nome, $foto_blur, $foto, $paragrafo, $tipo, $id]);
+            $stmt->execute([$nome, $foto_blur, $foto,  $tipo, $id]);
             $_SESSION["success"] = "Carousel aggiornato con successo.";
         } else {
-            $sqlInsert = "INSERT INTO home_carousel (nome, foto_blur, foto, paragrafo, tipo) VALUES (?, ?, ?, ?, ?)";
+            $sqlInsert = "INSERT INTO home_carousel (nome, foto_blur, foto, tipo) VALUES (?, ?, ?, ?, ?)";
             $stmt = $pdo->prepare($sqlInsert);
-            $stmt->execute([$nome, $foto_blur, $foto, $paragrafo, $tipo]);
+            $stmt->execute([$nome, $foto_blur, $foto, $tipo]);
             $_SESSION["success"] = "Nuovo carousel aggiunto con successo.";
         }
     } catch (Exception $e) {
@@ -142,10 +141,7 @@ $galleriaItems = $queryGalleria->fetchAll(PDO::FETCH_ASSOC);
                 <label class="form-label">Nome</label>
                 <input type="text" name="nome" class="form-control" id="carouselNome" required>
             </div>
-            <div class="mb-3">
-                <label class="form-label">Paragrafo</label>
-                <textarea name="paragrafo" class="form-control" rows="4" id="carouselParagrafo"></textarea>
-            </div>
+           
             <div class="mb-3">
                 <label class="form-label">Tipo</label>
                 <select name="tipo" class="form-select" id="carouselTipo">
@@ -210,7 +206,7 @@ $galleriaItems = $queryGalleria->fetchAll(PDO::FETCH_ASSOC);
     function resetForm() {
         document.getElementById('carouselId').value = '';
         document.getElementById('carouselNome').value = '';
-        document.getElementById('carouselParagrafo').value = '';
+    
         document.getElementById('carouselTipo').value = 'BUSINESS';
         document.getElementById('carouselFotoBlur').value = '';
         document.getElementById('carouselFoto').value = '';
@@ -237,7 +233,7 @@ $galleriaItems = $queryGalleria->fetchAll(PDO::FETCH_ASSOC);
             .then(data => {
                 document.getElementById('carouselId').value = data.id;
                 document.getElementById('carouselNome').value = data.nome;
-                document.getElementById('carouselParagrafo').value = data.paragrafo;
+                
                 document.getElementById('carouselTipo').value = data.tipo;
                 document.getElementById('carouselFotoBlur').value = data.foto_blur;
                 document.getElementById('carouselFoto').value = data.foto;
