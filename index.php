@@ -173,7 +173,8 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
 
 <div class="custom-container w-100">
     <div class="row text-center bg-gradient-custom">
-        <div class="col-md-6 text-left d-flex align-items-center">
+        <div class="col-md-1"> </div>
+        <div class="col-md-5 text-left d-flex align-items-center">
             <div class="container p-4 ml-5">
                 <span class="h1 text-white font-weight-bold ">Book Photography and Video Services in Just One
                     Click</span>
@@ -198,21 +199,15 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
         </div>
     </div>
 </div>
-<div class="custom-container">
-    <hr>
-    <div class="row text-center">
-        <div class="col-md-6">
-            <?php include("elements/trusted_by.php"); ?>
-        </div>
-        <div class="col-md-6">
-            <?php include("elements/reviews.php"); ?>
-        </div>
-    </div>
-    <hr>
-</div>
+
+<?php include("elements/trusted_by.php"); ?>
+<hr>
+<?php include("elements/reviews.php"); ?>
+<hr>
 <div class="container-fluid my-4">
     <div class="row align-items-center text-center">
-        <div class="col-md-4 bg-light p-4 text-right">
+
+        <div class="col-md-4 bg-light p-4 text-right bg-gradient-custom">
             <h4 class="font-weight-bold">Exclusive Service, Tailored Creativity!</h4>
             <p class="mt-3">
                 We work only with the best professionals in the industry to ensure impeccable results.
@@ -232,13 +227,45 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
         <div class="col-md-8">
             <?php include("elements/home_carousel_business.php"); ?>
         </div>
-        <div class="col-md-4 bg-light p-4 text-left">
+        <div class="col-md-4 bg-light p-4 text-left  bg-gradient-custom">
             <h4 class="font-weight-bold">Simplified Booking for Every Occasion</h4>
             <p class="mt-3">
                 Whether you need a photographer or a videographer, select the category that best represents your style
                 or needs. Book in just a few clicks and bring your ideas to life!
             </p>
         </div>
+    </div>
+</div>
+<hr>
+<div class="custom-container w-100">
+    <div class="row text-center">
+        <div class="col-md-6">
+            <img src="5.png" class="img-fluid" alt="Phone Screen">
+        </div>
+        <div class="col-md-4 text-left d-flex align-items-center">
+            <div class="container p-4 ml-5">
+                <span class="h1 text-white font-weight-bold text-gradient-custom ">Simple Booking Process</span>
+                <br><br><i class="font-weight-normal">Booking your photography services has never been easier. Pixiod
+                    guides you through every step with just a few simple clicks.</i>
+            </div>
+        </div>
+        <div class="col-md-2"> </div>
+    </div>
+</div>
+<div class="custom-container w-100">
+    <div class="row text-center">
+        <div class="col-md-2"> </div>
+        <div class="col-md-4 text-left d-flex align-items-center">
+            <div class="container p-4 ml-5">
+                <span class="h1 text-white font-weight-bold text-gradient-custom ">No Technical Skills Needed</span>
+                <br><br><i class="font-weight-normal">Using Pixiod is incredibly easy. No technical experience required,
+                    just follow our intuitive process. Anyone can do it!</i>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <img src="6.png" class="img-fluid" alt="Phone Screen">
+        </div>
+
     </div>
 </div>
 <section class="container-fluid mt-4"></section>

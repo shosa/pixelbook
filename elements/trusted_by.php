@@ -32,31 +32,47 @@
     }
 </style>
 
-<section class="container pt-1">
-    <h2 class="text-center mb-4 font-weight-bold">Trusted By</h2>
 
-    <div class="swiper logo-swiper">
-        <div class="swiper-wrapper mb-4">
-            <div class="swiper-slide logo-slide">
-                <img src="src/img/logos1.png" alt="Logo 1">
-            </div>
-            <div class="swiper-slide logo-slide">
-                <img src="src/img/logos2.png" alt="Logo 2">
-            </div>
-            <div class="swiper-slide logo-slide">
-                <img src="src/img/logos3.png" alt="Logo 3">
-            </div>
-            <div class="swiper-slide logo-slide">
-                <img src="src/img/logos4.png" alt="Logo 4">
-            </div>
-            <div class="swiper-slide logo-slide">
-                <img src="src/img/logos5.png" alt="Logo 5">
+<div class="custom-container w-80 my-5">
+    <div class="row text-center">
+
+        <div class="col-md-6">
+
+
+            <div class="swiper logo-swiper">
+                <div class="swiper-wrapper mb-4">
+                    <div class="swiper-slide logo-slide">
+                        <img src="src/img/logos1.png" alt="Logo 1">
+                    </div>
+                    <div class="swiper-slide logo-slide">
+                        <img src="src/img/logos2.png" alt="Logo 2">
+                    </div>
+                    <div class="swiper-slide logo-slide">
+                        <img src="src/img/logos3.png" alt="Logo 3">
+                    </div>
+                    <div class="swiper-slide logo-slide">
+                        <img src="src/img/logos4.png" alt="Logo 4">
+                    </div>
+                    <div class="swiper-slide logo-slide">
+                        <img src="src/img/logos5.png" alt="Logo 5">
+                    </div>
+                </div>
+                <!-- Paginazione -->
+                <div class="swiper-pagination"></div>
             </div>
         </div>
-        <!-- Paginazione -->
-        <div class="swiper-pagination"></div>
+        <div class="col-md-6 text-left d-flex align-items-center">
+            <div class="container p-4 ml-5">
+                <span class="h1 text-white font-weight-bold text-gradient-custom ">Trusted By
+                </span>
+                <br><br><i class="font-weight-normal">Here are some of the clients who believed in my vision and work
+
+                </i>
+            </div>
+        </div>
     </div>
-</section>
+</div>
+
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>

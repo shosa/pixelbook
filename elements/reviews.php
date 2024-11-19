@@ -33,72 +33,90 @@
     }
 </style>
 
-<section class="container pt-1">
-    <h2 class="text-center mb-4 font-weight-bold">Our Customers</h2>
-    <div class="swiper">
-        <div class="swiper-wrapper mb-4">
-            <div class="swiper-slide">
-                <div class="card shadow-sm p-4">
-                    <div class="d-flex justify-content-between align-items-center mb-1">
-                        <div class="reviewer-name"><strong>Emily Carter</strong></div>
-                        <img src="src/img/google-logo.png" alt="Google Logo" style="width: 30px;">
-                    </div>
-                    <p>"Working with PixelShoot was an amazing experience! The photographer was professional and
-                        captured my special moments perfectly. I can't wait to book again!"</p>
-                    <span class="text-yellow text-center"><i class="fa fa-star fa-sm"></i><i
-                            class="fa fa-star fa-sm"></i><i class="fa fa-star fa-sm"></i><i
-                            class="fa fa-star fa-sm"></i><i class="fa fa-star fa-sm"></i></span>
+<div class="custom-container w-80">
+    <div class="row text-center">
 
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="card shadow-sm p-4">
-                    <div class="d-flex justify-content-between align-items-center mb-1">
-                        <div class="reviewer-name"><strong>James Wilson</strong></div>
-                        <img src="src/img/google-logo.png" alt="Google Logo" style="width: 30px;">
-                    </div>
-                    <p>"The process was seamless from start to finish. Our photographer was fantastic and the pictures
-                        turned out beyond our expectations."</p>
-                    <span class="text-yellow text-center"><i class="fa fa-star fa-sm"></i><i
-                            class="fa fa-star fa-sm"></i><i class="fa fa-star fa-sm"></i><i
-                            class="fa fa-star fa-sm"></i><i class="fa fa-star fa-sm"></i></span>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="card shadow-sm p-4">
-                    <div class="d-flex justify-content-between align-items-center mb-1">
-                        <div class="reviewer-name"><strong>Sophie Martin</strong></div>
-                        <img src="src/img/google-logo.png" alt="Google Logo" style="width: 30px;">
-                    </div>
-                    <p>"Highly recommend PixelShoot! They made my event memorable with stunning photos. The team was
-                        responsive and professional."</p>
-                    <span class="text-yellow text-center"><i class="fa fa-star fa-sm"></i><i
-                            class="fa fa-star fa-sm"></i><i class="fa fa-star fa-sm"></i><i
-                            class="fa fa-star fa-sm"></i><i class="fa fa-star fa-sm"></i></span>
+        <div class="col-md-6 text-left d-flex align-items-center">
+            <div class="container p-4 ml-5">
+                <span class="h1 text-white font-weight-bold text-gradient-custom ">Discover the experiences of our
+                    delighted clients
+                </span>
+                <br><br><i class="font-weight-normal">Real stories from those who trusted us. Explore their feedback and
+                    see the impact we’ve made
 
-                </div>
+                </i>
             </div>
-            <div class="swiper-slide">
-                <div class="card shadow-sm p-4">
-                    <div class="d-flex justify-content-between align-items-center mb-1">
-                        <div class="reviewer-name"><strong>Daniel Lewis</strong></div>
-                        <img src="src/img/google-logo.png" alt="Google Logo" style="width: 30px;">
-                    </div>
-                    <p>"I had a corporate shoot, and the quality was outstanding. The photographer was on point with
-                        direction and the final photos exceeded my expectations."</p>
-                    <span class="text-yellow text-center"><i class="fa fa-star fa-sm"></i><i
-                            class="fa fa-star fa-sm"></i><i class="fa fa-star fa-sm"></i><i
-                            class="fa fa-star fa-sm"></i><i class="fa fa-star fa-sm"></i></span>
-
-                </div>
-            </div>
-            <!-- Aggiungi altre recensioni qui seguendo lo stesso formato -->
         </div>
-        <!-- Aggiungi i controlli dello Swiper -->
-        <div class="swiper-pagination"></div>
-   
+        <div class="col-md-6">
+            <div class="swiper">
+                <div class="swiper-wrapper mb-4">
+                    <div class="swiper-slide">
+                        <div class="card shadow-sm p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <div class="reviewer-name"><strong>Emily Carter</strong></div>
+                                <img src="src/img/google-logo.png" alt="Google Logo" style="width: 30px;">
+                            </div>
+                            <p>"Working with PixelShoot was an amazing experience! The photographer was professional and
+                                captured my special moments perfectly. I can't wait to book again!"</p>
+                            <span class="text-yellow text-center"><i class="fa fa-star fa-sm"></i><i
+                                    class="fa fa-star fa-sm"></i><i class="fa fa-star fa-sm"></i><i
+                                    class="fa fa-star fa-sm"></i><i class="fa fa-star fa-sm"></i></span>
+
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card shadow-sm p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <div class="reviewer-name"><strong>James Wilson</strong></div>
+                                <img src="src/img/google-logo.png" alt="Google Logo" style="width: 30px;">
+                            </div>
+                            <p>"The process was seamless from start to finish. Our photographer was fantastic and the
+                                pictures
+                                turned out beyond our expectations."</p>
+                            <span class="text-yellow text-center"><i class="fa fa-star fa-sm"></i><i
+                                    class="fa fa-star fa-sm"></i><i class="fa fa-star fa-sm"></i><i
+                                    class="fa fa-star fa-sm"></i><i class="fa fa-star fa-sm"></i></span>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card shadow-sm p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <div class="reviewer-name"><strong>Sophie Martin</strong></div>
+                                <img src="src/img/google-logo.png" alt="Google Logo" style="width: 30px;">
+                            </div>
+                            <p>"Highly recommend PixelShoot! They made my event memorable with stunning photos. The team
+                                was
+                                responsive and professional."</p>
+                            <span class="text-yellow text-center"><i class="fa fa-star fa-sm"></i><i
+                                    class="fa fa-star fa-sm"></i><i class="fa fa-star fa-sm"></i><i
+                                    class="fa fa-star fa-sm"></i><i class="fa fa-star fa-sm"></i></span>
+
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card shadow-sm p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <div class="reviewer-name"><strong>Daniel Lewis</strong></div>
+                                <img src="src/img/google-logo.png" alt="Google Logo" style="width: 30px;">
+                            </div>
+                            <p>"I had a corporate shoot, and the quality was outstanding. The photographer was on point
+                                with
+                                direction and the final photos exceeded my expectations."</p>
+                            <span class="text-yellow text-center"><i class="fa fa-star fa-sm"></i><i
+                                    class="fa fa-star fa-sm"></i><i class="fa fa-star fa-sm"></i><i
+                                    class="fa fa-star fa-sm"></i><i class="fa fa-star fa-sm"></i></span>
+
+                        </div>
+                    </div>
+                    <!-- Aggiungi altre recensioni qui seguendo lo stesso formato -->
+                </div>
+                <!-- Aggiungi i controlli dello Swiper -->
+                <div class="swiper-pagination"></div>
+
+            </div>
+        </div>
     </div>
-</section>
+</div>
 
 <script>
     // Inizializza Swiper
