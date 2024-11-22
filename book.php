@@ -128,9 +128,9 @@ $categorie = $stmt->fetchAll();
         </div>
     </div>
 
-    <div class="row mt-2" id="category-list">
+    <div class="row mt-" id="category-list">
         <?php foreach ($categorie as $categoria): ?>
-            <div class="col-6 col-md-3 mb-2 mt-1 category-item" data-type="<?php echo $categoria['type']; ?>">
+            <div class="col-6 col-md-3 mb-2 mt-2 category-item" data-type="<?php echo $categoria['type']; ?>">
                 <a href="category?id=<?php echo $categoria['id']; ?>" class="category-link">
                     <div class="category-banner"
                         style="background-image: url('images/categories/<?php echo $categoria['banner']; ?>');">

@@ -35,7 +35,15 @@
 
 <div class="custom-container w-80 my-5">
     <div class="row text-center">
+        <div class="col-md-6 text-left d-flex align-items-center">
+            <div class="container p-4 ml-5">
+                <span class="h1 text-white font-weight-bold text-gradient-custom ">Trusted By
+                </span>
+                <br><br><i class="font-weight-normal">Here are some of the clients who believed in my vision and work
 
+                </i>
+            </div>
+        </div>
         <div class="col-md-6">
 
 
@@ -61,15 +69,7 @@
                 <div class="swiper-pagination"></div>
             </div>
         </div>
-        <div class="col-md-6 text-left d-flex align-items-center">
-            <div class="container p-4 ml-5">
-                <span class="h1 text-white font-weight-bold text-gradient-custom ">Trusted By
-                </span>
-                <br><br><i class="font-weight-normal">Here are some of the clients who believed in my vision and work
 
-                </i>
-            </div>
-        </div>
     </div>
 </div>
 

@@ -27,7 +27,26 @@ $categoria = $categoria['nome']; ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 <div class="container"></div>
-<div class="container ">
+<style>
+    @media (min-width: 1025px) {
+        .container {
+            width: 60% !important;
+            margin: 0 auto !important;
+            /* Per centrare il contenitore */
+        }
+
+        .btn {
+            transition: transform 0.3s ease;
+            /* Transizione fluida */
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            /* Ingrandisce il pulsante del 10% */
+        }
+    }
+</style>
+<div class="container mb-5">
     <h1 class="text-center text-gradient-custom font-weight-bold mb-4" style="font-size: 5rem;">
         <span id="category"> <?php echo $categoria ?> </span>
     </h1>
@@ -69,7 +88,7 @@ $categoria = $categoria['nome']; ?>
 
                 <input type="radio" class="btn-check" name="service" id="video" value="Video" required>
                 <label
-                    class="btn  btn-gradient-custom shadow-sm btn-block mt-4 d-flex align-items-center justify-content-between"
+                    class="btn btn-gradient-custom shadow-sm btn-block mt-4 d-flex align-items-center justify-content-between"
                     onclick="nextStep(2)" for="video">
                     <i class="fal fa-video"></i> <!-- icona all'inizio a sinistra -->
                     <span class="mx-auto">VIDEO</span> <!-- testo centrato -->
@@ -353,5 +372,9 @@ $categoria = $categoria['nome']; ?>
             });
     }
 </script>
-
+<div class="container"></div>
+<div class="container"></div>
+<div class="container"></div>
+<div class="container"></div>
+<div class="container"></div>
 <?php require 'components/footer.php'; ?>

@@ -192,9 +192,9 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
         </div>
         <div class="col-md-6">
             <div class="row parallax-container">
-                <img src="2.png" class="parallax-item phone-image" alt="Phone Screen">
-                <img src="3.png" class="parallax-item elements-inside" alt="Elements Inside">
-                <img src="4.png" class="parallax-item elements-inside2" alt="Elements Inside">
+                <img src="src/home/2.png" class="parallax-item phone-image" alt="Phone Screen">
+                <img src="src/home/3.png" class="parallax-item elements-inside" alt="Elements Inside">
+                <img src="src/home/4.png" class="parallax-item elements-inside2" alt="Elements Inside">
             </div>
         </div>
     </div>
@@ -207,7 +207,7 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
 <div class="container-fluid my-4">
     <div class="row align-items-center text-center">
 
-        <div class="col-md-4 bg-light p-4 text-right bg-gradient-custom">
+        <div class="col-md-4 bg-light p-4 text-right bg-gradient-custom shadow-lg">
             <h4 class="font-weight-bold">Exclusive Service, Tailored Creativity!</h4>
             <p class="mt-3">
                 We work only with the best professionals in the industry to ensure impeccable results.
@@ -227,7 +227,7 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
         <div class="col-md-8">
             <?php include("elements/home_carousel_business.php"); ?>
         </div>
-        <div class="col-md-4 bg-light p-4 text-left  bg-gradient-custom">
+        <div class="col-md-4 bg-light p-4 text-left  bg-gradient-custom shadow-lg">
             <h4 class="font-weight-bold">Simplified Booking for Every Occasion</h4>
             <p class="mt-3">
                 Whether you need a photographer or a videographer, select the category that best represents your style
@@ -240,7 +240,7 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
 <div class="custom-container w-100">
     <div class="row text-center">
         <div class="col-md-6">
-            <img src="5.png" class="img-fluid" alt="Phone Screen">
+            <img src="src/home/5.png" class="img-fluid" alt="Phone Screen">
         </div>
         <div class="col-md-4 text-left d-flex align-items-center">
             <div class="container p-4 ml-5">
@@ -263,7 +263,7 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
             </div>
         </div>
         <div class="col-md-6">
-            <img src="6.png" class="img-fluid" alt="Phone Screen">
+            <img src="src/home/6.png" class="img-fluid" alt="Phone Screen">
         </div>
 
     </div>

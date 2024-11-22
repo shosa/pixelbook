@@ -50,7 +50,7 @@
         }
 
         body {
-            padding-bottom: 80px;
+          
         }
     }
 </style>

@@ -106,9 +106,12 @@ $fotografie = $stmt->fetchAll();
     <i class="h5 my-4 ">
         "<?php echo htmlspecialchars($categoria['descrizione']); ?>"
     </i>
-    <a class="btn btn-gradient-custom mb-4 shadow-lg floating-button rounded-pill" style="font-size: 1rem;"
+    <hr>
+    <a class="btn btn-gradient-custom mb-4 mt-4 shadow-lg btn-lg rounded-pill" style="font-size: 1rem;"
         href="form?category=<?php echo $categoria_id; ?>">BOOK NOW</a>
 
+
+        
     <?php if ($fotografie): ?>
         <div class="gallery mt-4">
             <?php foreach ($fotografie as $index => $foto): ?>
@@ -121,6 +124,8 @@ $fotografie = $stmt->fetchAll();
     <?php else: ?>
         <p>Nothing found here.</p>
     <?php endif; ?>
+    <a class="btn btn-gradient-custom mb-4 mt-4 shadow-lg btn-lg rounded-pill" style="font-size: 1rem;"
+    href="form?category=<?php echo $categoria_id; ?>">BOOK NOW</a>
 </div>
 
 <style>
