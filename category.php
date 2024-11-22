@@ -33,7 +33,7 @@ $fotografie = $stmt->fetchAll();
     .gallery-item {
         margin-bottom: 10px;
         break-inside: avoid;
-       
+
         overflow: hidden;
         display: inline-block;
         width: 100%;
@@ -82,7 +82,8 @@ $fotografie = $stmt->fetchAll();
         font-size: 30px;
         color: white;
         cursor: pointer;
-        z-index: 10000; /* Assicurati che il pulsante sia sopra gli altri elementi */
+        z-index: 10000;
+        /* Assicurati che il pulsante sia sopra gli altri elementi */
     }
 
     /* Regole responsive per la griglia */
@@ -105,13 +106,15 @@ $fotografie = $stmt->fetchAll();
     </h1>
     <i class="h5 my-4 ">
         "<?php echo htmlspecialchars($categoria['descrizione']); ?>"
-    </i>
+
+    </i><br>
+   
     <hr>
     <a class="btn btn-gradient-custom mb-4 mt-4 shadow-lg btn-lg rounded-pill" style="font-size: 1rem;"
         href="form?category=<?php echo $categoria_id; ?>">BOOK NOW</a>
 
 
-        
+
     <?php if ($fotografie): ?>
         <div class="gallery mt-4">
             <?php foreach ($fotografie as $index => $foto): ?>
@@ -125,7 +128,7 @@ $fotografie = $stmt->fetchAll();
         <p>Nothing found here.</p>
     <?php endif; ?>
     <a class="btn btn-gradient-custom mb-4 mt-4 shadow-lg btn-lg rounded-pill" style="font-size: 1rem;"
-    href="form?category=<?php echo $categoria_id; ?>">BOOK NOW</a>
+        href="form?category=<?php echo $categoria_id; ?>">BOOK NOW</a>
 </div>
 
 <style>
@@ -156,6 +159,7 @@ $fotografie = $stmt->fetchAll();
                 <div class="swiper-slide">
                     <img src="images/gallery/<?php echo htmlspecialchars($foto['file']); ?>"
                         alt="<?php echo htmlspecialchars($foto['descrizione']); ?>" />
+
                 </div>
             <?php endforeach; ?>
         </div>
@@ -164,8 +168,8 @@ $fotografie = $stmt->fetchAll();
         <div class="swiper-button-prev"></div>
     </div>
     <a class="btn btn-gradient-custom mb-4 shadow-lg floating-button rounded-pill"
-        style="font-size: 1rem; position: absolute; bottom: 5%;"
-        href="form?category=<?php echo $categoria_id; ?>">BOOK NOW</a>
+        style="font-size: 1rem; position: absolute; bottom: 5%;" href="form?category=<?php echo $categoria_id; ?>">BOOK
+        NOW</a>
 </div>
 
 <script>

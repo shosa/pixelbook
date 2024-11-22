@@ -36,17 +36,7 @@
 <div class="custom-container w-80">
     <div class="row text-center">
 
-        <div class="col-md-6 text-left d-flex align-items-center">
-            <div class="container p-4 ml-5">
-                <span class="h1 text-white font-weight-bold text-gradient-custom ">Discover the experiences of our
-                    delighted clients
-                </span>
-                <br><br><i class="font-weight-normal">Real stories from those who trusted us. Explore their feedback and
-                    see the impact we’ve made
-
-                </i>
-            </div>
-        </div>
+       
         <div class="col-md-6">
             <div class="swiper">
                 <div class="swiper-wrapper mb-4">
@@ -113,6 +103,17 @@
                 <!-- Aggiungi i controlli dello Swiper -->
                 <div class="swiper-pagination"></div>
 
+            </div>
+        </div>
+        <div class="col-md-6 text-right d-flex align-items-center">
+            <div class="container p-4 ml-5">
+                <span class="h1 text-white font-weight-bold text-gradient-custom ">Discover our
+                    delighted clients
+                </span>
+                <br><br><i class="font-weight-normal">Real stories from those who trusted us. Explore their feedback and
+                    see the impact we’ve made
+
+                </i>
             </div>
         </div>
     </div>

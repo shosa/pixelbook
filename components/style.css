@@ -11293,7 +11293,7 @@ a:focus {
 
 .text-gradient-custom {
   /* background: -webkit-linear-gradient(0deg, #007ef3, #3cc4d6);*/
-  background: -webkit-linear-gradient(0deg, #e3a741, #e6cc7e);
+  background: -webkit-linear-gradient(0deg, #ffcd77, #e6cc7e);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 

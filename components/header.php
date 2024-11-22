@@ -84,6 +84,7 @@
             <a href="book.php" class="btn btn-gradient-custom font-weight-bold rounded-pill shadow-sm">Book Now</a>
         </div>
     <?php endif; ?>
+   
 </body>
 
 </html>

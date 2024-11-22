@@ -145,6 +145,16 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
             width: 120%;
         }
     }
+
+    @media (max-width: 767px) {
+        .didascaliasx {
+            margin-right: 0.75rem !important;
+        }
+
+        .didascaliadx {
+            margin-left: 0.75rem !important;
+        }
+    }
 </style>
 
 <header class="bg-white py-4 mt-5">
@@ -174,7 +184,7 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
 <div class="custom-container w-100">
     <div class="row text-center bg-gradient-custom">
         <div class="col-md-1"> </div>
-        <div class="col-md-5 text-left d-flex align-items-center">
+        <div class="col-md-5 text-left d-flex align-items-center ">
             <div class="container p-4 ml-5">
                 <span class="h1 text-white font-weight-bold ">Book Photography and Video Services in Just One
                     Click</span>
@@ -207,9 +217,10 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
 <div class="container-fluid my-4">
     <div class="row align-items-center text-center">
 
-        <div class="col-md-4 bg-light p-4 text-right bg-gradient-custom shadow-lg">
-            <h4 class="font-weight-bold">Exclusive Service, Tailored Creativity!</h4>
-            <p class="mt-3">
+        <div class="col-md-4 bg-light p-4 text-center bg-gradient-custom shadow-lg didascaliasx"
+            style="border-radius: 0 50rem  50rem 0 !important;">
+            <h4 class="font-weight-bold pr-5">Exclusive Service, Tailored Creativity!</h4>
+            <p class="mt-3 pr-5">
                 We work only with the best professionals in the industry to ensure impeccable results.
                 Every shot and every recording are designed to exceed your expectations and turn every idea into a
                 visual masterpiece.
@@ -227,9 +238,10 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
         <div class="col-md-8">
             <?php include("elements/home_carousel_business.php"); ?>
         </div>
-        <div class="col-md-4 bg-light p-4 text-left  bg-gradient-custom shadow-lg">
-            <h4 class="font-weight-bold">Simplified Booking for Every Occasion</h4>
-            <p class="mt-3">
+        <div class="col-md-4 bg-light p-4 text-center  bg-gradient-custom shadow-lg didascaliadx"
+            style="border-radius: 50rem 0 0 50rem !important;">
+            <h4 class="font-weight-bold pl-5">Simplified Booking for Every Occasion</h4>
+            <p class="mt-3 pl-5">
                 Whether you need a photographer or a videographer, select the category that best represents your style
                 or needs. Book in just a few clicks and bring your ideas to life!
             </p>
@@ -268,7 +280,18 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
 
     </div>
 </div>
-<section class="container-fluid mt-4"></section>
+<style>
+    @media (min-width: 1025px) {
+
+        .imgpc {
+            width: 60% !important;
+            display: block;
+            margin: 0 auto !important;
+            /* Per centrare il contenitore */
+        }
+    }
+</style>
+<section class="container-fluid mt-4 "> <img src="src/home/7.png" class="img-fluid imgpc" alt="Phone Screen"></section>
 <?php include("elements/faq.php"); ?>
 <?php require 'components/footer.php'; ?>
 

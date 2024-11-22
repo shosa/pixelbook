@@ -1,14 +1,15 @@
-<section class="faq-section py-5 px-4 mt-4">
+<section class="faq-section pb-5 px-4 mt-2">
     <div class="container">
         <h2 class="text-center text-dark font-weight-bold mb-4"><span class="text-gradient-custom">F</span>requently
-            <span class="text-gradient-custom">A</span>sked <span class="text-gradient-custom">Q</span>uestions</h2>
+            <span class="text-gradient-custom">A</span>sked <span class="text-gradient-custom">Q</span>uestions
+        </h2>
         <div class="accordion" id="faqAccordion">
             <!-- FAQ Item 1 -->
-            <hr class="bg-light">
+
             <div class="accordion-item">
                 <h2 class="accordion-header " id="faqHeading1">
-                    <button class="accordion-button collapsed  bg-gradient-custom p-2 rounded w-100" type="button"
-                        data-bs-toggle="collapse" data-bs-target="#faqCollapse1" aria-expanded="false"
+                    <button class="accordion-button collapsed  bg-gradient-custom p-2 rounded w-100 rounded-pill"
+                        type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse1" aria-expanded="false"
                         aria-controls="faqCollapse1">
                         How can I book a photographer or videographer?
                     </button>
@@ -21,14 +22,14 @@
                     </div>
                 </div>
             </div>
-            <hr class="bg-light">
+
 
             <!-- FAQ Item 2 -->
 
             <div class="accordion-item">
                 <h2 class="accordion-header" id="faqHeading2">
-                    <button class="accordion-button collapsed  bg-gradient-custom p-2 rounded w-100" type="button"
-                        data-bs-toggle="collapse" data-bs-target="#faqCollapse2" aria-expanded="false"
+                    <button class="accordion-button collapsed  bg-gradient-custom p-2 rounded w-100 rounded-pill"
+                        type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse2" aria-expanded="false"
                         aria-controls="faqCollapse2">
                         What types of photography services do you offer?
                     </button>
@@ -41,12 +42,12 @@
                     </div>
                 </div>
             </div>
-            <hr class="bg-light">
+
             <!-- FAQ Item 3 -->
             <div class="accordion-item">
                 <h2 class="accordion-header" id="faqHeading3">
-                    <button class="accordion-button collapsed  bg-gradient-custom p-2 rounded w-100" type="button"
-                        data-bs-toggle="collapse" data-bs-target="#faqCollapse3" aria-expanded="false"
+                    <button class="accordion-button collapsed  bg-gradient-custom p-2 rounded w-100 rounded-pill"
+                        type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse3" aria-expanded="false"
                         aria-controls="faqCollapse3">
                         Who are the photographers and videographers available?
                     </button>
@@ -59,12 +60,12 @@
                     </div>
                 </div>
             </div>
-            <hr class="bg-light">
+
             <!-- FAQ Item 4 -->
             <div class="accordion-item">
                 <h2 class="accordion-header" id="faqHeading4">
-                    <button class="accordion-button collapsed  bg-gradient-custom p-2 rounded w-100" type="button"
-                        data-bs-toggle="collapse" data-bs-target="#faqCollapse4" aria-expanded="false"
+                    <button class="accordion-button collapsed  bg-gradient-custom p-2 rounded w-100 rounded-pill"
+                        type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse4" aria-expanded="false"
                         aria-controls="faqCollapse4">
                         What payment methods do you accept?
                     </button>
@@ -77,12 +78,12 @@
                     </div>
                 </div>
             </div>
-            <hr class="bg-light">
+
             <!-- FAQ Item 5 -->
-            <div class="accordion-item">
+            <div class="accordion-item ">
                 <h2 class="accordion-header" id="faqHeading5">
-                    <button class="accordion-button collapsed  bg-gradient-custom p-2 rounded w-100" type="button"
-                        data-bs-toggle="collapse" data-bs-target="#faqCollapse5" aria-expanded="false"
+                    <button class="accordion-button collapsed  bg-gradient-custom p-2 rounded w-100 rounded-pill "
+                        type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse5" aria-expanded="false"
                         aria-controls="faqCollapse5">
                         What if the service doesn’t meet my expectations?
                     </button>
@@ -95,17 +96,26 @@
                     </div>
                 </div>
             </div>
-            <hr class="bg-light">
+
         </div>
     </div>
 </section>
 
 <style>
-    .faq-section h2 {}
+    @media (min-width: 1025px) {
+
+        .accordion-button,
+        .accordion-body {
+            width: 60% !important;
+            display: block;
+            margin: 0 auto !important;
+            /* Per centrare il contenitore */
+        }
+    }
 
     .accordion-button {
         font-weight: bold;
-
+        margin-top: 1rem !important;
 
         border: 0;
         font-size: 1.1rem;
