@@ -200,8 +200,18 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
                     More <i class="fas fa-chevron-right"></i></a>
             </div>
         </div>
+        <style>
+            @media (max-width: 768px) {
+                .paramobil {
+                    border-radius: 0 50rem 50rem 0 !important;
+                    background-color: #fff !important;
+                    padding: 3rem !important;
+                    margin-bottom: 1rem !important;
+                }
+            }
+        </style>
         <div class="col-md-6">
-            <div class="row parallax-container">
+            <div class="row parallax-container paramobil">
                 <img src="src/home/2.png" class="parallax-item phone-image" alt="Phone Screen">
                 <img src="src/home/3.png" class="parallax-item elements-inside" alt="Elements Inside">
                 <img src="src/home/4.png" class="parallax-item elements-inside2" alt="Elements Inside">
