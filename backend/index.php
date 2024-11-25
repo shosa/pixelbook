@@ -22,132 +22,101 @@ include("components/header.php") ?>
   <div class="page-body">
     <div class="container-xl">
       <div class="row row-deck row-cards">
-        <div class="col-sm-6 col-lg-3">
+        <div class="col-sm-6 col-lg-4">
           <div class="card">
             <div class="card-body">
               <div class="d-flex align-items-center">
                 <div class="subheader">VENDITE</div>
                 <div class="ms-auto lh-1">
                   <div class="dropdown">
-                    <a class="dropdown-toggle text-secondary" href="#" data-bs-toggle="dropdown" aria-haspopup="true"
-                      aria-expanded="false">Ultimi 7 giorni</a>
+                    <a class="dropdown-toggle status status-rss" href="#" data-bs-toggle="dropdown" aria-haspopup="true"
+                      aria-expanded="false" id="sales-period" data-card-dropdown="vendite">Ultimi 7 giorni</a>
                     <div class="dropdown-menu dropdown-menu-end">
-                      <a class="dropdown-item active" href="#">Ultimi 7 giorni</a>
-                      <a class="dropdown-item" href="#">Ultimi 30 giorni</a>
-                      <a class="dropdown-item" href="#">Ultimi 3 mesi</a>
+                      <a class="dropdown-item active" href="#" data-period="Ultimi 7 giorni">Ultimi 7 giorni</a>
+                      <a class="dropdown-item" href="#" data-period="Ultimi 30 giorni">Ultimi 30 giorni</a>
+                      <a class="dropdown-item" href="#" data-period="Ultimi 3 mesi">Ultimi 3 mesi</a>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="h1 mb-3">0%</div>
+              <div class="h1 mb-3" id="sales-count">0</div>
               <div class="d-flex mb-2">
                 <div>Conversion rate</div>
                 <div class="ms-auto">
-                  <span class="text-green d-inline-flex align-items-center lh-1">
-                    0% <!-- Download SVG icon from http://tabler-icons.io/i/trending-up -->
-
-                  </span>
+                  <span class="text-green d-inline-flex align-items-center lh-1" id="conversion-rate">0%</span>
                 </div>
               </div>
-              <div class="progress progress-sm">
-                <div class="progress-bar bg-primary" style="width: 0%" role="progressbar" aria-valuenow="75"
-                  aria-valuemin="0" aria-valuemax="100" aria-label="75% Complete">
-                  <span class="visually-hidden">75% Complete</span>
-                </div>
+              <div class="progress ">
+                <div class="progress-bar bg-rss" id="conversion-bar" style="width: 0%" role="progressbar"
+                  aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
+            </div>
+            <div class="card-footer pt-1 pb-1 subheader">Statistiche di vendite concluse nel tempo
             </div>
           </div>
         </div>
-        <div class="col-sm-6 col-lg-3">
-          <div class="card">
-            <div class="card-body">
+
+        <div class="col-sm-6 col-lg-4">
+          <div class="card ">
+            <div class="card-body ">
               <div class="d-flex align-items-center">
-                <div class="subheader">Guadagni</div>
+                <div class="subheader">GUADAGNI</div>
                 <div class="ms-auto lh-1">
                   <div class="dropdown">
-                    <a class="dropdown-toggle text-secondary" href="#" data-bs-toggle="dropdown" aria-haspopup="true"
-                      aria-expanded="false">Ultimi 7 giorni</a>
+                    <a class="dropdown-toggle status status-instagram" href="#" data-bs-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false" id="revenue-period"
+                      data-card-dropdown="guadagni">Ultimi 3 mesi</a>
                     <div class="dropdown-menu dropdown-menu-end">
-                      <a class="dropdown-item active" href="#">Ultimi 7 giorni</a>
-                      <a class="dropdown-item" href="#">Ultimi 30 giorni</a>
-                      <a class="dropdown-item" href="#">Ultimi 3 mesi</a>
+                      <a class="dropdown-item " href="#" data-period="Ultimi 7 giorni">Ultimi 7 giorni</a>
+                      <a class="dropdown-item" href="#" data-period="Ultimi 30 giorni">Ultimi 30 giorni</a>
+                      <a class="dropdown-item active" href="#" data-period="Ultimi 3 mesi">Ultimi 3 mesi</a>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="d-flex align-items-baseline">
-                <div class="h1 mb-0 me-2">AED 0,00</div>
+                <div class="h1 mb-3 me-2" id="revenue-amount">AED 0.00</div>
                 <div class="me-auto">
-                  <span class="text-green d-inline-flex align-items-center lh-1">
-                    8% <!-- Download SVG icon from http://tabler-icons.io/i/trending-up -->
-
-                  </span>
+                  <span class="text-green d-inline-flex align-items-center lh-1" id="conversion-eur">€ 0</span>
                 </div>
               </div>
+
             </div>
-            <div id="chart-revenue-bg" class="chart-sm"></div>
+            <div id="chart-revenue-bg" class="chart-sm p-0"></div>
+            <div class="card-footer pt-1 pb-1 subheader">Statistiche di guadagni nel tempo</div>
           </div>
         </div>
-        <div class="col-sm-6 col-lg-3">
-          <div class="card">
+
+        <div class="col-sm-6 col-lg-4">
+          <div class="card ">
             <div class="card-body">
               <div class="d-flex align-items-center">
-                <div class="subheader">Prenotazioni</div>
+                <div class="subheader">PRENOTAZIONI</div>
                 <div class="ms-auto lh-1">
                   <div class="dropdown">
-                    <a class="dropdown-toggle text-secondary" href="#" data-bs-toggle="dropdown" aria-haspopup="true"
-                      aria-expanded="false">Ultimi 7 giorni</a>
+                    <a class="dropdown-toggle status status-indigo" href="#" data-bs-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false" id="bookings-period">Ultimi 3 mesi</a>
                     <div class="dropdown-menu dropdown-menu-end">
-                      <a class="dropdown-item active" href="#">Ultimi 7 giorni</a>
+                      <a class="dropdown-item " href="#">Ultimi 7 giorni</a>
                       <a class="dropdown-item" href="#">Ultimi 30 giorni</a>
-                      <a class="dropdown-item" href="#">Ultimi 3 mesi</a>
+                      <a class="dropdown-item active" href="#">Ultimi 3 mesi</a>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="d-flex align-items-baseline">
-                <div class="h1 mb-3 me-2">0</div>
+                <div class="h1 mb-3 me-2" id="bookings-count">0</div>
                 <div class="me-auto">
-                  <span class="text-green d-inline-flex align-items-center lh-1">
-                    0%
 
-                  </span>
                 </div>
               </div>
-              <div id="chart-new-clients" class="chart-sm"></div>
+
             </div>
+            <div id="chart-new-clients" class="chart-sm"></div>
+            <div class="card-footer pt-1 pb-1 subheader">form completati con o senza conferma</div>
           </div>
         </div>
-        <div class="col-sm-6 col-lg-3">
-          <div class="card">
-            <div class="card-body">
-              <div class="d-flex align-items-center">
-                <div class="subheader">Visitatori</div>
-                <div class="ms-auto lh-1">
-                  <div class="dropdown">
-                    <a class="dropdown-toggle text-secondary" href="#" data-bs-toggle="dropdown" aria-haspopup="true"
-                      aria-expanded="false">Ultimi 7 giorni</a>
-                    <div class="dropdown-menu dropdown-menu-end">
-                      <a class="dropdown-item active" href="#">Ultimi 7 giorni</a>
-                      <a class="dropdown-item" href="#">Ultimi 30 giorni</a>
-                      <a class="dropdown-item" href="#">Ultimi 3 mesi</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="d-flex align-items-baseline">
-                <div class="h1 mb-3 me-2">0</div>
-                <div class="me-auto">
-                  <span class="text-green d-inline-flex align-items-center lh-1">
-                    0% <!-- Download SVG icon from http://tabler-icons.io/i/trending-up -->
 
-                  </span>
-                </div>
-              </div>
-              <div id="chart-active-users" class="chart-sm"></div>
-            </div>
-          </div>
-        </div>
         <div class="col-12">
           <div class="row row-cards">
             <div class="col-sm-6 col-lg-3">
@@ -156,7 +125,7 @@ include("components/header.php") ?>
                   <div class="row align-items-center">
                     <div class="col-auto">
                       <span
-                        class="bg-primary text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/currency-dollar -->
+                        class="text-primary"><!-- Download SVG icon from http://tabler-icons.io/i/currency-dollar -->
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                           class="icon icon-tabler icons-tabler-outline icon-tabler-circle-check">
@@ -171,7 +140,7 @@ include("components/header.php") ?>
                         0 Completati
                       </div>
                       <div class="text-secondary">
-                        Prestazioni portate a termine.
+                        Prestazioni concluse.
                       </div>
                     </div>
                   </div>
@@ -183,8 +152,7 @@ include("components/header.php") ?>
                 <div class="card-body">
                   <div class="row align-items-center">
                     <div class="col-auto">
-                      <span
-                        class="bg-green text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/shopping-cart -->
+                      <span class="text-green"><!-- Download SVG icon from http://tabler-icons.io/i/shopping-cart -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
                           stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
                           stroke-linejoin="round">
@@ -201,7 +169,7 @@ include("components/header.php") ?>
                         0 Ordini
                       </div>
                       <div class="text-secondary">
-                        Prestazioni prenotate e confermate.
+                        Prestazioni confermate.
                       </div>
                     </div>
                   </div>
@@ -213,8 +181,7 @@ include("components/header.php") ?>
                 <div class="card-body">
                   <div class="row align-items-center">
                     <div class="col-auto">
-                      <span
-                        class="bg-yellow text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/shopping-cart -->
+                      <span class="text-yellow"><!-- Download SVG icon from http://tabler-icons.io/i/shopping-cart -->
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                           class="icon icon-tabler icons-tabler-outline icon-tabler-phone-pause">
@@ -231,11 +198,12 @@ include("components/header.php") ?>
                         0 Recall
                       </div>
                       <div class="text-secondary">
-                        Prestazioni da contrattare per ordini non conclusi.
+                        Non conclusi da ricontattare.
                       </div>
                     </div>
                   </div>
                 </div>
+
               </div>
             </div>
             <div class="col-sm-6 col-lg-3">
@@ -243,8 +211,7 @@ include("components/header.php") ?>
                 <div class="card-body">
                   <div class="row align-items-center">
                     <div class="col-auto">
-                      <span
-                        class="bg-red text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/shopping-cart -->
+                      <span class="text-red"><!-- Download SVG icon from http://tabler-icons.io/i/shopping-cart -->
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                           class="icon icon-tabler icons-tabler-outline icon-tabler-xbox-x">
@@ -270,33 +237,6 @@ include("components/header.php") ?>
 
           </div>
         </div>
-        <div class="col-lg-6">
-          <div class="card">
-            <div class="card-body">
-              <h3 class="card-title">Traffic summary</h3>
-              <div id="chart-mentions" class="chart-lg"></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="card">
-            <div class="card-body">
-              <h3 class="card-title">Locations</h3>
-              <div class="ratio ratio-21x9">
-                <div>
-                  <div id="map-world" class="w-100 h-100"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-
-
-
-
-
       </div>
     </div>
   </div>
@@ -307,312 +247,350 @@ include("components/header.php") ?>
 <!-- Libs JS -->
 <script src="<?php echo BASE_URL ?>/dist/libs/apexcharts/dist/apexcharts.min.js?1692870487" defer></script>
 <script src="<?php echo BASE_URL ?>/dist/libs/jsvectormap/dist/js/jsvectormap.min.js?1692870487" defer></script>
-<script src="<?php echo BASE_URL ?>/dist/libs/jsvectormap/dist/maps/world.js?1692870487" defer></script>
-<script src="<?php echo BASE_URL ?>/dist/libs/jsvectormap/dist/maps/world-merc.js?1692870487" defer></script>
+
 <!-- Tabler Core -->
 <script src="<?php echo BASE_URL ?>/dist/js/tabler.min.js?1692870487" defer></script>
 <script src="<?php echo BASE_URL ?>/dist/js/demo.min.js?1692870487" defer></script>
+
+<!-- SCRIPT CARD VENDITE -->
 <script>
-  // @formatter:off
   document.addEventListener("DOMContentLoaded", function () {
-    window.ApexCharts && (new ApexCharts(document.getElementById('chart-revenue-bg'), {
-      chart: {
-        type: "area",
-        fontFamily: 'inherit',
-        height: 40.0,
-        sparkline: {
-          enabled: true
-        },
-        animations: {
-          enabled: false
-        },
-      },
-      dataLabels: {
-        enabled: false,
-      },
-      fill: {
-        opacity: .16,
-        type: 'solid'
-      },
-      stroke: {
-        width: 2,
-        lineCap: "round",
-        curve: "smooth",
-      },
-      series: [{
-        name: "Profits",
-        data: [37, 35, 44, 28, 36, 24, 65, 31, 37, 39, 62, 51, 35, 41, 35, 27, 93, 53, 61, 27, 54, 43, 19, 46, 39, 62, 51, 35, 41, 67]
-      }],
-      tooltip: {
-        theme: 'dark'
-      },
-      grid: {
-        strokeDashArray: 4,
-      },
-      xaxis: {
-        labels: {
-          padding: 0,
-        },
-        tooltip: {
-          enabled: false
-        },
-        axisBorder: {
-          show: false,
-        },
-        type: 'datetime',
-      },
-      yaxis: {
-        labels: {
-          padding: 4
-        },
-      },
-      labels: [
-        '2020-06-20', '2020-06-21', '2020-06-22', '2020-06-23', '2020-06-24', '2020-06-25', '2020-06-26', '2020-06-27', '2020-06-28', '2020-06-29', '2020-06-30', '2020-07-01', '2020-07-02', '2020-07-03', '2020-07-04', '2020-07-05', '2020-07-06', '2020-07-07', '2020-07-08', '2020-07-09', '2020-07-10', '2020-07-11', '2020-07-12', '2020-07-13', '2020-07-14', '2020-07-15', '2020-07-16', '2020-07-17', '2020-07-18', '2020-07-19'
-      ],
-      colors: [tabler.getColor("primary")],
-      legend: {
-        show: false,
-      },
-    })).render();
-  });
-  // @formatter:on
-</script>
-<script>
-  // @formatter:off
-  document.addEventListener("DOMContentLoaded", function () {
-    window.ApexCharts && (new ApexCharts(document.getElementById('chart-new-clients'), {
-      chart: {
-        type: "line",
-        fontFamily: 'inherit',
-        height: 40.0,
-        sparkline: {
-          enabled: true
-        },
-        animations: {
-          enabled: false
-        },
-      },
-      fill: {
-        opacity: 1,
-      },
-      stroke: {
-        width: [2, 1],
-        dashArray: [0, 3],
-        lineCap: "round",
-        curve: "smooth",
-      },
-      series: [{
-        name: "May",
-        data: [37, 35, 44, 28, 36, 24, 65, 31, 37, 39, 62, 51, 35, 41, 35, 27, 93, 53, 61, 27, 54, 43, 4, 46, 39, 62, 51, 35, 41, 67]
-      }, {
-        name: "April",
-        data: [93, 54, 51, 24, 35, 35, 31, 67, 19, 43, 28, 36, 62, 61, 27, 39, 35, 41, 27, 35, 51, 46, 62, 37, 44, 53, 41, 65, 39, 37]
-      }],
-      tooltip: {
-        theme: 'dark'
-      },
-      grid: {
-        strokeDashArray: 4,
-      },
-      xaxis: {
-        labels: {
-          padding: 0,
-        },
-        tooltip: {
-          enabled: false
-        },
-        type: 'datetime',
-      },
-      yaxis: {
-        labels: {
-          padding: 4
-        },
-      },
-      labels: [
-        '2020-06-20', '2020-06-21', '2020-06-22', '2020-06-23', '2020-06-24', '2020-06-25', '2020-06-26', '2020-06-27', '2020-06-28', '2020-06-29', '2020-06-30', '2020-07-01', '2020-07-02', '2020-07-03', '2020-07-04', '2020-07-05', '2020-07-06', '2020-07-07', '2020-07-08', '2020-07-09', '2020-07-10', '2020-07-11', '2020-07-12', '2020-07-13', '2020-07-14', '2020-07-15', '2020-07-16', '2020-07-17', '2020-07-18', '2020-07-19'
-      ],
-      colors: [tabler.getColor("primary"), tabler.getColor("gray-600")],
-      legend: {
-        show: false,
-      },
-    })).render();
-  });
-  // @formatter:on
-</script>
-<script>
-  // @formatter:off
-  document.addEventListener("DOMContentLoaded", function () {
-    window.ApexCharts && (new ApexCharts(document.getElementById('chart-active-users'), {
-      chart: {
-        type: "bar",
-        fontFamily: 'inherit',
-        height: 40.0,
-        sparkline: {
-          enabled: true
-        },
-        animations: {
-          enabled: false
-        },
-      },
-      plotOptions: {
-        bar: {
-          columnWidth: '50%',
-        }
-      },
-      dataLabels: {
-        enabled: false,
-      },
-      fill: {
-        opacity: 1,
-      },
-      series: [{
-        name: "Profits",
-        data: [37, 35, 44, 28, 36, 24, 65, 31, 37, 39, 62, 51, 35, 41, 35, 27, 93, 53, 61, 27, 54, 43, 19, 46, 39, 62, 51, 35, 41, 67]
-      }],
-      tooltip: {
-        theme: 'dark'
-      },
-      grid: {
-        strokeDashArray: 4,
-      },
-      xaxis: {
-        labels: {
-          padding: 0,
-        },
-        tooltip: {
-          enabled: false
-        },
-        axisBorder: {
-          show: false,
-        },
-        type: 'datetime',
-      },
-      yaxis: {
-        labels: {
-          padding: 4
-        },
-      },
-      labels: [
-        '2020-06-20', '2020-06-21', '2020-06-22', '2020-06-23', '2020-06-24', '2020-06-25', '2020-06-26', '2020-06-27', '2020-06-28', '2020-06-29', '2020-06-30', '2020-07-01', '2020-07-02', '2020-07-03', '2020-07-04', '2020-07-05', '2020-07-06', '2020-07-07', '2020-07-08', '2020-07-09', '2020-07-10', '2020-07-11', '2020-07-12', '2020-07-13', '2020-07-14', '2020-07-15', '2020-07-16', '2020-07-17', '2020-07-18', '2020-07-19'
-      ],
-      colors: [tabler.getColor("primary")],
-      legend: {
-        show: false,
-      },
-    })).render();
-  });
-  // @formatter:on
-</script>
-<script>
-  // @formatter:off
-  document.addEventListener("DOMContentLoaded", function () {
-    window.ApexCharts && (new ApexCharts(document.getElementById('chart-mentions'), {
-      chart: {
-        type: "bar",
-        fontFamily: 'inherit',
-        height: 240,
-        parentHeightOffset: 0,
-        toolbar: {
-          show: false,
-        },
-        animations: {
-          enabled: false
-        },
-        stacked: true,
-      },
-      plotOptions: {
-        bar: {
-          columnWidth: '50%',
-        }
-      },
-      dataLabels: {
-        enabled: false,
-      },
-      fill: {
-        opacity: 1,
-      },
-      series: [{
-        name: "Web",
-        data: [1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 2, 12, 5, 8, 22, 6, 8, 6, 4, 1, 8, 24, 29, 51, 40, 47, 23, 26, 50, 26, 41, 22, 46, 47, 81, 46, 6]
-      }, {
-        name: "Social",
-        data: [2, 5, 4, 3, 3, 1, 4, 7, 5, 1, 2, 5, 3, 2, 6, 7, 7, 1, 5, 5, 2, 12, 4, 6, 18, 3, 5, 2, 13, 15, 20, 47, 18, 15, 11, 10, 0]
-      }, {
-        name: "Other",
-        data: [2, 9, 1, 7, 8, 3, 6, 5, 5, 4, 6, 4, 1, 9, 3, 6, 7, 5, 2, 8, 4, 9, 1, 2, 6, 7, 5, 1, 8, 3, 2, 3, 4, 9, 7, 1, 6]
-      }],
-      tooltip: {
-        theme: 'dark'
-      },
-      grid: {
-        padding: {
-          top: -20,
-          right: 0,
-          left: -4,
-          bottom: -4
-        },
-        strokeDashArray: 4,
-        xaxis: {
-          lines: {
-            show: true
+    const updateSalesData = (period) => {
+      fetch('api/getPrenotazioniStats.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ periodo: period })
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            const { totale, conversionRate } = data.data;
+            document.getElementById('sales-count').textContent = totale;
+            document.getElementById('conversion-rate').textContent = `${conversionRate}%`;
+            document.getElementById('conversion-bar').style.width = `${conversionRate}%`;
+          } else {
+            console.error('Errore API:', data.error);
           }
+        })
+        .catch(err => console.error('Errore nella richiesta:', err));
+    };
+
+    // Inizializza con "Ultimi 7 giorni"
+    updateSalesData('Ultimi 7 giorni');
+
+    // Gestisci il cambio del periodo
+    const salesDropdown = document.getElementById('sales-period');
+    if (salesDropdown) {
+      const dropdownItems = salesDropdown.closest('.dropdown').querySelectorAll('.dropdown-item');
+      dropdownItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+          e.preventDefault();
+          const period = e.target.dataset.period;
+
+          // Aggiorna il dropdown attivo
+          salesDropdown.textContent = period;
+          dropdownItems.forEach(i => i.classList.remove('active'));
+          e.target.classList.add('active');
+
+          // Aggiorna i dati
+          updateSalesData(period);
+        });
+      });
+    }
+  });
+</script>
+<!-- SCRIPT CARD GUADAGNI -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    let revenueChart;
+    const conversioneEur = { rate: 0.0 }; // Salva il tasso di cambio corrente
+
+    // Funzione per ottenere il tasso di cambio AED-EUR
+    const fetchExchangeRate = () => {
+      return fetch('https://api.exchangerate-api.com/v4/latest/AED') // Cambia con il tuo endpoint
+        .then(response => response.json())
+        .then(data => {
+          if (data && data.rates && data.rates.EUR) {
+            conversioneEur.rate = data.rates.EUR;
+          } else {
+            console.error('Errore nel recupero del tasso di cambio');
+          }
+        })
+        .catch(err => console.error('Errore nella richiesta del tasso di cambio:', err));
+    };
+
+    const initializeRevenueChart = () => {
+      if (!revenueChart) {
+        revenueChart = new ApexCharts(document.getElementById('chart-revenue-bg'), {
+          chart: {
+            type: "area",
+            fontFamily: 'inherit',
+            height: 40.0,
+            sparkline: { enabled: true },
+            animations: { enabled: false }
+          },
+          dataLabels: {
+            enabled: false,
+          },
+          fill: {
+            opacity: 0.16,
+            type: 'solid'
+          },
+          stroke: {
+            width: 2,
+            curve: "smooth",
+            lineCap: "round"
+          },
+          series: [{ name: "Guadagni", data: [] }],
+          tooltip: {
+            theme: 'dark'
+          },
+          grid: {
+            strokeDashArray: 4,
+          },
+          xaxis: {
+            labels: { padding: 0 },
+            tooltip: { enabled: false },
+            axisBorder: { show: false },
+            categories: []
+          },
+          yaxis: {
+            labels: { padding: 4 }
+          },
+          colors: [tabler.getColor("instagram")],
+          legend: {
+            show: false
+          }
+        });
+        revenueChart.render();
+      }
+    };
+
+    const updateRevenueChart = async (period) => {
+      await fetchExchangeRate(); // Assicurati di avere il tasso di cambio aggiornato
+      fetch('api/getGuadagni.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ periodo: period })
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            const guadagni = data.data.map(item => item.guadagni);
+            const dateLabels = data.data.map(item => item.data);
+            const totaleGuadagni = guadagni.reduce((acc, val) => acc + val, 0);
+            const conversioneEuro = totaleGuadagni * conversioneEur.rate;
+            const maxGuadagno = Math.max(...guadagni);
+
+
+            // Aggiorna il grafico
+            if (revenueChart) {
+              revenueChart.updateOptions({
+                series: [{ name: "Guadagni", data: guadagni }],
+                xaxis: { categories: dateLabels },
+                annotations: {
+                  yaxis: [
+                    {
+                      y: maxGuadagno,
+                      borderColor: 'darkgrey',
+                      strokeDashArray: 4,
+
+                    }
+                  ]
+                }
+              });
+            }
+
+            // Aggiorna il testo del totale guadagni
+            document.getElementById('revenue-amount').textContent = `AED ${totaleGuadagni.toFixed(2)}`;
+            const conversionElement = document.getElementById('conversion-eur');
+            if (conversionElement) {
+              conversionElement.textContent = `€ ${conversioneEuro.toFixed(2)}`;
+            }
+          } else {
+            console.error('Errore API:', data.error);
+          }
+        })
+        .catch(err => console.error('Errore nella richiesta:', err));
+    };
+
+    // Inizializza il grafico
+    initializeRevenueChart();
+
+    // Inizializza con "Ultimi 3 mesi"
+    updateRevenueChart('Ultimi 3 mesi');
+
+    // Gestisci il cambio del periodo
+    const revenueDropdown = document.getElementById('revenue-period');
+    if (revenueDropdown) {
+      const dropdownItems = revenueDropdown.closest('.dropdown').querySelectorAll('.dropdown-item');
+      dropdownItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+          e.preventDefault();
+          const period = e.target.dataset.period;
+
+          // Aggiorna il dropdown attivo
+          revenueDropdown.textContent = period;
+          dropdownItems.forEach(i => i.classList.remove('active'));
+          e.target.classList.add('active');
+
+          // Aggiorna i dati e il grafico
+          updateRevenueChart(period);
+        });
+      });
+    }
+  });
+</script>
+
+<script>
+ document.addEventListener("DOMContentLoaded", function () {
+  let bookingsChart;
+
+  const initializeBookingsChart = () => {
+    if (!bookingsChart) {
+      bookingsChart = new ApexCharts(document.getElementById("chart-new-clients"), {
+        chart: {
+          type: "bar",
+          fontFamily: "inherit",
+          height: 40,
+          sparkline: {
+            enabled: true,
+          },
+          animations: {
+            enabled: false,
+          },
         },
-      },
-      xaxis: {
-        labels: {
-          padding: 0,
+        plotOptions: {
+          bar: {
+            columnWidth: "50%",
+            colors: {
+              backgroundBarColors: ['transparent'], // Colore per barre vuote (se presente)
+              backgroundBarOpacity: 1,
+            },
+            borderRadius: 0, // Arrotondamento degli angoli delle barre
+          },
         },
+        dataLabels: {
+          enabled: false,
+        },
+        fill: {
+          type: "solid",
+          colors: ["#4263eb"], // Colore di riempimento delle barre
+        },
+        stroke: {
+          colors: ["#4263eb"], // Colore del bordo
+          width: 2, // Spessore del bordo
+        },
+        series: [
+          {
+            name: "Prenotazioni",
+            data: [], // I dati verranno aggiornati dinamicamente
+          },
+        ],
         tooltip: {
-          enabled: false
+          theme: "dark",
         },
-        axisBorder: {
+        grid: {
+          strokeDashArray: 4,
+        },
+        xaxis: {
+          labels: {
+            padding: 0,
+          },
+          tooltip: {
+            enabled: false,
+          },
+          axisBorder: {
+            show: false,
+          },
+          categories: [], // Etichette per l'asse X
+        },
+        yaxis: {
+          labels: {
+            padding: 4,
+          },
+        },
+        legend: {
           show: false,
         },
-        type: 'datetime',
-      },
-      yaxis: {
-        labels: {
-          padding: 4
-        },
-      },
-      labels: [
-        '2020-06-20', '2020-06-21', '2020-06-22', '2020-06-23', '2020-06-24', '2020-06-25', '2020-06-26', '2020-06-27', '2020-06-28', '2020-06-29', '2020-06-30', '2020-07-01', '2020-07-02', '2020-07-03', '2020-07-04', '2020-07-05', '2020-07-06', '2020-07-07', '2020-07-08', '2020-07-09', '2020-07-10', '2020-07-11', '2020-07-12', '2020-07-13', '2020-07-14', '2020-07-15', '2020-07-16', '2020-07-17', '2020-07-18', '2020-07-19', '2020-07-20', '2020-07-21', '2020-07-22', '2020-07-23', '2020-07-24', '2020-07-25', '2020-07-26'
-      ],
-      colors: [tabler.getColor("primary"), tabler.getColor("primary", 0.8), tabler.getColor("green", 0.8)],
-      legend: {
-        show: false,
-      },
-    })).render();
+      });
+      bookingsChart.render();
+    }
+  };
+    const updateBookingsData = (period) => {
+      fetch("api/getPrenotazioni.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({ periodo: period }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            const prenotazioni = data.data.map((item) => item.prenotazioni);
+            const dateLabels = data.data.map((item) => item.data);
+            const maxPrenotazioni = Math.max(...prenotazioni); // Calcola il massimo valore
+
+            // Aggiorna il grafico
+            if (bookingsChart) {
+              bookingsChart.updateOptions({
+                series: [{ name: "Prenotazioni", data: prenotazioni }],
+                xaxis: { categories: dateLabels },
+                annotations: {
+                  yaxis: [
+                    {
+                      y: maxPrenotazioni,
+                      borderColor: 'darkgrey',
+                      strokeDashArray: 6,
+
+                    }
+                  ]
+                }
+              });
+            }
+
+            // Aggiorna il conteggio totale prenotazioni
+            const bookingsCountElement = document.getElementById("bookings-count");
+            if (bookingsCountElement) {
+              bookingsCountElement.textContent = prenotazioni.reduce((acc, val) => acc + val, 0);
+            }
+          } else {
+            console.error("Errore API:", data.error);
+          }
+        })
+        .catch((err) => console.error("Errore nella richiesta:", err));
+    };
+
+    // Inizializza il grafico
+    initializeBookingsChart();
+
+    // Inizializza con "Ultimi 3 mesi"
+    updateBookingsData("Ultimi 3 mesi");
+
+    // Gestisci il cambio del periodo
+    const bookingsDropdown = document.getElementById("bookings-period");
+    if (bookingsDropdown) {
+      const dropdownItems = bookingsDropdown.closest(".dropdown").querySelectorAll(".dropdown-item");
+      dropdownItems.forEach((item) => {
+        item.addEventListener("click", (e) => {
+          e.preventDefault();
+          const period = e.target.textContent;
+
+
+
+          // Aggiorna il dropdown attivo
+          bookingsDropdown.textContent = period;
+          dropdownItems.forEach((i) => i.classList.remove("active"));
+          e.target.classList.add("active");
+
+          // Aggiorna i dati e il grafico
+          updateBookingsData(period);
+        });
+      });
+    }
   });
-  // @formatter:on
+
 </script>
-<script>
-  // @formatter:on
-  document.addEventListener("DOMContentLoaded", function () {
-    const map = new jsVectorMap({
-      selector: '#map-world',
-      map: 'world',
-      backgroundColor: 'transparent',
-      regionStyle: {
-        initial: {
-          fill: tabler.getColor('body-bg'),
-          stroke: tabler.getColor('border-color'),
-          strokeWidth: 2,
-        }
-      },
-      zoomOnScroll: false,
-      zoomButtons: false,
-      // -------- Series --------
-      visualizeData: {
-        scale: [tabler.getColor('bg-surface'), tabler.getColor('primary')],
-        values: { "AF": 16, "AL": 11, "DZ": 158, "AO": 85, "AG": 1, "AR": 351, "AM": 8, "AU": 1219, "AT": 366, "AZ": 52, "BS": 7, "BH": 21, "BD": 105, "BB": 3, "BY": 52, "BE": 461, "BZ": 1, "BJ": 6, "BT": 1, "BO": 19, "BA": 16, "BW": 12, "BR": 2023, "BN": 11, "BG": 44, "BF": 8, "BI": 1, "KH": 11, "CM": 21, "CA": 1563, "CV": 1, "CF": 2, "TD": 7, "CL": 199, "CN": 5745, "CO": 283, "KM": 0, "CD": 12, "CG": 11, "CR": 35, "CI": 22, "HR": 59, "CY": 22, "CZ": 195, "DK": 304, "DJ": 1, "DM": 0, "DO": 50, "EC": 61, "EG": 216, "SV": 21, "GQ": 14, "ER": 2, "EE": 19, "ET": 30, "FJ": 3, "FI": 231, "FR": 2555, "GA": 12, "GM": 1, "GE": 11, "DE": 3305, "GH": 18, "GR": 305, "GD": 0, "GT": 40, "GN": 4, "GW": 0, "GY": 2, "HT": 6, "HN": 15, "HK": 226, "HU": 132, "IS": 12, "IN": 1430, "ID": 695, "IR": 337, "IQ": 84, "IE": 204, "IL": 201, "IT": 2036, "JM": 13, "JP": 5390, "JO": 27, "KZ": 129, "KE": 32, "KI": 0, "KR": 986, "KW": 117, "KG": 4, "LA": 6, "LV": 23, "LB": 39, "LS": 1, "LR": 0, "LY": 77, "LT": 35, "LU": 52, "MK": 9, "MG": 8, "MW": 5, "MY": 218, "MV": 1, "ML": 9, "MT": 7, "MR": 3, "MU": 9, "MX": 1004, "MD": 5, "MN": 5, "ME": 3, "MA": 91, "MZ": 10, "MM": 35, "NA": 11, "NP": 15, "NL": 770, "NZ": 138, "NI": 6, "NE": 5, "NG": 206, "NO": 413, "OM": 53, "PK": 174, "PA": 27, "PG": 8, "PY": 17, "PE": 153, "PH": 189, "PL": 438, "PT": 223, "QA": 126, "RO": 158, "RU": 1476, "RW": 5, "WS": 0, "ST": 0, "SA": 434, "SN": 12, "RS": 38, "SC": 0, "SL": 1, "SG": 217, "SK": 86, "SI": 46, "SB": 0, "ZA": 354, "ES": 1374, "LK": 48, "KN": 0, "LC": 1, "VC": 0, "SD": 65, "SR": 3, "SZ": 3, "SE": 444, "CH": 522, "SY": 59, "TW": 426, "TJ": 5, "TZ": 22, "TH": 312, "TL": 0, "TG": 3, "TO": 0, "TT": 21, "TN": 43, "TR": 729, "TM": 0, "UG": 17, "UA": 136, "AE": 239, "GB": 2258, "US": 4624, "UY": 40, "UZ": 37, "VU": 0, "VE": 285, "VN": 101, "YE": 30, "ZM": 15, "ZW": 5 },
-      },
-    });
-    window.addEventListener("resize", () => {
-      map.updateSize();
-    });
-  });
-  // @formatter:off
-</script>
+
+
 
 <?php include(BASE_PATH . "/components/footer.php"); ?>

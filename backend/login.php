@@ -84,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>PixelShoot - Login</title>
+    <title>Pixiod - Login</title>
     <link href="<?php echo BASE_URL ?>/dist/css/tabler.min.css?1692870487" rel="stylesheet" />
     <link href="<?php echo BASE_URL ?>/dist/css/tabler-flags.min.css?1692870487" rel="stylesheet" />
     <link href="<?php echo BASE_URL ?>/dist/css/tabler-payments.min.css?1692870487" rel="stylesheet" />
@@ -108,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="page page-center">
         <div class="container container-tight py-4">
             <div class="text-center mb-4">
-                <h1>Pixel<span class="text-info">Shoot</span> [<span class="text-success">Admin</span> Console]</h1>
+                <h1>Pix<span class="text-info">iod</span> [<span class="text-success">Admin</span> Console]</h1>
             </div>
             <div class="card card-md">
                 <div class="card-body">
