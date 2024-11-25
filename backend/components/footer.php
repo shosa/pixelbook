@@ -4,9 +4,9 @@
 
             <div class="col-12 col-lg-auto mt-3 mt-lg-0">
                 <ul class="list-inline list-inline-dots mb-0">
-                    <li class="list-inline-item">
-                        Copyright &copy; 2024
-                        <a href="." class="link-secondary">CaptureShoot - <b>SS Software</b></a>.
+                    <li class="list-inline-item status status-dark">
+                        Copyright &copy; 2024 Pixiod - 
+                        <a href="mailto:stefano.solidoro@icloud.com" class="link-secondary "><b>SS Software</b></a>.
                         All rights reserved.
                     </li>
 

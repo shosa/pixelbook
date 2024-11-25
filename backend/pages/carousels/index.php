@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute([$nome, $foto_blur, $foto,  $tipo, $id]);
             $_SESSION["success"] = "Carousel aggiornato con successo.";
         } else {
-            $sqlInsert = "INSERT INTO home_carousel (nome, foto_blur, foto, tipo) VALUES (?, ?, ?, ?, ?)";
+            $sqlInsert = "INSERT INTO home_carousel (nome, foto_blur, foto, tipo) VALUES (?, ?, ?, ?)";
             $stmt = $pdo->prepare($sqlInsert);
             $stmt->execute([$nome, $foto_blur, $foto, $tipo]);
             $_SESSION["success"] = "Nuovo carousel aggiunto con successo.";
@@ -170,7 +170,6 @@ $galleriaItems = $queryGalleria->fetchAll(PDO::FETCH_ASSOC);
     </div>
 </div>
 
-<!-- Modale per Selezionare le Foto dalla Galleria -->
 <div class="modal modal-blur fade" id="galleryModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content">
@@ -179,13 +178,38 @@ $galleriaItems = $queryGalleria->fetchAll(PDO::FETCH_ASSOC);
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <div class="row g-2 g-md-3">
-                    <?php foreach ($galleriaItems as $galleria): ?>
-                        <div class="col-6 col-md-4 col-lg-3">
-                            <a data-fslightbox="gallery" onclick="selectImage('<?php echo $galleria['file']; ?>')">
-                                <!-- Foto della Galleria -->
-                                <div class="img-responsive img-responsive-1x1 rounded-3 border" style="background-image: url('../../../images/gallery/<?php echo $galleria['file']; ?>');"></div>
-                            </a>
+                <div class="accordion" id="galleryAccordion">
+                    <?php
+                    // Recupera le categorie con le immagini associate
+                    $categoriesQuery = $pdo->query("SELECT * FROM categorie");
+                    $categories = $categoriesQuery->fetchAll(PDO::FETCH_ASSOC);
+
+                    foreach ($categories as $category):
+                        $categoryId = $category['id'];
+                        $categoryName = htmlspecialchars($category['nome']);
+                        $imagesQuery = $pdo->prepare("SELECT * FROM galleria WHERE categoria_id = ?");
+                        $imagesQuery->execute([$categoryId]);
+                        $images = $imagesQuery->fetchAll(PDO::FETCH_ASSOC);
+                    ?>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="heading-<?php echo $categoryId; ?>">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-<?php echo $categoryId; ?>" aria-expanded="false" aria-controls="collapse-<?php echo $categoryId; ?>">
+                                    <?php echo $categoryName; ?>
+                                </button>
+                            </h2>
+                            <div id="collapse-<?php echo $categoryId; ?>" class="accordion-collapse collapse" aria-labelledby="heading-<?php echo $categoryId; ?>" data-bs-parent="#galleryAccordion">
+                                <div class="accordion-body">
+                                    <div class="row g-2 g-md-3">
+                                        <?php foreach ($images as $image): ?>
+                                            <div class="col-6 col-md-4 col-lg-3">
+                                                <a data-fslightbox="gallery" onclick="selectImage('<?php echo $image['file']; ?>')">
+                                                    <div class="img-responsive img-responsive-1x1 " style="background-image: url('../../../images/gallery/<?php echo $image['file']; ?>');"></div>
+                                                </a>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -193,6 +217,7 @@ $galleriaItems = $queryGalleria->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
 </div>
+
 
 <script>
     let selectedImageField = '';

@@ -29,7 +29,7 @@ include("components/header.php") ?>
                 <div class="subheader">VENDITE</div>
                 <div class="ms-auto lh-1">
                   <div class="dropdown">
-                    <a class="dropdown-toggle status status-rss" href="#" data-bs-toggle="dropdown" aria-haspopup="true"
+                    <a class="dropdown-toggle status status-rss subheader text-rss" href="#" data-bs-toggle="dropdown" aria-haspopup="true"
                       aria-expanded="false" id="sales-period" data-card-dropdown="vendite">Ultimi 7 giorni</a>
                     <div class="dropdown-menu dropdown-menu-end">
                       <a class="dropdown-item active" href="#" data-period="Ultimi 7 giorni">Ultimi 7 giorni</a>
@@ -63,7 +63,7 @@ include("components/header.php") ?>
                 <div class="subheader">GUADAGNI</div>
                 <div class="ms-auto lh-1">
                   <div class="dropdown">
-                    <a class="dropdown-toggle status status-instagram" href="#" data-bs-toggle="dropdown"
+                    <a class="dropdown-toggle status status-instagram subheader text-instagram" href="#" data-bs-toggle="dropdown"
                       aria-haspopup="true" aria-expanded="false" id="revenue-period"
                       data-card-dropdown="guadagni">Ultimi 3 mesi</a>
                     <div class="dropdown-menu dropdown-menu-end">
@@ -94,7 +94,7 @@ include("components/header.php") ?>
                 <div class="subheader">PRENOTAZIONI</div>
                 <div class="ms-auto lh-1">
                   <div class="dropdown">
-                    <a class="dropdown-toggle status status-indigo" href="#" data-bs-toggle="dropdown"
+                    <a class="dropdown-toggle status status-indigo subheader text-indigo" href="#" data-bs-toggle="dropdown"
                       aria-haspopup="true" aria-expanded="false" id="bookings-period">Ultimi 3 mesi</a>
                     <div class="dropdown-menu dropdown-menu-end">
                       <a class="dropdown-item " href="#">Ultimi 7 giorni</a>
@@ -240,7 +240,7 @@ include("components/header.php") ?>
       </div>
     </div>
   </div>
-  <?php include("components/footer.php"); ?>
+
 </div>
 
 
@@ -249,8 +249,7 @@ include("components/header.php") ?>
 <script src="<?php echo BASE_URL ?>/dist/libs/jsvectormap/dist/js/jsvectormap.min.js?1692870487" defer></script>
 
 <!-- Tabler Core -->
-<script src="<?php echo BASE_URL ?>/dist/js/tabler.min.js?1692870487" defer></script>
-<script src="<?php echo BASE_URL ?>/dist/js/demo.min.js?1692870487" defer></script>
+
 
 <!-- SCRIPT CARD VENDITE -->
 <script>
