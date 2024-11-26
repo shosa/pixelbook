@@ -200,7 +200,7 @@
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                            <a href="<?php echo BASE_PATH; ?>/logout" class="dropdown-item">Logout</a>
+                            <a href="<?php echo BASE_URL; ?>/logout" class="dropdown-item">Logout</a>
                         </div>
                     </div>
                 </div>

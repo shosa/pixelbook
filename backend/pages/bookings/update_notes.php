@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->execute([$adminNote, $id]);
 
     $_SESSION['success'] = "Note aggiornate con successo!";
-    header("Location: details?id=" . $id);
+    header("Location: details?token=" . $id);
     exit();
 }
 ?>

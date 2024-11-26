@@ -27,4 +27,4 @@ function checkAuthentication() {
 }
 
 // Esegui il controllo di autenticazione su tutte le pagine tranne login
-//checkAuthentication();
+checkAuthentication();

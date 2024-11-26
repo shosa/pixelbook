@@ -33,7 +33,7 @@ if (!$prenotazione) {
                 </div>
                 <div class="col-auto ms-auto d-print-none">
                     <div class="btn-list">
-                        <a href="mailto:<?= htmlspecialchars($prenotazione['mail']); ?>" class="btn btn-primary">
+                        <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#emailModal">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mail"
                                 viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                 stroke-linecap="round" stroke-linejoin="round">
@@ -50,7 +50,8 @@ if (!$prenotazione) {
                                 viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
-  <path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" />
+                                <path
+                                    d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" />
                             </svg>
                             WhatsApp
                         </a>
@@ -142,7 +143,7 @@ if (!$prenotazione) {
                         <h3 class="card-title">Note Amministratore</h3>
                     </div>
                     <div class="card-body">
-                        <form action="update_notes.php" method="post">
+                        <form action="update_notes" method="post">
                             <input type="hidden" name="id" value="<?= $prenotazione['id']; ?>">
                             <textarea id="adminNote" name="adminNote"
                                 class="form-control"><?= htmlspecialchars($prenotazione['note']); ?></textarea>
@@ -151,6 +152,43 @@ if (!$prenotazione) {
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modale per la composizione dell'email -->
+<div class="modal fade" id="emailModal" tabindex="-1" aria-labelledby="emailModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="emailModalLabel">Componi Email</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="emailForm">
+                <div class="modal-body">
+                    <input type="text" class="form-control" id="id" name="id" value="<?= htmlspecialchars($id) ?>"
+                        hidden>
+                    <div class="mb-3">
+                        <label for="to" class="form-label">Destinatario</label>
+                        <input type="email" class="form-control" id="to" name="to"
+                            value="<?= htmlspecialchars($prenotazione['mail']); ?>" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="subject" class="form-label">Oggetto</label>
+                        <input type="text" class="form-control" id="subject" name="subject" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Prezzo da mostrare</label>
+                        <input type="text" class="form-control" id="price" name="price" required>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+                    <button type="submit" class="btn btn-primary">Invia Email</button>
+                </div>
+            </form>
+            <div id="responseMessage" class="p-3"></div>
         </div>
     </div>
 </div>
@@ -182,6 +220,33 @@ if (!$prenotazione) {
         }
         tinyMCE.init(options);
     })
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const emailForm = document.getElementById("emailForm");
+        const responseMessage = document.getElementById("responseMessage");
+
+        // Gestione invio form con AJAX
+        emailForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(emailForm);
+
+            fetch("send_email.php", {
+                method: "POST",
+                body: formData,
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Mostra il messaggio di risposta
+                    responseMessage.innerHTML = `<div class="alert alert-${data.success ? 'success' : 'danger'}">${data.message}</div>`;
+                })
+                .catch(error => {
+                    responseMessage.innerHTML = `<div class="alert alert-danger">Errore durante l'invio: ${error.message}</div>`;
+                });
+        });
+    });
 </script>
 
 <?php include(BASE_PATH . "/components/footer.php"); ?>

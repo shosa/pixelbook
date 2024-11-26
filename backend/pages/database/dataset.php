@@ -1,5 +1,5 @@
 <?php
-$versione = '04/11/2024';
+$versione = '26/11/2024';
 $desiredStructure = [
     'categorie' => [
         'columns' => [
@@ -31,7 +31,23 @@ $desiredStructure = [
             'foto' => 'varchar(255) NOT NULL',
             'tipo' => "enum('BUSINESS','PERSONAL') NOT NULL"
         ],
-        'primary_key' => 'id'
+        'primary_key' => 'id',
+    ],
+    'notifiche' => [
+        'columns' => [
+            'id' => 'int(11) NOT NULL AUTO_INCREMENT',
+            'user_id' => 'int(11) NOT NULL',
+            'titolo' => 'varchar(255) NOT NULL',
+            'descrizione' => 'text DEFAULT NULL',
+            'link' => 'varchar(255) DEFAULT NULL',
+            'nascosta' => 'tinyint(1) DEFAULT 0',
+            'data_creazione' => 'timestamp NOT NULL DEFAULT current_timestamp()',
+            'priorita' => "enum('alta','media','bassa') DEFAULT 'media'"
+        ],
+        'primary_key' => 'id',
+        'foreign_keys' => [
+            'user_id' => ['table' => 'users', 'column' => 'id', 'on_delete' => 'CASCADE']
+        ]
     ],
     'prenotazioni' => [
         'columns' => [
@@ -50,12 +66,28 @@ $desiredStructure = [
             'note' => 'text DEFAULT NULL',
             'price' => 'float NOT NULL',
             'confirmed' => 'tinyint(1) NOT NULL DEFAULT 0',
-            'adminNote' => 'text DEFAULT NULL'
+            'adminNote' => 'text DEFAULT NULL',
+            'isRead' => 'tinyint(1) NOT NULL DEFAULT 0'
         ],
         'primary_key' => 'id',
         'foreign_keys' => [
             'category_id' => ['table' => 'categorie', 'column' => 'id']
         ]
+    ],
+    'smtp_settings' => [
+        'columns' => [
+            'id' => 'int(11) NOT NULL AUTO_INCREMENT',
+            'host' => 'varchar(255) NOT NULL',
+            'port' => 'int(11) NOT NULL',
+            'username' => 'varchar(255) NOT NULL',
+            'password' => 'varchar(255) NOT NULL',
+            'encryption' => "enum('tls','ssl') NOT NULL DEFAULT 'tls'",
+            'from_email' => 'varchar(255) NOT NULL',
+            'from_name' => 'varchar(255) NOT NULL',
+            'created_at' => 'timestamp NOT NULL DEFAULT current_timestamp()',
+            'updated_at' => 'timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()'
+        ],
+        'primary_key' => 'id',
     ],
     'tariffario' => [
         'columns' => [
@@ -68,7 +100,7 @@ $desiredStructure = [
             '3' => 'float NOT NULL',
             'Custom' => 'float NOT NULL'
         ],
-        'primary_key' => 'id'
+        'primary_key' => 'id',
     ],
     'users' => [
         'columns' => [
@@ -77,10 +109,10 @@ $desiredStructure = [
             'name' => 'varchar(255) NOT NULL',
             'password' => 'varchar(255) NOT NULL',
             'created_at' => 'timestamp NOT NULL DEFAULT current_timestamp()',
-            'pin' => 'int(8) NULL',
+            'pin' => 'int(8) NOT NULL',
         ],
         'primary_key' => 'id',
-        'unique_keys' => ['email']
+        'unique_keys' => ['email'],
     ]
 ];
 ?>
