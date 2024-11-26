@@ -8,7 +8,7 @@
     <title>Pixiod</title>
     <!-- CSS files -->
     <link href="<?php echo BASE_URL ?>/dist/css/tabler.min.css?1692870487" rel="stylesheet" />
-
+    <link rel="manifest" href="<?php echo BASE_URL; ?>/manifest.json">
     <link href="<?php echo BASE_URL ?>/dist/css/tabler-flags.min.css?1692870487" rel="stylesheet" />
     <link href="<?php echo BASE_URL ?>/dist/css/tabler-payments.min.css?1692870487" rel="stylesheet" />
     <link href="<?php echo BASE_URL ?>/dist/css/tabler-vendors.min.css?1692870487" rel="stylesheet" />
@@ -51,8 +51,8 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
-                    <a href="#">
-                        Pix<span class="text-info">iod</span> [<span class="text-instagram">Admin  Console</span>]
+                    <a href="<?php echo BASE_URL ?>">
+                        Pix<span class="text-info">iod</span> [<span class="text-instagram">Admin Console</span>]
                     </a>
                 </h1>
                 <div class="navbar-nav flex-row order-md-last">

@@ -190,38 +190,41 @@ $categoria = $categoria['nome']; ?>
                     <i class="fal fa-chevron-left"></i> Previous
                 </button>
             </div>
-            <!-- Step 5: Dati del cliente -->
-            <div class="step d-none" id="step-5">
-                <h4 class="text-dark">Last Steps</h4>
-                <div class="form-group">
-                    <label for="first_name">First Name</label>
-                    <input type="text" class="form-control" id="first_name" name="first_name" required>
-                </div>
-                <div class="form-group">
-                    <label for="last_name">Last Name</label>
-                    <input type="text" class="form-control" id="last_name" name="last_name" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Phone</label>
-                    <input type="tel" id="phone" name="phone" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="note">Note</label>
-                    <textarea class="form-control" id="note" name="note" rows="3"></textarea>
-                </div>
+           <!-- Step 5: Dati del cliente -->
+<div class="step d-none" id="step-5">
+    <h4 class="text-dark">Last Steps</h4>
+    <div class="form-group">
+        <label for="first_name">First Name</label>
+        <input type="text" class="form-control required-field" id="first_name" name="first_name" required>
+    </div>
+    <div class="form-group">
+        <label for="last_name">Last Name</label>
+        <input type="text" class="form-control required-field" id="last_name" name="last_name" required>
+    </div>
+    <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" name="phone" class="form-control required-field" required>
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control required-field" id="email" name="email" required>
+    </div>
+    <div class="form-group">
+        <label for="note">Note</label>
+        <textarea class="form-control" id="note" name="note" rows="3"></textarea>
+    </div>
 
-                <button type="button" class="btn btn-light btn-block" onclick="submitStep()">
-                    <span class="btn btn-transparent btn-gradient-custom btn-block font-weight-bold"
-                        style="font-size:2rem!important">Get your Price!</span>
-                </button>
-                <button type="button" class="btn bg-transparent text-dark mt-3" onclick="prevStep(4)">
-                    <i class="fal fa-chevron-left"></i> Previous
-                </button>
-            </div>
+    <!-- Pulsante Get your Price! -->
+    <button type="button" class="btn btn-light btn-block" id="getPriceButton" onclick="submitStep()" disabled>
+        <span class="btn btn-transparent btn-gradient-custom btn-block font-weight-bold"
+            style="font-size:2rem!important">Get your Price!</span>
+    </button>
+
+    <button type="button" class="btn bg-transparent text-dark mt-3" onclick="prevStep(4)">
+        <i class="fal fa-chevron-left"></i> Previous
+    </button>
+</div>
+
 
 
         </form>
@@ -230,6 +233,30 @@ $categoria = $categoria['nome']; ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.6.4/compressed/picker.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.6.4/compressed/picker.date.js"></script>
 <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const getPriceButton = document.getElementById("getPriceButton");
+        const requiredFields = document.querySelectorAll(".required-field");
+
+        // Funzione per controllare se tutti i campi richiesti sono compilati
+        function validateFields() {
+            let allFieldsFilled = true;
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    allFieldsFilled = false;
+                }
+            });
+
+            getPriceButton.disabled = !allFieldsFilled;
+        }
+
+        // Aggiungi un evento 'input' per ogni campo obbligatorio
+        requiredFields.forEach(field => {
+            field.addEventListener("input", validateFields);
+        });
+
+        // Esegui la convalida iniziale
+        validateFields();
+    });
     document.addEventListener("DOMContentLoaded", function () {
         // Inizializza Pickadate
         $('#dateInput').pickadate({
@@ -371,6 +398,9 @@ $categoria = $categoria['nome']; ?>
                 console.error('Errore:', error);
             });
     }
+</script>
+<script>
+
 </script>
 <div class="container"></div>
 <div class="container"></div>

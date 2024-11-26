@@ -166,5 +166,5 @@ $categorie = $stmt->fetchAll();
         document.querySelector('.filter-button[onclick="filterCategories(\'' + type + '\')"]').classList.add('active');
     };
 </script>
-
+<?php include("elements/support.php"); ?>
 <?php require 'components/footer.php'; ?>

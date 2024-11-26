@@ -15,6 +15,7 @@ try {
 
     $id = $_POST['id'];
     $price = $_POST['price'];
+    $subject = $_POST['subject'];
     // Connessione al database
     $pdo = Database::getInstance();
 
@@ -29,7 +30,7 @@ try {
 
     // Recupera i dettagli della prenotazione
     $to = $prenotazione['mail'];
-    $subject = "Offerta per il tuo evento";
+    $name = $prenotazione['first_name'];
     $price = number_format($price, 2);
     $original_price = number_format($prenotazione['price'], 2); // Esempio: prezzo originale con incremento del 20%
     $service = htmlspecialchars($prenotazione['service']);
@@ -44,8 +45,8 @@ try {
 
     // Sostituisci i placeholder nel template
     $htmlContent = str_replace(
-        ['%price%', '%original_price%', '%service%', '%event_date%', '%time_of_day%', '%duration%'],
-        [$price, $original_price, $service, $event_date, $time_of_day, $duration],
+        ['%name%', '%price%', '%original_price%', '%service%', '%event_date%', '%time_of_day%', '%duration%'],
+        [$name, $price, $original_price, $service, $event_date, $time_of_day, $duration],
         $htmlTemplate
     );
 

@@ -11281,6 +11281,16 @@ a:focus {
   font-weight: bold;
 }
 
+.bg-gradient-custom-yellow {
+  background-color: #4e73df !important;
+  /*background-image: linear-gradient(90deg, #007ef3, #3cc4d6) !important;*/
+  background-image: linear-gradient(-90deg, #ffcd77, #ecb81d) !important;
+  background-size: cover !important;
+  color: white !important;
+  border: none;
+  font-weight: bold;
+}
+
 .btn-gradient-custom {
   background-color: #4e73df !important;
   /*background-image: linear-gradient(90deg, #007ef3, #3cc4d6) !important;*/
@@ -11293,7 +11303,16 @@ a:focus {
 
 .text-gradient-custom {
   /* background: -webkit-linear-gradient(0deg, #007ef3, #3cc4d6);*/
-  background: -webkit-linear-gradient(0deg, #ffcd77, #e6cc7e);
+  background: -webkit-linear-gradient(0deg, #ffcd77, #ecb81d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+}
+
+
+.text-gradient-custom-green {
+  /* background: -webkit-linear-gradient(0deg, #007ef3, #3cc4d6);*/
+  background: -webkit-linear-gradient(0deg, #263e38,#547c7d);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 

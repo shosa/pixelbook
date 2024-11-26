@@ -213,5 +213,5 @@ $fotografie = $stmt->fetchAll();
         });
     });
 </script>
-
+<?php include("elements/support.php"); ?>
 <?php require 'components/footer.php'; ?>

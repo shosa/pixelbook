@@ -59,7 +59,7 @@
     <!-- Header with dropdown and Book Now button -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm bg-gradient-custom">
         <a class="navbar-brand font-weight-bold text-white <?php echo (basename($_SERVER['PHP_SELF']) == 'index.php') ? 'navbar-center-logo' : ''; ?>"
-            href="#">
+            href="<?php echo BASE_URL; ?>">
             <img src="<?php echo BASE_URL; ?>/src/img/logo.png" alt="Pixiod Logo" style="height: 40px;">
         </a>
 

@@ -30,16 +30,22 @@
     .logo-slide img:hover {
         opacity: 1;
     }
+    @media (max-width: 768px) {
+                .didas {
+                    border-radius: 0 50rem 50rem 0 !important;
+                  
+                }
+            }
 </style>
 
 
-<div class="custom-container w-80 my-5">
+<div class="custom-container w-80 my-2 bg-gradient-custom-yellow p-4 shadow didas" style="border-radius:50rem;">
     <div class="row text-center">
-        <div class="col-md-6 text-left d-flex align-items-center">
+        <div class="col-md-6 text-center d-flex align-items-center">
             <div class="container p-4 ml-5">
-                <span class="h1 text-white font-weight-bold text-gradient-custom ">Trusted By
+                <span class="h1 text-white font-weight-bold text-gradient-custom-green ">Trusted By
                 </span>
-                <br><br><i class="font-weight-normal">Here are some of the clients who believed in my vision and work
+                <br><br><i class="font-weight-bold">Here are some of the clients who believed in my vision and work
 
                 </i>
             </div>

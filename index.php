@@ -301,8 +301,10 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
         }
     }
 </style>
+
 <section class="container-fluid mt-4 "> <img src="src/home/7.png" class="img-fluid imgpc" alt="Phone Screen"></section>
 <?php include("elements/faq.php"); ?>
+<?php include("elements/support.php"); ?>
 <?php require 'components/footer.php'; ?>
 
 <script>
