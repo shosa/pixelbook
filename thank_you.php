@@ -1,4 +1,5 @@
-<?php require 'components/header.php'; // Include your header here ?>
+<?php require 'config/db.php';
+require 'components/header.php'; // Include your header here ?>
 
 <div class="container mt-5 text-center">
     <h1 class="text-gradient-custom">Thank You!</h1>

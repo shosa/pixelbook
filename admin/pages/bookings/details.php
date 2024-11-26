@@ -175,7 +175,7 @@ if (!$prenotazione) {
                     </div>
                     <div class="mb-3">
                         <label for="subject" class="form-label">Oggetto</label>
-                        <input type="text" class="form-control" id="subject" name="subject" required>
+                        <input type="text" class="form-control" id="subject" name="subject" value="Don't tell anyone" required>
                     </div>
                     <div class="mb-3">
                         <label for="price" class="form-label">Prezzo da mostrare</label>

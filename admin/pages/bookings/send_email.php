@@ -14,7 +14,7 @@ try {
     }
 
     $id = $_POST['id'];
-
+    $price = $_POST['price'];
     // Connessione al database
     $pdo = Database::getInstance();
 
@@ -30,8 +30,8 @@ try {
     // Recupera i dettagli della prenotazione
     $to = $prenotazione['mail'];
     $subject = "Offerta per il tuo evento";
-    $price = number_format($prenotazione['price'], 2);
-    $original_price = number_format($prenotazione['price'] * 1.2, 2); // Esempio: prezzo originale con incremento del 20%
+    $price = number_format($price, 2);
+    $original_price = number_format($prenotazione['price'], 2); // Esempio: prezzo originale con incremento del 20%
     $service = htmlspecialchars($prenotazione['service']);
     $event_date = date('d/m/Y', strtotime($prenotazione['date']));
     $time_of_day = htmlspecialchars($prenotazione['time_of_day']);

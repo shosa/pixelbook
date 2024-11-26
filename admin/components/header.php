@@ -23,6 +23,20 @@
         body {
             font-feature-settings: "cv03", "cv04", "cv11";
         }
+
+        .icon.text-danger {
+            animation: shake 0.5s infinite alternate;
+        }
+
+        @keyframes shake {
+            0% {
+                transform: translateX(-2px);
+            }
+
+            100% {
+                transform: translateX(2px);
+            }
+        }
     </style>
 </head>
 
@@ -38,7 +52,7 @@
                 </button>
                 <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
                     <a href="#">
-                        Pix<span class="text-info">iod</span> [<span class="text-success">Admin</span> Console]
+                        Pix<span class="text-info">iod</span> [<span class="text-instagram">Admin  Console</span>]
                     </a>
                 </h1>
                 <div class="navbar-nav flex-row order-md-last">
@@ -71,10 +85,20 @@
                         <?php
                         $pdo = Database::getInstance();
                         $user_id = $_SESSION['user_id'] ?? 1;
-                        $stmt = $pdo->prepare("SELECT * FROM notifiche WHERE user_id = :user_id AND nascosta = 0 ORDER BY data_creazione DESC");
-                        $stmt->execute(['user_id' => $user_id]);
-                        $notifiche = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                        $haNotifiche = count($notifiche) > 0;
+
+                        try {
+                            $stmt = $pdo->prepare("SELECT * FROM notifiche WHERE user_id = :user_id AND nascosta = 0 ORDER BY data_creazione DESC");
+                            $stmt->execute(['user_id' => $user_id]);
+                            $notifiche = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            $haNotifiche = count($notifiche) > 0;
+                            $notificheError = false; // Nessun errore
+                        } catch (PDOException $e) {
+                            // Log dell'errore (opzionale)
+                            error_log("Errore database: " . $e->getMessage());
+                            $notifiche = [];
+                            $haNotifiche = false;
+                            $notificheError = true; // Indica che c'è stato un errore
+                        }
                         ?>
                         <style>
                             .list-group-item a {
@@ -132,18 +156,20 @@
                                                         </a>
                                                     </div>
                                                     <div class="col-auto">
-                                                        <a href="#" onclick="segnalaLetta(<?= $notifica['id'] ?>, event)"
-                                                            class="list-group-item-actions">
+                                                        <a href="#" class="nav-link px-0" data-bs-toggle="dropdown"
+                                                            tabindex="-1" aria-label="Show notifications">
                                                             <svg xmlns="http://www.w3.org/2000/svg"
-                                                                class="icon text-primary" width="24" height="24"
-                                                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                                                fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                                <path d="M10.585 10.587a2 2 0 0 0 2.829 2.828" />
+                                                                class="icon <?= $notificheError ? 'text-danger' : '' ?>"
+                                                                width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                                                stroke="currentColor" fill="none" stroke-linecap="round"
+                                                                stroke-linejoin="round">
+                                                                <path stroke="none" d="M0 0h24V24H0z" fill="none" />
                                                                 <path
-                                                                    d="M16.681 16.673a8.717 8.717 0 0 1 -4.681 1.327c-3.6 0 -6.6 -2 -9 -6c1.272 -2.12 2.712 -3.678 4.32 -4.674m2.86 -1.146a9.055 9.055 0 0 1 1.82 -.18c3.6 0 6.6 2 9 6c-.666 1.11 -1.379 2.067 -2.138 2.87" />
-                                                                <path d="M3 3l18 18" />
+                                                                    d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3H6a4 4 0 0 0 2 -3V11a7 7 0 0 1 4 -6" />
+                                                                <path d="M9 17v1a3 3 0 0 0 6 0v-1" />
                                                             </svg>
+                                                            <span
+                                                                class="badge <?= $notificheError ? 'bg-red' : 'bg-red' ?> <?= $haNotifiche ? '' : 'd-none' ?>"></span>
                                                         </a>
                                                     </div>
                                                 </div>
