@@ -66,8 +66,11 @@ $desiredStructure = [
             'note' => 'text DEFAULT NULL',
             'price' => 'float NOT NULL',
             'confirmed' => 'tinyint(1) NOT NULL DEFAULT 0',
+            'voided' => 'tinyint(1) NOT NULL DEFAULT 0',
             'adminNote' => 'text DEFAULT NULL',
-            'isRead' => 'tinyint(1) NOT NULL DEFAULT 0'
+            'isRead' => 'tinyint(1) NOT NULL DEFAULT 0',
+            'offer_price' => 'float DEFAULT NULL',
+            'date_of_offer' => 'date DEFAULT NULL'
         ],
         'primary_key' => 'id',
         'foreign_keys' => [

@@ -20,11 +20,20 @@ $prenotazioni = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="container-xl">
             <div class="row g-2 align-items-center">
                 <div class="col">
+                    <div class="mb-1">
+                        <ol class="breadcrumb" aria-label="breadcrumbs">
+                            <li class="breadcrumb-item"><a href="../../index">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><a href="index">Prenotazioni</a></li>
+
+                        </ol>
+                    </div>
                     <h2 class="page-title">Gestione Prenotazioni</h2>
                     <p class="text-muted">Visualizza e gestisci tutte le prenotazioni effettuate.</p>
                 </div>
             </div>
+            <?php include(BASE_PATH . "/components/alerts.php"); ?>
         </div>
+
     </div>
 
     <div class="page-body">
@@ -61,8 +70,15 @@ $prenotazioni = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     </td>
                                     <td>&euro;<?= number_format($prenotazione['price'], 2); ?></td>
                                     <td>
-                                        <?= $prenotazione['confirmed'] ? '<span class="status status-green">Confermata</span>' : '<span class="status status-orange">
-  <span class="status-dot status-dot-animated"></span>Non Conclusa</span>'; ?>
+                                        <?php
+                                        if ($prenotazione['voided']) {
+                                            echo '<span class="status status-red">Annullata</span>';
+                                        } elseif ($prenotazione['confirmed']) {
+                                            echo '<span class="status status-green">Confermata</span>';
+                                        } else {
+                                            echo '<span class="status status-orange"><span class="status-dot status-dot-animated"></span>Non Conclusa</span>';
+                                        }
+                                        ?>
                                     </td>
                                     <td>
                                         <a href="details?token=<?= $prenotazione['id']; ?>"

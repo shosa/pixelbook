@@ -108,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="page page-center">
         <div class="container container-tight py-4">
             <div class="text-center mb-4">
-                <h1>Pix<span class="text-info">iod</span> [<span class="text-success">Admin</span> Console]</h1>
+                <h1>Pix<span class="text-info">iod</span> [<span class="text-instagram">Admin Console</span>]</h1>
             </div>
             <div class="card card-md">
                 <div class="card-body">
@@ -116,9 +116,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <!-- Switch login method buttons -->
                     <div class="btn-group w-100 mb-3">
-                        <button id="loginWithPasswordBtn" class="btn btn-primary w-50"
+                        <button id="loginWithPasswordBtn" class="btn btn-instagram w-50"
                             onclick="showPasswordLogin()">Accedi con Password</button>
-                        <button id="loginWithPinBtn" class="btn btn-outline-primary w-50"
+                        <button id="loginWithPinBtn" class="btn btn-outline-instagram w-50"
                             onclick="showPinLogin()">Accedi con PIN</button>
                     </div>
 
@@ -151,7 +151,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </label>
                         </div>
                         <div class="form-footer">
-                            <button type="submit" class="btn btn-primary w-100">Accedi</button>
+                            <button type="submit" class="btn btn-instagram w-100">Accedi</button>
                         </div>
                     </form>
 
@@ -165,7 +165,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <div class="row g-2">
                                         <?php for ($i = 0; $i < 8; $i++): ?>
                                             <div class="col">
-                                                <input type="text" name="pin_digit[]"
+                                                <input type="password" name="pin_digit[]"
                                                     class="form-control form-control-lg text-center py-3" maxlength="1"
                                                     inputmode="numeric" pattern="[0-9]*" data-pin-input>
                                             </div>
@@ -191,7 +191,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </label>
                         </div>
                         <div class="form-footer">
-                            <button type="submit" class="btn btn-primary w-100">Accedi con PIN</button>
+                            <button type="submit" class="btn btn-instagram w-100">Accedi con PIN</button>
                         </div>
                     </form>
 
@@ -204,16 +204,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         function showPasswordLogin() {
             document.getElementById('passwordLoginForm').style.display = 'block';
             document.getElementById('pinLoginForm').style.display = 'none';
-            document.getElementById('loginWithPasswordBtn').classList.add('btn-primary');
-            document.getElementById('loginWithPinBtn').classList.remove('btn-primary');
+            document.getElementById('loginWithPasswordBtn').classList.add('btn-instagram');
+            document.getElementById('loginWithPinBtn').classList.remove('btn-instagram');
         }
 
         function showPinLogin() {
             document.getElementById('passwordLoginForm').style.display = 'none';
             document.getElementById('pinLoginForm').style.display = 'block';
-            document.getElementById('loginWithPasswordBtn').classList.remove('btn-primary');
-            document.getElementById('loginWithPinBtn').classList.remove('btn-outline-primary');
-            document.getElementById('loginWithPinBtn').classList.add('btn-primary');
+            document.getElementById('loginWithPasswordBtn').classList.remove('btn-instagram');
+            document.getElementById('loginWithPinBtn').classList.remove('btn-outline-instagram');
+            document.getElementById('loginWithPinBtn').classList.add('btn-instagram');
         }
 
         // Auto-tab functionality for PIN inputs
