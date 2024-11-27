@@ -43,11 +43,12 @@ if (!$prenotazione) {
 
                     <div class="btn-list">
 
-                        <a href="https://wa.me/<?= htmlspecialchars($prenotazione['phone']); ?>" class="btn btn-success"
-                            target="_blank">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-whatsapp"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
+                        <a href="https://wa.me/<?= htmlspecialchars($prenotazione['phone']); ?>"
+                            class="btn rounded-pill shadow-sm" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                class="icon icon-tabler icon-tabler-brand-whatsapp text-green" viewBox="0 0 24 24"
+                                stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                stroke-linejoin="round">
                                 <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
                                 <path
                                     d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" />
@@ -163,7 +164,7 @@ if (!$prenotazione) {
                                 }
                                 ?>
                             </p>
-                            <button class="btn btn-dark  rounded-pill" data-bs-toggle="modal"
+                            <button class="btn rounded-pill shadow-sm  text-dark" data-bs-toggle="modal"
                                 data-bs-target="#updateStatusModal">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mail"
                                     width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
@@ -191,7 +192,7 @@ if (!$prenotazione) {
                                 <?php endif; ?>
                             </p>
                             <?php if (!$prenotazione['confirmed']): ?>
-                                <button class="btn btn-instagram  rounded-pill" data-bs-toggle="modal"
+                                <button class="btn text-instagram shadow-sm rounded-pill" data-bs-toggle="modal"
                                     data-bs-target="#emailModal">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mail"
                                         width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
@@ -244,7 +245,7 @@ if (!$prenotazione) {
 
 <!-- Modale per la composizione dell'email -->
 <div class="modal fade" id="emailModal" tabindex="-1" aria-labelledby="emailModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="emailModalLabel">Offerta di CallBack</h5>
@@ -252,8 +253,7 @@ if (!$prenotazione) {
             </div>
             <form id="emailForm">
                 <div class="modal-body">
-                    <input type="text" class="form-control" id="id" name="id" value="<?= htmlspecialchars($id) ?>"
-                        hidden>
+                    <input type="text" class="form-control" id="id" name="id" value="<?= htmlspecialchars($id) ?>" hidden>
                     <div class="mb-3">
                         <label for="to" class="form-label">Destinatario</label>
                         <input type="email" class="form-control" id="to" name="to"
@@ -261,18 +261,22 @@ if (!$prenotazione) {
                     </div>
                     <div class="mb-3">
                         <label for="subject" class="form-label">Oggetto</label>
-                        <input type="text" class="form-control" id="subject" name="subject" value="Don't tell anyone"
+                        <input type="text" class="form-control" id="subject" name="subject" value="Offerta speciale"
                             required>
                     </div>
                     <div class="mb-3">
-                        <label for="price" class="form-label">Nuovo Prezzo</label>
-                        <input type="text" class="form-control" id="price" name="price" required>
+                        <label for="price" class="form-label">
+                            Nuovo Prezzo 
+                            <span class="text-muted">(Prezzo originale: AED <?= number_format($prenotazione['price'], 2); ?> 
+                            <span class="text-rss"> -> 10%:</span> AED <?= number_format($prenotazione['price'] * 0.9, 2); ?>)</span>
+                        </label>
+                        <input type="text" class="form-control" id="price" name="price" 
+                            value="<?= number_format($prenotazione['price'] * 0.9, 2); ?>" required>
                     </div>
-
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
-                    <button type="submit" class="btn btn-primary">Invia Email</button>
+                    <button type="button" class="btn rounded-pill" data-bs-dismiss="modal">Chiudi</button>
+                    <button type="submit" class="btn btn-outline-success rounded-pill">Invia Email</button>
                 </div>
             </form>
             <div id="responseMessage" class="p-3"></div>
@@ -282,7 +286,7 @@ if (!$prenotazione) {
 <!-- Modale cambia stato -->
 <div class="modal fade" id="updateStatusModal" tabindex="-1" aria-labelledby="updateStatusModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="updateStatusModalLabel">Modifica Stato Prenotazione</h5>
@@ -302,8 +306,8 @@ if (!$prenotazione) {
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
-                    <button type="submit" class="btn btn-primary">Salva Modifiche</button>
+                    <button type="button" class="btn rounded-pill" data-bs-dismiss="modal">Chiudi</button>
+                    <button type="submit" class="btn btn-outline-primary rounded-pill">Salva Modifiche</button>
                 </div>
             </form>
         </div>
