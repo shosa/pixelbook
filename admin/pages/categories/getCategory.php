@@ -50,7 +50,7 @@ if (isset($_GET['id'])) {
                 <?php endif; ?>
             </div>
             <div class="text-center">
-                <button type="submit" class="btn btn-primary">Salva Modifiche</button>
+                <button type="submit" class="btn btn-outline-primary rounded-pill">Salva Modifiche</button>
             </div>
         </form>
         <?php

@@ -160,7 +160,7 @@ if (!$prenotazione) {
                                 } elseif ($prenotazione['confirmed']) {
                                     echo '<span class="status status-green">Confermata</span>';
                                 } else {
-                                    echo '<span class="status status-orange"><span class="status-dot status-dot-animated"></span>Non Conclusa</span>';
+                                    echo '<span class="status status-orange"><span class="status-dot status-dot-animated"></span>Incompleta</span>';
                                 }
                                 ?>
                             </p>
@@ -300,7 +300,7 @@ if (!$prenotazione) {
                         <select class="form-select" id="status" name="status" required>
                             <option value="confirmed" <?= $prenotazione['confirmed'] ? 'selected' : ''; ?>>Confermata
                             </option>
-                            <option value="not_confirmed" <?= !$prenotazione['confirmed'] && !$prenotazione['voided'] ? 'selected' : ''; ?>>Non Conclusa</option>
+                            <option value="not_confirmed" <?= !$prenotazione['confirmed'] && !$prenotazione['voided'] ? 'selected' : ''; ?>>Incompleta</option>
                             <option value="voided" <?= $prenotazione['voided'] ? 'selected' : ''; ?>>Annullata</option>
                         </select>
                     </div>

@@ -70,12 +70,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="container-xl">
             <div class="row align-items-center">
                 <div class="col">
+                <ol class="breadcrumb" aria-label="breadcrumbs">
+                            <li class="breadcrumb-item"><a href="../../index">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><a href="index">Galleria</a></li>
+
+                        </ol>
                     <h2 class="page-title">Gestione Galleria</h2>
                     <p class="text-muted">Visualizza, gestisci e aggiungi foto alle categorie.</p>
                 </div>
                 <div class="col-auto ms-auto d-print-none">
                     <div class="btn-list">
-                        <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddPhoto">
+                        <button class="btn text-info rounded-pill" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddPhoto">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-photo-plus"
                                 viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                 stroke-linecap="round" stroke-linejoin="round">
@@ -131,7 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <h5 class="card-title mt-3"><?php echo htmlspecialchars($categoria['nome']); ?></h5>
                                 <div class="btn-list mt-2">
                                     <button
-                                        class="btn btn-outline-primary w-100 d-flex align-items-center justify-content-center"
+                                        class="btn btn-outline-primary rounded-pill w-100 d-flex align-items-center justify-content-center"
                                         data-bs-toggle="offcanvas"
                                         data-bs-target="#offcanvasGallery<?php echo $categoria['id']; ?>">
                                         <svg xmlns="http://www.w3.org/2000/svg"
@@ -168,10 +173,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <?php foreach ($fotografie as $foto): ?>
                                         <div class="col-6 mb-3 position-relative">
                                             <img src="../../../images/gallery/<?php echo htmlspecialchars($foto['file']); ?>"
-                                                class="card-img-top">
-                                            <form action="" method="post" class="position-absolute top-0 end-0">
+                                                class="card-img-top rounded shadow-sm">
+                                            <form action="" method="post" class="position-absolute top-0 end-0 ">
                                                 <input type="hidden" name="id" value="<?php echo $foto['id']; ?>">
-                                                <button type="submit" name="delete_photo" class="btn btn-icon btn-danger btn-sm"
+                                                <button type="submit" name="delete_photo" class="btn btn-icon shadow-sm btn-danger rounded-pill "
                                                     title="Elimina Foto">
                                                     <svg xmlns="http://www.w3.org/2000/svg"
                                                         class="icon icon-tabler icon-tabler-trash" viewBox="0 0 24 24"
@@ -222,7 +227,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="file" name="files[]" class="form-control" multiple>
             </div>
             <div class="d-flex justify-content-end">
-                <button type="submit" name="add_photo" class="btn btn-primary">
+                <button type="submit" name="add_photo" class="btn btn-outline-success rounded-pill w-100">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-upload"
                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
                         stroke-linejoin="round">

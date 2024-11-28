@@ -76,7 +76,7 @@ $prenotazioni = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         } elseif ($prenotazione['confirmed']) {
                                             echo '<span class="status status-green">Confermata</span>';
                                         } else {
-                                            echo '<span class="status status-orange"><span class="status-dot status-dot-animated"></span>Non Conclusa</span>';
+                                            echo '<span class="status status-orange"><span class="status-dot status-dot-animated"></span>Incompleta</span>';
                                         }
                                         ?>
                                     </td>

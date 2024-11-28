@@ -66,6 +66,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="container-xl">
             <div class="row g-2 align-items-center">
                 <div class="col">
+                    <div class="mb-1">
+                        <ol class="breadcrumb" aria-label="breadcrumbs">
+                            <li class="breadcrumb-item"><a href="../../index">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><a href="index">Tariffario</a></li>
+
+                        </ol>
+                    </div>
                     <h2 class="page-title">Gestione Tariffario</h2>
                     <p class="text-muted">Gestisci i moltiplicatori di prezzo per vari servizi.</p>
                 </div>
@@ -126,10 +133,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </div>
                         </div>
                         <div class="text-center mt-4">
-                            <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal"
-                                data-bs-target="#confirmModal">Salva Modifica</button>
-                            <button type="button" class="btn btn-outline-secondary" onclick="resetForm()">Ripristina
+
+                            <button type="button" class="btn btn-outline-secondary rounded-pill"
+                                onclick="resetForm()">Ripristina
                                 valori precedenti</button>
+                            <button type="button" class="btn btn-info rounded-pill me-2" data-bs-toggle="modal"
+                                data-bs-target="#confirmModal">Salva Modifica</button>
                         </div>
                     </form>
                 </div>
@@ -161,7 +170,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="col-md-3 mb-3">
                             <div class="card shadow-sm">
                                 <div class="card-body">
-                                    <i class="icon icon-tabler icon-tabler-camera-plus mb-2" style="font-size: 24px;"></i>
+                                    <i class="icon icon-tabler icon-tabler-camera-plus mb-2"
+                                        style="font-size: 24px;"></i>
                                     <p class="mb-0"><strong>Photo & Video 3 Ore</strong></p>
                                     <p id="examplePhotoVideo3" class="text-primary fw-bold">0 AED</p>
                                 </div>

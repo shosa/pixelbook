@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = $_POST['id'];
             $sqlUpdate = "UPDATE home_carousel SET nome = ?, foto_blur = ?, foto = ?, tipo = ? WHERE id = ?";
             $stmt = $pdo->prepare($sqlUpdate);
-            $stmt->execute([$nome, $foto_blur, $foto,  $tipo, $id]);
+            $stmt->execute([$nome, $foto_blur, $foto, $tipo, $id]);
             $_SESSION["success"] = "Carousel aggiornato con successo.";
         } else {
             $sqlInsert = "INSERT INTO home_carousel (nome, foto_blur, foto, tipo) VALUES (?, ?, ?, ?)";
@@ -58,24 +58,34 @@ $galleriaItems = $queryGalleria->fetchAll(PDO::FETCH_ASSOC);
 
 <div class="page-wrapper">
     <!-- Visualizzazione dei messaggi di errore/successo -->
-   
+
 
     <!-- Page header -->
     <div class="page-header d-print-none">
         <div class="container-xl">
             <div class="row g-2 align-items-center">
                 <div class="col">
+                <div class="mb-1">
+                        <ol class="breadcrumb" aria-label="breadcrumbs">
+                            <li class="breadcrumb-item"><a href="../../index">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><a href="index">Caroselli</a></li>
+
+                        </ol>
+                    </div>
                     <h2 class="page-title">Gestisci Carousel</h2>
                     <p class="text-muted">Aggiungi, modifica ed elimina i carousel della homepage.</p>
                 </div>
                 <div class="col-auto ms-auto">
-                    <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarousel" onclick="resetForm()">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <button class="btn rounded-pill text-info" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasCarousel" onclick="resetForm()">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <path d="M12 5v14" />
                             <path d="M5 12h14" />
                         </svg>
-                        Aggiungi Nuovo Carousel
+                       Nuovo Carosello
                     </button>
                 </div>
             </div>
@@ -108,14 +118,39 @@ $galleriaItems = $queryGalleria->fetchAll(PDO::FETCH_ASSOC);
                                     <td><?php echo $item['id']; ?></td>
                                     <td><?php echo htmlspecialchars($item['nome']); ?></td>
                                     <td><?php echo htmlspecialchars($item['tipo']); ?></td>
-                                    <td><img src="../../../<?php echo htmlspecialchars($item['foto_blur']); ?>" class="img-thumbnail" style="width: 60px; height: 60px; object-fit: cover;"></td>
-                                    <td><img src="../../../<?php echo htmlspecialchars($item['foto']); ?>" class="img-thumbnail" style="width: 60px; height: 60px; object-fit: cover;"></td>
+                                    <td><img src="../../../<?php echo htmlspecialchars($item['foto_blur']); ?>"
+                                            class="img-thumbnail" style="width: 60px; height: 60px; object-fit: cover;">
+                                    </td>
+                                    <td><img src="../../../<?php echo htmlspecialchars($item['foto']); ?>"
+                                            class="img-thumbnail" style="width: 60px; height: 60px; object-fit: cover;">
+                                    </td>
                                     <td>
-                                        <a href="#" class="btn btn-outline-primary btn-sm" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarousel" onclick="editCarousel(<?php echo $item['id']; ?>)">
-                                            Modifica
+                                        <a href="#" class="btn btn-icon btn-outline-primary rounded-pill"
+                                            data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarousel"
+                                            onclick="editCarousel(<?php echo $item['id']; ?>)">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                class="icon icon-tabler icon-tabler-pencil" width="24" height="24"
+                                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+                                                <path d="M13.5 6.5l4 4" />
+                                            </svg>
                                         </a>
-                                        <a href="index?delete_id=<?php echo $item['id']; ?>" class="btn btn-outline-danger btn-sm" onclick="return confirm('Sei sicuro di voler eliminare questa voce?');">
-                                            Elimina
+                                        <a href="index?delete_id=<?php echo $item['id']; ?>"
+                                            class="btn btn-icon btn-outline-danger rounded-pill"
+                                            onclick="return confirm('Sei sicuro di voler eliminare questa voce?');">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                class="icon icon-tabler icon-tabler-trash" width="24" height="24"
+                                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M4 7l16 0" />
+                                                <path d="M10 11l0 6" />
+                                                <path d="M14 11l0 6" />
+                                                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                            </svg>
                                         </a>
                                     </td>
                                 </tr>
@@ -141,7 +176,7 @@ $galleriaItems = $queryGalleria->fetchAll(PDO::FETCH_ASSOC);
                 <label class="form-label">Nome</label>
                 <input type="text" name="nome" class="form-control" id="carouselNome" required>
             </div>
-           
+
             <div class="mb-3">
                 <label class="form-label">Tipo</label>
                 <select name="tipo" class="form-select" id="carouselTipo">
@@ -152,7 +187,10 @@ $galleriaItems = $queryGalleria->fetchAll(PDO::FETCH_ASSOC);
             <div class="mb-3">
                 <label class="form-label">Foto Banner</label>
                 <div class="d-flex align-items-center">
-                    <button type="button" class="btn btn-outline-secondary me-2" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="setImageField('carouselFotoBlur', 'selectedBlurPreview')">Scegli dalla Galleria</button>
+                    <button type="button" class="btn btn-outline-secondary me-2 rounded-pill" data-bs-toggle="modal"
+                        data-bs-target="#galleryModal"
+                        onclick="setImageField('carouselFotoBlur', 'selectedBlurPreview')">Scegli dalla
+                        Galleria</button>
                     <div id="selectedBlurPreview"></div>
                     <input type="hidden" name="foto_blur" id="carouselFotoBlur">
                 </div>
@@ -160,12 +198,14 @@ $galleriaItems = $queryGalleria->fetchAll(PDO::FETCH_ASSOC);
             <div class="mb-3">
                 <label class="form-label">Foto Normale</label>
                 <div class="d-flex align-items-center">
-                    <button type="button" class="btn btn-outline-secondary me-2" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="setImageField('carouselFoto', 'selectedFotoPreview')">Scegli dalla Galleria</button>
+                    <button type="button" class="btn btn-outline-secondary rounded-pill me-2" data-bs-toggle="modal"
+                        data-bs-target="#galleryModal"
+                        onclick="setImageField('carouselFoto', 'selectedFotoPreview')">Scegli dalla Galleria</button>
                     <div id="selectedFotoPreview"></div>
                     <input type="hidden" name="foto" id="carouselFoto">
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary w-100">Salva</button>
+            <button type="submit" class="btn rounded-pill btn-outline-success btn-block w-100">Salva</button>
         </form>
     </div>
 </div>
@@ -190,20 +230,26 @@ $galleriaItems = $queryGalleria->fetchAll(PDO::FETCH_ASSOC);
                         $imagesQuery = $pdo->prepare("SELECT * FROM galleria WHERE categoria_id = ?");
                         $imagesQuery->execute([$categoryId]);
                         $images = $imagesQuery->fetchAll(PDO::FETCH_ASSOC);
-                    ?>
+                        ?>
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="heading-<?php echo $categoryId; ?>">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-<?php echo $categoryId; ?>" aria-expanded="false" aria-controls="collapse-<?php echo $categoryId; ?>">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapse-<?php echo $categoryId; ?>" aria-expanded="false"
+                                    aria-controls="collapse-<?php echo $categoryId; ?>">
                                     <?php echo $categoryName; ?>
                                 </button>
                             </h2>
-                            <div id="collapse-<?php echo $categoryId; ?>" class="accordion-collapse collapse" aria-labelledby="heading-<?php echo $categoryId; ?>" data-bs-parent="#galleryAccordion">
+                            <div id="collapse-<?php echo $categoryId; ?>" class="accordion-collapse collapse"
+                                aria-labelledby="heading-<?php echo $categoryId; ?>" data-bs-parent="#galleryAccordion">
                                 <div class="accordion-body">
                                     <div class="row g-2 g-md-3">
                                         <?php foreach ($images as $image): ?>
                                             <div class="col-6 col-md-4 col-lg-3">
-                                                <a data-fslightbox="gallery" onclick="selectImage('<?php echo $image['file']; ?>')">
-                                                    <div class="img-responsive img-responsive-1x1 " style="background-image: url('../../../images/gallery/<?php echo $image['file']; ?>');"></div>
+                                                <a data-fslightbox="gallery"
+                                                    onclick="selectImage('<?php echo $image['file']; ?>')">
+                                                    <div class="img-responsive img-responsive-1x1 "
+                                                        style="background-image: url('../../../images/gallery/<?php echo $image['file']; ?>');">
+                                                    </div>
                                                 </a>
                                             </div>
                                         <?php endforeach; ?>
@@ -231,7 +277,7 @@ $galleriaItems = $queryGalleria->fetchAll(PDO::FETCH_ASSOC);
     function resetForm() {
         document.getElementById('carouselId').value = '';
         document.getElementById('carouselNome').value = '';
-    
+
         document.getElementById('carouselTipo').value = 'BUSINESS';
         document.getElementById('carouselFotoBlur').value = '';
         document.getElementById('carouselFoto').value = '';
@@ -258,7 +304,7 @@ $galleriaItems = $queryGalleria->fetchAll(PDO::FETCH_ASSOC);
             .then(data => {
                 document.getElementById('carouselId').value = data.id;
                 document.getElementById('carouselNome').value = data.nome;
-                
+
                 document.getElementById('carouselTipo').value = data.tipo;
                 document.getElementById('carouselFotoBlur').value = data.foto_blur;
                 document.getElementById('carouselFoto').value = data.foto;

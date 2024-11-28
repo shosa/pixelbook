@@ -94,11 +94,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="container-xl">
             <div class="row g-2 align-items-center">
                 <div class="col">
+                    <ol class="breadcrumb" aria-label="breadcrumbs">
+                        <li class="breadcrumb-item"><a href="../../index">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a href="index">Categorie</a></li>
+
+                    </ol>
                     <h2 class="page-title">Gestisci Categorie</h2>
                     <p class="text-muted">Aggiungi, modifica e rimuovi le categorie di servizi.</p>
                 </div>
                 <div class="col-auto ms-auto">
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
+                    <button class="btn rounded-pill text-info" data-bs-toggle="modal"
+                        data-bs-target="#addCategoryModal">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye"
                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                             stroke-linecap="round" stroke-linejoin="round">
@@ -141,15 +147,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <td><?php echo htmlspecialchars($categoria['base_price']); ?></td>
                                     <td class="text-uppercase"><?php echo htmlspecialchars($categoria['type']); ?></td>
                                     <td>
-                                        <a href="#" class="btn btn-icon btn-outline-primary btn-sm p-1"
+                                        <a href="#" class="btn btn-icon btn-outline-primary rounded-pill "
                                             data-bs-toggle="offcanvas" data-bs-target="#editCategoryOffcanvas"
                                             onclick="loadCategoryData(<?php echo $categoria['id']; ?>)">
-                                            Modifica
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="icon icon-tabler icons-tabler-outline icon-tabler-pencil">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+                                                <path d="M13.5 6.5l4 4" />
+                                            </svg>
                                         </a>
                                         <form style="display:inline;">
                                             <button type="button" onclick="confirmDelete(<?php echo $categoria['id']; ?>)"
-                                                class="btn btn-icon btn-outline-danger btn-sm p-1">
-                                                Elimina
+                                                class="btn btn-icon btn-outline-danger rounded-pill">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                    class="icon icon-tabler icons-tabler-outline icon-tabler-trash">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                    <path d="M4 7l16 0" />
+                                                    <path d="M10 11l0 6" />
+                                                    <path d="M14 11l0 6" />
+                                                    <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                                    <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                                </svg>
                                             </button>
                                         </form>
                                     </td>
@@ -210,8 +233,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-link" data-bs-dismiss="modal">Annulla</button>
-                    <button type="submit" name="add_category" class="btn btn-primary">Aggiungi Categoria</button>
+                    <button type="button" class="btn rounded-pill" data-bs-dismiss="modal">Annulla</button>
+                    <button type="submit" name="add_category" class="btn btn-outline-primary rounded-pill">Aggiungi
+                        Categoria</button>
                 </div>
             </form>
         </div>
