@@ -8,7 +8,7 @@
 
             <div class="accordion-item">
                 <h2 class="accordion-header " id="faqHeading1">
-                    <button class="accordion-button collapsed  bg-gradient-custom p-2 rounded w-100 rounded-pill"
+                    <button class="accordion-button collapsed  bg-gradient-custom p-2 rounded w-100 rounded-pill shadow-sm"
                         type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse1" aria-expanded="false"
                         aria-controls="faqCollapse1">
                         How can I book a photographer or videographer?
@@ -28,7 +28,8 @@
 
             <div class="accordion-item">
                 <h2 class="accordion-header" id="faqHeading2">
-                    <button class="accordion-button collapsed  bg-gradient-custom p-2 rounded w-100 rounded-pill"
+                    <button
+                        class="accordion-button collapsed  bg-gradient-custom-yellow text-dark p-2 rounded w-100 rounded-pill shadow-sm"
                         type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse2" aria-expanded="false"
                         aria-controls="faqCollapse2">
                         What types of photography services do you offer?
@@ -46,7 +47,7 @@
             <!-- FAQ Item 3 -->
             <div class="accordion-item">
                 <h2 class="accordion-header" id="faqHeading3">
-                    <button class="accordion-button collapsed  bg-gradient-custom p-2 rounded w-100 rounded-pill"
+                    <button class="accordion-button collapsed  bg-gradient-custom p-2 rounded w-100 rounded-pill shadow-sm"
                         type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse3" aria-expanded="false"
                         aria-controls="faqCollapse3">
                         Who are the photographers and videographers available?
@@ -64,7 +65,8 @@
             <!-- FAQ Item 4 -->
             <div class="accordion-item">
                 <h2 class="accordion-header" id="faqHeading4">
-                    <button class="accordion-button collapsed  bg-gradient-custom p-2 rounded w-100 rounded-pill"
+                    <button
+                        class="accordion-button collapsed  bg-gradient-custom-yellow text-dark  p-2 rounded w-100 rounded-pill shadow-sm"
                         type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse4" aria-expanded="false"
                         aria-controls="faqCollapse4">
                         What payment methods do you accept?
@@ -82,7 +84,7 @@
             <!-- FAQ Item 5 -->
             <div class="accordion-item ">
                 <h2 class="accordion-header" id="faqHeading5">
-                    <button class="accordion-button collapsed  bg-gradient-custom p-2 rounded w-100 rounded-pill "
+                    <button class="accordion-button collapsed  bg-gradient-custom p-2 rounded w-100 rounded-pill shadow-sm "
                         type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse5" aria-expanded="false"
                         aria-controls="faqCollapse5">
                         What if the service doesn’t meet my expectations?

@@ -45,10 +45,9 @@
     <div class="row text-center">
         <div class="col-md-6 text-center d-flex align-items-center">
             <div class="container p-4 ml-5">
-                <span class="h1 text-white font-weight-bold text-gradient-custom-green ">Trusted By
+                <span class="h1 text-white font-weight-bold text-gradient-custom-green">Trusted By
                 </span>
-                <br><br><i class="font-weight-bold">Here are some of the clients who believed in my vision and work
-
+                <br><br><i class="font-weight-bold ">Here are some of the clients who believed in my vision and work
                 </i>
             </div>
         </div>

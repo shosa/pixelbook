@@ -195,7 +195,7 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
                     one link.
                     Choose, book, and pay online. Your photography and video services, at your fingertips.</i>
                 <br><br>
-                <a class="btn btn-light  rounded-pill font-weight-bold" style="background-color:white !important "
+                <a class="btn  rounded-pill font-weight-bold btn-gradient-custom-yellow text-dark" style="background-color:white !important "
                     href="book">Find Out
                     More <i class="fas fa-chevron-right"></i></a>
             </div>
@@ -229,8 +229,12 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
             <p class="mt-3 pr-5">
                 We work only with the best professionals in the industry to ensure impeccable results.
                 Every shot and every recording are designed to exceed your expectations and turn every idea into a
-                visual masterpiece.
+                visual masterpiece.   <br>
+                <a class="btn mt-3 rounded-pill btn-gradient-custom-yellow shadow-sm font-weight-bold"
+                    href="book">DISCOVER ALL
+                    CATEGORIES</a>
             </p>
+
         </div>
         <div class="col-md-8">
             <?php include("elements/home_carousel_personal.php"); ?>
@@ -250,6 +254,9 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
             <p class="mt-3 pl-5">
                 Whether you need a photographer or a videographer, select the category that best represents your style
                 or needs. Book in just a few clicks and bring your ideas to life!
+                <br>
+                <a class="btn mt-3 rounded-pill btn-gradient-custom-yellow shadow-sm  font-weight-bold" href="book">TRY
+                    NOW</a>
             </p>
         </div>
     </div>

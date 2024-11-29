@@ -19,12 +19,15 @@
 
 <style>
     /* Forza la larghezza al 100% senza zoomare */
-    html, body {
+    html,
+    body {
         width: 100% !important;
-        overflow-x: hidden !important; /* Evita lo scroll orizzontale */
+        overflow-x: hidden !important;
+        /* Evita lo scroll orizzontale */
         margin: 0 !important;
         padding: 0 !important;
-        -webkit-text-size-adjust: 100% !important; /* Per evitare che il testo venga ridimensionato automaticamente su dispositivi iOS */
+        -webkit-text-size-adjust: 100% !important;
+        /* Per evitare che il testo venga ridimensionato automaticamente su dispositivi iOS */
     }
 
     /* Impostazione predefinita per il pulsante */
@@ -60,7 +63,8 @@
         }
 
         body {
-            font-size: 14px !important; /* Impostazione del font di default per mobile */
+            font-size: 14px !important;
+            /* Impostazione del font di default per mobile */
         }
     }
 
@@ -68,18 +72,19 @@
     @media (max-width: 767px) {
         .navbar {
             width: 100% !important;
-            padding: 0 !important;
-            margin: 0 !important;
+
         }
     }
 </style>
 
 <body class="mt-2">
     <!-- Header with dropdown and Book Now button -->
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm bg-gradient-custom">
         <a class="navbar-brand font-weight-bold text-white <?php echo (basename($_SERVER['PHP_SELF']) == 'index.php') ? 'navbar-center-logo' : ''; ?>"
             href="<?php echo BASE_URL; ?>">
-            <img src="<?php echo BASE_URL; ?>/src/img/logo.png" alt="Pixiod Logo" style="height: 40px;">
+            <img src="<?php echo (basename($_SERVER['PHP_SELF']) == 'index.php') ? BASE_URL . '/src/img/logo.png' : BASE_URL . '/src/img/logoOne.png'; ?>"
+                alt="Pixiod Logo" style="height: 40px;">
         </a>
 
         <!-- Book Now Button in Navbar (solo su desktop) -->
@@ -103,5 +108,3 @@
             <a href="book.php" class="btn btn-gradient-custom font-weight-bold rounded-pill shadow-sm">Book Now</a>
         </div>
     <?php endif; ?>
-   
-

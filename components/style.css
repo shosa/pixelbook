@@ -11282,9 +11282,9 @@ a:focus {
 }
 
 .bg-gradient-custom-yellow {
-  background-color: #4e73df !important;
+
   /*background-image: linear-gradient(90deg, #007ef3, #3cc4d6) !important;*/
-  background-image: linear-gradient(-90deg, #ffcd77, #ecb81d) !important;
+  background-image: linear-gradient(-90deg, #ffcd77, #ffcf42) !important;
   background-size: cover !important;
   color: white !important;
   border: none;
@@ -11301,9 +11301,19 @@ a:focus {
   font-weight: bold;
 }
 
+.btn-gradient-custom-yellow {
+  background-color: #ffcd77 !important;
+  /*background-image: linear-gradient(90deg, #007ef3, #3cc4d6) !important;*/
+  background-image: linear-gradient(-90deg, #ffcd77, #ffcf42) !important;
+  background-size: cover !important;
+  color: black !important;
+  border: none;
+  font-weight: bold;
+}
+
 .text-gradient-custom {
   /* background: -webkit-linear-gradient(0deg, #007ef3, #3cc4d6);*/
-  background: -webkit-linear-gradient(0deg, #ffcd77, #ecb81d);
+  background: -webkit-linear-gradient(0deg, #ffcd77, #ffcf42);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
@@ -11312,7 +11322,7 @@ a:focus {
 
 .text-gradient-custom-green {
   /* background: -webkit-linear-gradient(0deg, #007ef3, #3cc4d6);*/
-  background: -webkit-linear-gradient(0deg, #263e38,#547c7d);
+  background: -webkit-linear-gradient(0deg, #263e38, #547c7d);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
