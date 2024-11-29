@@ -201,14 +201,14 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
             </div>
         </div>
         <style>
-            @media (max-width: 768px) {
+            /*    @media (max-width: 768px) {
                 .paramobil {
                     border-radius: 0 50rem 50rem 0 !important;
                     background-color: #fff !important;
                     padding: 3rem !important;
                     margin-bottom: 1rem !important;
                 }
-            }
+            }*/
         </style>
         <div class="col-md-6">
             <div class="row parallax-container paramobil">
@@ -220,10 +220,6 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
     </div>
 </div>
 
-<?php include("elements/trusted_by.php"); ?>
-<hr>
-<?php include("elements/reviews.php"); ?>
-<hr>
 <div class="container-fluid my-4">
     <div class="row align-items-center text-center">
 
@@ -259,6 +255,12 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
     </div>
 </div>
 <hr>
+
+<?php include("elements/trusted_by.php"); ?>
+<hr>
+<?php include("elements/reviews.php"); ?>
+<hr>
+
 <div class="custom-container w-100">
     <div class="row text-center">
         <div class="col-md-6">

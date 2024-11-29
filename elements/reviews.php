@@ -21,7 +21,7 @@
 
 
     .swiper-pagination-bullet-active {
-        background-color: #ff9800;
+        background-color: green;
         /* Colore del puntino attivo */
     }
 
@@ -123,7 +123,7 @@
     // Inizializza Swiper
     const swiper = new Swiper('.swiper', {
         slidesPerView: 1,
-        spaceBetween: 20,
+        spaceBetween: 40,
         pagination: {
             el: '.swiper-pagination',
             clickable: true,

@@ -30,12 +30,14 @@
     .logo-slide img:hover {
         opacity: 1;
     }
+
     @media (max-width: 768px) {
-                .didas {
-                    border-radius: 0 50rem 50rem 0 !important;
-                  
-                }
-            }
+        .didas {
+            border-radius: 0 50rem 50rem 0 !important;
+            margin-right: 0.75rem !important;
+
+        }
+    }
 </style>
 
 
@@ -72,7 +74,7 @@
                     </div>
                 </div>
                 <!-- Paginazione -->
-                <div class="swiper-pagination"></div>
+                <div class="swiper-pagination-trusted"></div>
             </div>
         </div>
 
@@ -88,7 +90,7 @@
         centerSlides: true,
         loop: true,
         pagination: {
-            el: '.swiper-pagination',
+            el: '.swiper-pagination-trusted',
             clickable: true,
         },
         breakpoints: {

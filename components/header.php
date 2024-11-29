@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
     <title>Pixiod</title>
     <link rel="stylesheet" href="components/style.css?v=<?php echo time(); ?>">
 
@@ -16,7 +16,17 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 </head>
+
 <style>
+    /* Forza la larghezza al 100% senza zoomare */
+    html, body {
+        width: 100% !important;
+        overflow-x: hidden !important; /* Evita lo scroll orizzontale */
+        margin: 0 !important;
+        padding: 0 !important;
+        -webkit-text-size-adjust: 100% !important; /* Per evitare che il testo venga ridimensionato automaticamente su dispositivi iOS */
+    }
+
     /* Impostazione predefinita per il pulsante */
     .navbar .btn {
         position: relative;
@@ -50,7 +60,16 @@
         }
 
         body {
-          
+            font-size: 14px !important; /* Impostazione del font di default per mobile */
+        }
+    }
+
+    /* Forzare il layout fluido su dispositivi mobili */
+    @media (max-width: 767px) {
+        .navbar {
+            width: 100% !important;
+            padding: 0 !important;
+            margin: 0 !important;
         }
     }
 </style>
@@ -85,6 +104,4 @@
         </div>
     <?php endif; ?>
    
-</body>
 
-</html>

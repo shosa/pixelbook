@@ -201,7 +201,7 @@ function renderPersonal($items)
         <div class="swiper-slide carousel">
             <div class="image-section position-relative">
                 <!-- Immagine principale -->
-                <div class="image-main">
+                <div class="image-main shadow">
                     <img src="<?php echo $item['foto_blur']; ?>" class="img-fluid">
                     <div class="overlay-gradient text-left">
                         <h2 class=" font-weight-bold text-white"><?php echo $item['nome']; ?></h2>
@@ -234,6 +234,6 @@ function renderPersonal($items)
         <div class="swiper-wrapper mb-4">
             <?php renderPersonal($personalItems); ?>
         </div>
-        <div class="swiper-pagination"></div>
+        <div class="swiper-pagination-carousel-personal"></div>
     </div>
 </section>

@@ -200,7 +200,7 @@ function renderBusiness($items)
         <div class="swiper-slide carousel">
             <div class="image-section position-relative">
                 <!-- Immagine principale -->
-                <div class="image-main">
+                <div class="image-main shadow">
                     <img src="<?php echo $item['foto_blur']; ?>" class="img-fluid">
                     <div class="overlay-gradient text-left">
                         <h2 class=" font-weight-bold text-white"><?php echo $item['nome']; ?></h2>
@@ -231,7 +231,7 @@ function renderBusiness($items)
         <div class="swiper-wrapper mb-4">
             <?php renderBusiness($businessItems); ?>
         </div>
-        <div class="swiper-pagination"></div>
+        <div class="swiper-pagination-carousel-business"></div>
     </div>
 </section>
 
@@ -248,7 +248,7 @@ function renderBusiness($items)
             prevEl: '.swiper-button-prev',
         },
         pagination: {
-            el: '.swiper-pagination',
+            el: '.swiper-pagination-carousel-business',
             clickable: true,
         }
     });
@@ -263,7 +263,7 @@ function renderBusiness($items)
             prevEl: '.swiper-button-prev',
         },
         pagination: {
-            el: '.swiper-pagination',
+            el: '.swiper-pagination-carousel-personal',
             clickable: true,
         }
     });
