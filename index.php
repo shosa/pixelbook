@@ -193,7 +193,7 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
                     need,
                     in
                     one link.
-                    Choose, book, and pay online. Your photography and video services, at your fingertips.</i>
+                    Choose and book. Your photography and video services, at your fingertips.</i>
                 <br><br>
                 <a class="btn  rounded-pill font-weight-bold btn-gradient-custom-yellow text-dark" style="background-color:white !important "
                     href="book">Find Out

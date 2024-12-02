@@ -32,11 +32,16 @@ if (!$prenotazione) {
                         <ol class="breadcrumb" aria-label="breadcrumbs">
                             <li class="breadcrumb-item"><a href="../../index">Home</a></li>
                             <li class="breadcrumb-item"><a href="index">Prenotazioni</a></li>
-                            <li class="breadcrumb-item active" aria-current="page"><a href="#">Dettagli</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><a href="#">Dettagli
+                                    #<?php echo $id ?></a></li>
+
                         </ol>
+
                     </div>
+
                     <h2 class="page-title">Dettagli Prenotazione</h2>
-                    <p class="text-muted">Visualizza e modifica i dettagli della prenotazione.</p>
+
+                    <p class="text-muted">Gestisci i dettagli della prenotazione.</p>
                 </div>
 
                 <div class="col-auto ms-auto d-print-none">
@@ -234,7 +239,8 @@ if (!$prenotazione) {
                             <input type="hidden" name="id" value="<?= $prenotazione['id']; ?>">
                             <textarea id="adminNote" name="adminNote"
                                 class="form-control"><?= htmlspecialchars($prenotazione['note']); ?></textarea>
-                            <button type="submit" class="btn btn-outline-primary mt-3 w-100">Salva Note</button>
+                            <button type="submit" class="btn btn-outline-primary mt-3 w-100 rounded-pill">Salva
+                                Note</button>
                         </form>
                     </div>
                 </div>
@@ -253,7 +259,8 @@ if (!$prenotazione) {
             </div>
             <form id="emailForm">
                 <div class="modal-body">
-                    <input type="text" class="form-control" id="id" name="id" value="<?= htmlspecialchars($id) ?>" hidden>
+                    <input type="text" class="form-control" id="id" name="id" value="<?= htmlspecialchars($id) ?>"
+                        hidden>
                     <div class="mb-3">
                         <label for="to" class="form-label">Destinatario</label>
                         <input type="email" class="form-control" id="to" name="to"
@@ -266,11 +273,13 @@ if (!$prenotazione) {
                     </div>
                     <div class="mb-3">
                         <label for="price" class="form-label">
-                            Nuovo Prezzo 
-                            <span class="text-muted">(Prezzo originale: AED <?= number_format($prenotazione['price'], 2); ?> 
-                            <span class="text-rss"> -> 10%:</span> AED <?= number_format($prenotazione['price'] * 0.9, 2); ?>)</span>
+                            Nuovo Prezzo
+                            <span class="text-muted">(Prezzo originale: AED
+                                <?= number_format($prenotazione['price'], 2); ?>
+                                <span class="text-rss"> -> 10%:</span> AED
+                                <?= number_format($prenotazione['price'] * 0.9, 2); ?>)</span>
                         </label>
-                        <input type="text" class="form-control" id="price" name="price" 
+                        <input type="text" class="form-control" id="price" name="price"
                             value="<?= number_format($prenotazione['price'] * 0.9, 2); ?>" required>
                     </div>
                 </div>
