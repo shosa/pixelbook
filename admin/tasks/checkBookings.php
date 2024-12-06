@@ -11,12 +11,7 @@ if (function_exists('opcache_reset')) {
     opcache_reset();
 }
 
-// Calcola il percorso assoluto della directory corrente
-define('BASE_PATH', __DIR__);
 
-// Includi i file richiesti utilizzando percorsi assoluti
-require(BASE_PATH . "/../config/config_no_auth.php");
-require(BASE_PATH . "/../vendor/autoload.php");
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -28,9 +23,7 @@ ini_set('log_errors', 1);
 ini_set('error_log', BASE_PATH . '/checkBookings_error.log'); // Log degli errori
 
 try {
-    // Connessione al database
-    $pdo = Database::getInstance();
-
+  
 
     // Recupera la configurazione SMTP per "notifications@pixiod.com"
     $smtpStmt = $pdo->prepare("SELECT * FROM smtp_settings WHERE from_email = ?");
@@ -180,7 +173,7 @@ try {
             $updateStmt = $pdo->prepare("UPDATE prenotazioni SET isRead = 1 WHERE id = ?");
             $updateStmt->execute([$prenotazione['id']]);
 
-            echo "Email inviata per la prenotazione ID {$prenotazione['id']}.\n";
+            echo "Email ADMIN NUOVO inviata per la prenotazione ID {$prenotazione['id']}.\n";
         } catch (Exception $e) {
             error_log("Errore nell'invio dell'email per la prenotazione ID {$prenotazione['id']}: " . $mail->ErrorInfo);
         }

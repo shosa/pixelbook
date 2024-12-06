@@ -70,7 +70,8 @@ $desiredStructure = [
             'adminNote' => 'text DEFAULT NULL',
             'isRead' => 'tinyint(1) NOT NULL DEFAULT 0',
             'offer_price' => 'float DEFAULT NULL',
-            'date_of_offer' => 'date DEFAULT NULL'
+            'date_of_offer' => 'date DEFAULT NULL',
+            'notified_newOrder' => 'tinyint(1) NOT NULL DEFAULT 0'
         ],
         'primary_key' => 'id',
         'foreign_keys' => [

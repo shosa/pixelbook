@@ -142,7 +142,7 @@ try {
                     </tr>
                 </tbody>
             </table>
-            <a href="confirm.php?id=<?php echo $last_insert_id; ?>"
+            <a href="thank_you.php?id=<?php echo $last_insert_id; ?>"
                 class="btn btn-success btn-gradient-custom btn-lg btn-block">Confirm Offer</a>
             <span class="text-success font-weight-bold ml-2 mt-1">** Nothing to pay now</span>
         </div>

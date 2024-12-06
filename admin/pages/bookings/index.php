@@ -87,7 +87,7 @@ $prenotazioni = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <td><?= htmlspecialchars(date('d/m/Y', strtotime($prenotazione['date']))); ?> -
                                         <?= htmlspecialchars($prenotazione['time_of_day']); ?>
                                     </td>
-                                    <td>&euro;<?= number_format($prenotazione['price'], 2); ?></td>
+                                    <td>AED <?= number_format($prenotazione['price'], 2); ?></td>
                                     <td>
                                         <?php
                                         if ($prenotazione['voided']) {

@@ -77,7 +77,7 @@
     }
 </style>
 
-<body class="mt-2">
+<body class="mt-2 d-flex flex-column min-vh-100">
     <!-- Header with dropdown and Book Now button -->
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm bg-gradient-custom">

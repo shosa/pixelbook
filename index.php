@@ -5,7 +5,7 @@ $pdo = Database::getInstance();
 // Function to get random images from the folder
 $images = glob('images/gallery/*.{jpg,png,jpeg}', GLOB_BRACE);
 shuffle($images); // Shuffle images in random order
-$selected_images = array_slice($images, 0, 20); // Select only the first 20 images
+$selected_images = array_slice($images, 0, 30); // Select only the first 20 images
 ?>
 <style>
     .image-grid {
@@ -42,7 +42,8 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
     }
 
     .offset-row {
-        animation: scrollImages 40s linear infinite reverse;
+        animation: scrollImages 60s linear infinite reverse;
+       
     }
 
     /* Container width adjustment */
@@ -171,7 +172,7 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
                 <?php endforeach; ?>
             </div>
             <div class="image-row offset-row mt-2">
-                <?php foreach (array_slice($selected_images, 10, 10) as $image): ?>
+                <?php foreach (array_slice($selected_images, 10, 20) as $image): ?>
                     <div class="image-item">
                         <img class="img-fluid" src="<?= $image ?>" alt="Gallery Image">
                     </div>
@@ -195,8 +196,8 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
                     one link.
                     Choose and book. Your photography and video services, at your fingertips.</i>
                 <br><br>
-                <a class="btn  rounded-pill font-weight-bold btn-gradient-custom-yellow text-dark" style="background-color:white !important "
-                    href="book">Find Out
+                <a class="btn  rounded-pill font-weight-bold btn-gradient-custom-yellow text-dark"
+                    style="background-color:white !important " href="book">Find Out
                     More <i class="fas fa-chevron-right"></i></a>
             </div>
         </div>
@@ -229,7 +230,7 @@ $selected_images = array_slice($images, 0, 20); // Select only the first 20 imag
             <p class="mt-3 pr-5">
                 We work only with the best professionals in the industry to ensure impeccable results.
                 Every shot and every recording are designed to exceed your expectations and turn every idea into a
-                visual masterpiece.   <br>
+                visual masterpiece. <br>
                 <a class="btn mt-3 rounded-pill btn-gradient-custom-yellow shadow-sm font-weight-bold"
                     href="book">DISCOVER ALL
                     CATEGORIES</a>
